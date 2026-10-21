@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiWarehouse - Ứng Dụng Quản Lý Kho Thông Minh AI</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-slate-900 text-white flex flex-col justify-between shrink-0 hidden md:flex border-r border-slate-800">
+        <div>
+            <!-- Logo Brand -->
+            <div class="h-16 flex items-center gap-3 px-6 border-b border-slate-800">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/30">
+                    <i data-lucide="boxes" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <span class="text-lg font-extrabold tracking-tight">OptiWarehouse</span>
+                    <span class="block text-[10px] text-orange-400 font-bold tracking-widest uppercase">AI Mini WMS</span>
+                </div>
+            </div>
+
+            <!-- Current Warehouse Pill -->
+            <div class="px-4 py-3">
+                <div class="bg-slate-800/80 rounded-xl p-2.5 border border-slate-700/60 flex items-center justify-between text-xs">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span class="font-bold text-slate-200">Kho Tổng Hà Nội (250m²)</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400"></i>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="px-3 space-y-1 mt-2 text-sm font-semibold">
+                <button onclick="switchAppTab('dashboard')" id="nav-dashboard" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-white bg-orange-600 font-bold shadow-sm">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                    <span>Tổng quan vận hành</span>
+                </button>
+
+                <button onclick="switchAppTab('picking')" id="nav-picking" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i data-lucide="route" class="w-4 h-4 text-orange-400"></i>
+                    <span>AI Gom & Soạn Đơn</span>
+                    <span class="ml-auto bg-orange-500 text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">5</span>
+                </button>
+
+                <button onclick="switchAppTab('inventory')" id="nav-inventory" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i data-lucide="grid-3x3" class="w-4 h-4 text-blue-400"></i>
+                    <span>Sơ đồ Kệ & Tồn kho</span>
+                </button>
+
+                <button onclick="switchAppTab('forecast')" id="nav-forecast" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i data-lucide="trending-up" class="w-4 h-4 text-emerald-400"></i>
+                    <span>AI Dự báo Nhu cầu</span>
+                    <span class="ml-auto bg-red-500/80 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">Cảnh báo</span>
+                </button>
+
+                <button onclick="switchAppTab('scanner')" id="nav-scanner" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i data-lucide="scan-barcode" class="w-4 h-4 text-amber-400"></i>
+                    <span>Máy Quét Barcode / QR</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- User Info & Back to Landing -->
+        <div class="p-4 border-t border-slate-800 space-y-3">
+            <a href="index.html" class="flex items-center gap-2 text-xs text-slate-400 hover:text-orange-400 transition font-medium">
+                <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Về trang giới thiệu Landing Page
+            </a>
+            <div class="flex items-center gap-3 bg-slate-800/60 p-2 rounded-xl">
+                <div class="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center font-bold text-xs text-white">
+                    AD
+                </div>
+                <div class="text-xs">
+                    <div class="font-bold text-white">Admin Quản Lý Kho</div>
+                    <div class="text-[10px] text-slate-400">Gói AI Pro (Trial)</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-hidden bg-slate-50">
+        
+        <!-- HEADER BAR -->
+        <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
+            <!-- Mobile Menu Toggle & Title -->
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 md:hidden">
+                    <div class="w-8 h-8 rounded-lg bg-orange-600 flex items-center justify-center text-white">
+                        <i data-lucide="boxes" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-extrabold text-slate-900">OptiWarehouse</span>
+                </div>
+                <h1 id="page-title" class="text-lg font-bold text-slate-900 hidden md:block">Tổng Quan Vận Hành Kho</h1>
+            </div>
+
+            <!-- Top Actions -->
+            <div class="flex items-center gap-3">
+                <!-- Search bar -->
+                <div class="relative hidden sm:block w-64">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2.5 text-slate-400"></i>
+                    <input type="text" placeholder="Tìm kiếm SKU, tên sản phẩm, kệ..." class="w-full pl-9 pr-4 py-1.5 bg-slate-100 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-orange-500 border border-transparent">
+                </div>
+
+                <!-- Simulation Action Button -->
+                <button onclick="triggerSimulatedOrder()" class="px-3.5 py-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold text-xs rounded-xl shadow-sm flex items-center gap-1.5 transition">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                    <span>+ Bắn đơn test từ Shopee/TikTok</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- CONTENT VIEWS SCROLLABLE AREA -->
+        <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+            
+            <!-- ========================================== -->
+            <!-- TAB 1: DASHBOARD OVERVIEW -->
+            <!-- ========================================== -->
+            <div id="view-dashboard" class="tab-content active space-y-6">
+                
+                <!-- KPI Highlights -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Đơn Chờ Soạn Hàng</span>
+                            <div class="text-2xl font-extrabold text-slate-900 mt-1">14 Đơn</div>
+                            <span class="text-[11px] font-bold text-orange-600 flex items-center gap-1 mt-1">
+                                <i data-lucide="zap" class="w-3 h-3"></i> AI đề xuất: Gom làm 2 đợt
+                            </span>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center">
+                            <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Thời Gian Soạn TB</span>
+                            <div class="text-2xl font-extrabold text-emerald-600 mt-1">3.4 Phút / Đơn</div>
+                            <span class="text-[11px] font-bold text-emerald-600 flex items-center gap-1 mt-1">
+                                <i data-lucide="trending-down" class="w-3 h-3"></i> Nhanh hơn 52% (trước: 7.2p)
+                            </span>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                            <i data-lucide="timer" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Độ Chính Xác Đơn</span>
+                            <div class="text-2xl font-extrabold text-blue-600 mt-1">99.9%</div>
+                            <span class="text-[11px] text-slate-500 mt-1 block">Chỉ 1 lỗi do nhà cung cấp</span>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
+                            <i data-lucide="check-check" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Cảnh Báo Tồn Kho</span>
+                            <div class="text-2xl font-extrabold text-red-600 mt-1">2 SKU Sắp Cháy</div>
+                            <span class="text-[11px] text-red-500 font-bold mt-1 block">Cần nhập trong 48h tới</span>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center">
+                            <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Orders Section -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-base font-bold text-slate-900">Danh Sách Đơn Hàng Mới Cần Xử Lý</h2>
+                            <p class="text-xs text-slate-500">Đồng bộ tự động từ TikTok Shop (6), Shopee (8)</p>
+                        </div>
+                        <button onclick="switchAppTab('picking')" class="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-bold text-xs flex items-center gap-2 shadow-sm transition">
+                            <i data-lucide="route" class="w-4 h-4"></i>
+                            <span>Bật AI Gom Đơn & Tạo Lộ Trình Soạn Hàng Ngay</span>
+                        </button>
+                    </div>
+
+                    <!-- Orders Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider font-bold border-b border-slate-100">
+                                <tr>
+                                    <th class="p-4">Mã Đơn</th>
+                                    <th class="p-4">Kênh Bán</th>
+                                    <th class="p-4">Sản Phẩm & Số Lượng</th>
+                                    <th class="p-4">Vị Trí Kệ</th>
+                                    <th class="p-4">Thời Gian Đặt</th>
+                                    <th class="p-4">Trạng Thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-tbody" class="divide-y divide-slate-100 text-slate-700 font-medium">
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-bold text-slate-900">#ORD-9021</td>
+                                    <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 font-bold text-[10px]">Shopee</span></td>
+                                    <td class="p-4">Áo Thun Polo Regular (Size L) x 1</td>
+                                    <td class="p-4"><span class="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Kệ A-01</span></td>
+                                    <td class="p-4 text-slate-500">2 phút trước</td>
+                                    <td class="p-4"><span class="px-2 py-1 rounded-full bg-amber-100 text-amber-700 font-bold text-[10px]">Chờ soạn hàng</span></td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-bold text-slate-900">#ORD-9022</td>
+                                    <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-slate-900 text-white font-bold text-[10px]">TikTok Shop</span></td>
+                                    <td class="p-4">Quần Jean Slimfit Nam x 1, Thắt Lưng Da x 1</td>
+                                    <td class="p-4"><span class="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Kệ A-02, Kệ D-01</span></td>
+                                    <td class="p-4 text-slate-500">5 phút trước</td>
+                                    <td class="p-4"><span class="px-2 py-1 rounded-full bg-amber-100 text-amber-700 font-bold text-[10px]">Chờ soạn hàng</span></td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-bold text-slate-900">#ORD-9023</td>
+                                    <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 font-bold text-[10px]">Shopee</span></td>
+                                    <td class="p-4">Giày Sneaker Vintage (Size 41) x 1</td>
+                                    <td class="p-4"><span class="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Kệ B-02</span></td>
+                                    <td class="p-4 text-slate-500">8 phút trước</td>
+                                    <td class="p-4"><span class="px-2 py-1 rounded-full bg-amber-100 text-amber-700 font-bold text-[10px]">Chờ soạn hàng</span></td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-bold text-slate-900">#ORD-9020</td>
+                                    <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-bold text-[10px]">Lazada</span></td>
+                                    <td class="p-4">Áo Khoác Gió Bomber x 2</td>
+                                    <td class="p-4"><span class="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Kệ B-01</span></td>
+                                    <td class="p-4 text-slate-500">14 phút trước</td>
+                                    <td class="p-4"><span class="px-2 py-1 rounded-full bg-emerald-100 text-emerald-700 font-bold text-[10px]">Đã đóng gói</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 2: AI BATCH PICKING & ROUTE (HEART OF MVP) -->
+            <!-- ========================================== -->
+            <div id="view-picking" class="tab-content space-y-6">
+                
+                <!-- Batch Summary Card -->
+                <div class="bg-gradient-to-r from-orange-900 to-slate-900 text-white p-6 rounded-3xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 font-bold text-xs mb-3 border border-orange-500/30">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Chuyến Soạn Hàng Thông Minh Đợt #108
+                        </div>
+                        <h2 class="text-2xl font-extrabold tracking-tight">AI Đã Gom 4 Đơn Vào 1 Lộ Trình Khép Kín</h2>
+                        <p class="text-slate-300 text-xs sm:text-sm mt-1 max-w-xl">
+                            Thay vì nhân viên đi bộ 4 lần (~160m), lộ trình tối ưu dưới đây chỉ dài <strong>42 mét</strong>. Lấy đủ toàn bộ 5 món hàng chỉ trong 1 chuyến!
+                        </p>
+                    </div>
+
+                    <!-- Progress Counter -->
+                    <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700 text-center shrink-0">
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Tiến Độ Soạn Hàng</span>
+                        <div class="text-3xl font-extrabold text-orange-400 mt-1" id="picking-progress-text">0 / 4 Món</div>
+                        <div class="w-36 bg-slate-700 h-2 rounded-full mt-2 overflow-hidden">
+                            <div id="picking-progress-bar" class="bg-gradient-to-r from-orange-500 to-emerald-400 h-full w-0 transition-all duration-300"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step-by-Step Picking Sequence (Walkthrough for warehouse worker) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    
+                    <!-- Left: Interactive Checklist for Picker -->
+                    <div class="lg:col-span-7 space-y-3">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider">Danh Sách Lấy Hàng Theo Thứ Tự Đi Bộ Tối Ưu</h3>
+                            <span class="text-xs text-slate-500">Bấm "Quét xác nhận" để hoàn thành từng món</span>
+                        </div>
+
+                        <!-- Item 1 -->
+                        <div id="item-card-1" class="p-4 bg-white rounded-2xl border-2 border-orange-500 shadow-sm flex items-center justify-between gap-4 transition">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-orange-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0">1</span>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-extrabold text-slate-900 text-sm">Áo Thun Polo Regular Size L</span>
+                                        <span class="bg-orange-100 text-orange-700 text-[10px] font-extrabold px-2 py-0.5 rounded">SL: 1</span>
+                                    </div>
+                                    <div class="text-xs text-slate-500 mt-0.5">
+                                        Vị trí: <strong class="text-blue-600 font-bold">Kệ A-01</strong> (Tầng 2 - Ô 04) • Mã vạch: <code>89360012301</code>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="confirmPickItem(1, '89360012301')" class="btn-pick px-3.5 py-2 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-sm transition">
+                                <i data-lucide="barcode" class="w-4 h-4"></i> Quét xác nhận
+                            </button>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div id="item-card-2" class="p-4 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between gap-4 transition">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-slate-200 text-slate-700 font-extrabold text-sm flex items-center justify-center shrink-0">2</span>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-extrabold text-slate-900 text-sm">Quần Jean Slimfit Nam Size 31</span>
+                                        <span class="bg-orange-100 text-orange-700 text-[10px] font-extrabold px-2 py-0.5 rounded">SL: 1</span>
+                                    </div>
+                                    <div class="text-xs text-slate-500 mt-0.5">
+                                        Vị trí: <strong class="text-blue-600 font-bold">Kệ A-02</strong> (Tầng 1 - Ô 02) • Mã vạch: <code>89360012302</code>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="confirmPickItem(2, '89360012302')" class="btn-pick px-3.5 py-2 bg-slate-800 hover:bg-orange-600 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-sm transition">
+                                <i data-lucide="barcode" class="w-4 h-4"></i> Quét xác nhận
+                            </button>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div id="item-card-3" class="p-4 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between gap-4 transition">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-slate-200 text-slate-700 font-extrabold text-sm flex items-center justify-center shrink-0">3</span>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-extrabold text-slate-900 text-sm">Giày Sneaker Vintage Size 41</span>
+                                        <span class="bg-orange-100 text-orange-700 text-[10px] font-extrabold px-2 py-0.5 rounded">SL: 1</span>
+                                    </div>
+                                    <div class="text-xs text-slate-500 mt-0.5">
+                                        Vị trí: <strong class="text-blue-600 font-bold">Kệ B-02</strong> (Tầng 1 - Ô 01) • Mã vạch: <code>89360012303</code>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="confirmPickItem(3, '89360012303')" class="btn-pick px-3.5 py-2 bg-slate-800 hover:bg-orange-600 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-sm transition">
+                                <i data-lucide="barcode" class="w-4 h-4"></i> Quét xác nhận
+                            </button>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div id="item-card-4" class="p-4 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between gap-4 transition">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-slate-200 text-slate-700 font-extrabold text-sm flex items-center justify-center shrink-0">4</span>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-extrabold text-slate-900 text-sm">Thắt Lưng Da Bò Handmade</span>
+                                        <span class="bg-orange-100 text-orange-700 text-[10px] font-extrabold px-2 py-0.5 rounded">SL: 1</span>
+                                    </div>
+                                    <div class="text-xs text-slate-500 mt-0.5">
+                                        Vị trí: <strong class="text-blue-600 font-bold">Kệ D-01</strong> (Tầng 3 - Ô 06) • Mã vạch: <code>89360012304</code>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="confirmPickItem(4, '89360012304')" class="btn-pick px-3.5 py-2 bg-slate-800 hover:bg-orange-600 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-sm transition">
+                                <i data-lucide="barcode" class="w-4 h-4"></i> Quét xác nhận
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Visual Map & Step Navigator -->
+                    <div class="lg:col-span-5 bg-white p-5 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">Mô Phỏng Tuyến Đường Di Chuyển</h3>
+                                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Lộ trình ngắn nhất</span>
+                            </div>
+
+                            <div class="bg-slate-900 rounded-2xl p-4 text-white relative h-64 flex flex-col justify-between border border-slate-800">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div id="map-node-1" class="p-2.5 rounded-xl border border-orange-500 bg-orange-950/60 text-xs font-bold text-center">
+                                        📍 Điểm 1: Kệ A-01
+                                        <div class="text-[10px] text-orange-300">Áo Polo</div>
+                                    </div>
+                                    <div id="map-node-2" class="p-2.5 rounded-xl border border-slate-700 bg-slate-800 text-xs font-bold text-center">
+                                        📍 Điểm 2: Kệ A-02
+                                        <div class="text-[10px] text-slate-400">Quần Jean</div>
+                                    </div>
+                                    <div id="map-node-3" class="p-2.5 rounded-xl border border-slate-700 bg-slate-800 text-xs font-bold text-center">
+                                        📍 Điểm 3: Kệ B-02
+                                        <div class="text-[10px] text-slate-400">Giày Sneaker</div>
+                                    </div>
+                                    <div id="map-node-4" class="p-2.5 rounded-xl border border-slate-700 bg-slate-800 text-xs font-bold text-center">
+                                        📍 Điểm 4: Kệ D-01
+                                        <div class="text-[10px] text-slate-400">Thắt Lưng</div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-emerald-600/90 text-white p-2.5 rounded-xl text-center text-xs font-bold flex items-center justify-center gap-1.5">
+                                    <i data-lucide="box" class="w-4 h-4"></i> Đích đến: Bàn Đóng Gói / Giao Shipper
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Completed Batch Alert (Hidden initially) -->
+                        <div id="batch-completed-box" class="hidden mt-4 p-4 bg-emerald-50 border border-emerald-300 rounded-2xl text-center text-emerald-900">
+                            <i data-lucide="check-circle" class="w-8 h-8 text-emerald-600 mx-auto mb-1"></i>
+                            <div class="font-extrabold text-sm">Tuyệt vời! Đã hoàn thành gom 4 đơn</div>
+                            <p class="text-xs text-emerald-700 mt-1">Đã kiểm đếm đủ 100% qua mã vạch. Chuyển sang bàn đóng gói.</p>
+                            <button onclick="resetPickingDemo()" class="mt-3 px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold">Làm lại demo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 3: INVENTORY & 2D WAREHOUSE MAP -->
+            <!-- ========================================== -->
+            <div id="view-inventory" class="tab-content space-y-6">
+                <!-- AI Smart Slotting Recommendation Banner -->
+                <div class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white p-5 rounded-2xl shadow-md flex items-start justify-between gap-4">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/30 border border-blue-400/40 flex items-center justify-center shrink-0 text-blue-300">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-blue-300 uppercase tracking-wider">Khuyến nghị Smart Slotting từ AI</span>
+                            <h3 class="text-base font-bold mt-0.5">Hoán đổi vị trí để tiết kiệm 18 phút di chuyển/ngày</h3>
+                            <p class="text-xs text-slate-300 mt-1">
+                                Sản phẩm <strong>"Áo Khoác Bomber"</strong> đang có lượng bán tăng vọt (+280%). AI khuyên bạn nên dời từ Kệ D-02 (góc kho) về Kệ A-01 (gần cửa xuất).
+                            </p>
+                        </div>
+                    </div>
+                    <button onclick="applySlottingSwap()" id="btn-apply-slotting" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold text-xs rounded-xl shrink-0 transition shadow-sm">
+                        Chấp nhận đổi vị trí
+                    </button>
+                </div>
+
+                <!-- 2D Warehouse Racks Grid -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-2 mb-6">
+                        <div>
+                            <h2 class="text-base font-bold text-slate-900">Mặt Bằng Bố Trí Kệ Hàng (Warehouse Grid 2D)</h2>
+                            <p class="text-xs text-slate-500">Bấm vào bất kỳ kệ nào để xem danh sách sản phẩm và số lượng tồn</p>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs font-semibold">
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-orange-500"></span> Khu vực Vàng (Hot SKU)</span>
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-blue-500"></span> Khu vực Bạc</span>
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-slate-400"></span> Khu vực Đồng</span>
+                        </div>
+                    </div>
+
+                    <!-- Warehouse Layout Representation -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="p-4 rounded-2xl border-2 border-orange-400 bg-orange-50/50 hover:shadow-md transition cursor-pointer">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-extrabold text-orange-700 text-sm">KỆ A-01</span>
+                                <span class="text-[10px] bg-orange-200 text-orange-800 font-bold px-1.5 py-0.5 rounded">Vị trí Vàng</span>
+                            </div>
+                            <div class="text-xs font-bold text-slate-800">Áo Thun Polo Regular</div>
+                            <div class="text-xs text-slate-500 mt-1">Tồn: <strong>85 chiếc</strong> (Tầng 1-3)</div>
+                            <div class="text-[11px] text-emerald-600 font-bold mt-2">Tần suất xuất: Cực cao 🔥</div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl border-2 border-orange-400 bg-orange-50/50 hover:shadow-md transition cursor-pointer">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-extrabold text-orange-700 text-sm">KỆ A-02</span>
+                                <span class="text-[10px] bg-orange-200 text-orange-800 font-bold px-1.5 py-0.5 rounded">Vị trí Vàng</span>
+                            </div>
+                            <div class="text-xs font-bold text-slate-800">Quần Jean Slimfit</div>
+                            <div class="text-xs text-slate-500 mt-1">Tồn: <strong>140 chiếc</strong> (Tầng 1-3)</div>
+                            <div class="text-[11px] text-emerald-600 font-bold mt-2">Tần suất xuất: Cao 🔥</div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl border-2 border-blue-400 bg-blue-50/50 hover:shadow-md transition cursor-pointer">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-extrabold text-blue-700 text-sm">KỆ B-01</span>
+                                <span class="text-[10px] bg-blue-200 text-blue-800 font-bold px-1.5 py-0.5 rounded">Vị trí Bạc</span>
+                            </div>
+                            <div class="text-xs font-bold text-slate-800">Áo Sơ Mi Oxford</div>
+                            <div class="text-xs text-slate-500 mt-1">Tồn: <strong>60 chiếc</strong></div>
+                            <div class="text-[11px] text-slate-600 mt-2">Tần suất xuất: Trung bình</div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl border-2 border-blue-400 bg-blue-50/50 hover:shadow-md transition cursor-pointer">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-extrabold text-blue-700 text-sm">KỆ B-02</span>
+                                <span class="text-[10px] bg-blue-200 text-blue-800 font-bold px-1.5 py-0.5 rounded">Vị trí Bạc</span>
+                            </div>
+                            <div class="text-xs font-bold text-slate-800">Giày Sneaker Vintage</div>
+                            <div class="text-xs text-slate-500 mt-1">Tồn: <strong>45 đôi</strong></div>
+                            <div class="text-[11px] text-slate-600 mt-2">Tần suất xuất: Trung bình</div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl border border-slate-300 bg-slate-50 hover:shadow-md transition cursor-pointer">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-extrabold text-slate-700 text-sm">KỆ C-01</span>
+                                <span class="text-[10px] bg-slate-200 text-slate-700 font-bold px-1.5 py-0.5 rounded">Vị trí Đồng</span>
+                            </div>
+                            <div class="text-xs font-bold text-slate-800">Ví Da & Phụ Kiện</div>
+                            <div class="text-xs text-slate-500 mt-1">Tồn: <strong>110 chiếc</strong></div>
+                            <div class="text-[11px] text-slate-500 mt-2">Tần suất xuất: Ổn định</div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl border border-slate-300 bg-slate-50 hover:shadow-md transition cursor-pointer">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-extrabold text-slate-700 text-sm">KỆ C-02</span>
+                                <span class="text-[10px] bg-slate-200 text-slate-700 font-bold px-1.5 py-0.5 rounded">Vị trí Đồng</span>
+                            </div>
+                            <div class="text-xs font-bold text-slate-800">Túi Đeo Chéo Canvas</div>
+                            <div class="text-xs text-slate-500 mt-1">Tồn: <strong>35 chiếc</strong></div>
+                            <div class="text-[11px] text-slate-500 mt-2">Tần suất xuất: Ổn định</div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl border border-slate-300 bg-slate-50 hover:shadow-md transition cursor-pointer">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-extrabold text-slate-700 text-sm">KỆ D-01</span>
+                                <span class="text-[10px] bg-slate-200 text-slate-700 font-bold px-1.5 py-0.5 rounded">Vị trí Đồng</span>
+                            </div>
+                            <div class="text-xs font-bold text-slate-800">Thắt Lưng Da Bò</div>
+                            <div class="text-xs text-slate-500 mt-1">Tồn: <strong>50 chiếc</strong></div>
+                            <div class="text-[11px] text-slate-500 mt-2">Tần suất xuất: Thấp</div>
+                        </div>
+
+                        <div id="rack-D02-card" class="p-4 rounded-2xl border border-slate-300 bg-slate-50 hover:shadow-md transition cursor-pointer">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-extrabold text-slate-700 text-sm">KỆ D-02</span>
+                                <span class="text-[10px] bg-amber-200 text-amber-800 font-bold px-1.5 py-0.5 rounded">Cần Dời Kệ</span>
+                            </div>
+                            <div class="text-xs font-bold text-slate-800" id="rack-D02-name">Áo Khoác Bomber Gió</div>
+                            <div class="text-xs text-slate-500 mt-1">Tồn: <strong>72 chiếc</strong></div>
+                            <div class="text-[11px] text-amber-600 font-bold mt-2" id="rack-D02-status">Bán tăng vọt, xa cửa xuất ⚠️</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 4: AI DEMAND FORECASTING -->
+            <!-- ========================================== -->
+            <div id="view-forecast" class="tab-content space-y-6">
+                <!-- Forecast Alert Summary -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-5 rounded-2xl bg-red-50 border border-red-200 shadow-sm">
+                        <div class="flex items-center gap-2 text-red-700 font-extrabold text-sm mb-2">
+                            <i data-lucide="alert-octagon" class="w-5 h-5"></i> Cảnh Báo Nguy Cơ Cháy Hàng (Stockout Risk)
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Mô hình AI phát hiện <strong>Áo Thun Polo Regular Size L</strong> chỉ còn đủ bán trong <strong>2.8 ngày nữa</strong>. Với tốc độ bán hiện tại (30 áo/ngày) và kỳ sale sắp tới, kho sẽ hết hàng vào ngày 25/10.
+                        </p>
+                        <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-red-200">
+                            <div>
+                                <div class="text-xs text-slate-500 font-bold">Số lượng AI đề xuất nhập thêm:</div>
+                                <div class="text-lg font-extrabold text-red-600">120 Chiếc</div>
+                            </div>
+                            <button onclick="alert('Đã gửi đề xuất nhập 120 Áo Thun Polo sang bộ phận Thu Mua!')" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-xs">
+                                Tạo Lệnh Đặt Hàng (PO)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 shadow-sm">
+                        <div class="flex items-center gap-2 text-emerald-800 font-extrabold text-sm mb-2">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> Tối Ưu Vốn Lưu Động (Overstock Prevention)
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Sản phẩm <strong>Quần Kaki Công Sở</strong> có chu kỳ bán chậm hơn 35% so với tháng trước. Tồn kho hiện tại đủ dùng trong 45 ngày.
+                        </p>
+                        <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-emerald-200">
+                            <div>
+                                <div class="text-xs text-slate-500 font-bold">Khuyến nghị từ hệ thống:</div>
+                                <div class="text-sm font-extrabold text-emerald-700">Dừng nhập hàng đợt tới</div>
+                            </div>
+                            <span class="text-xs text-slate-500">Tiết kiệm ~18 triệu vốn đọng</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Forecast Interactive Chart -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">Biểu Đồ Dự Báo Số Lượng Bán & Mức Tồn An Toàn</h3>
+                            <p class="text-xs text-slate-500">Mô hình hồi quy chuỗi thời gian dựa trên dữ liệu 90 ngày qua</p>
+                        </div>
+                        <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-bold">7 Ngày Tới</span>
+                    </div>
+                    <div class="h-72">
+                        <canvas id="appForecastChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 5: BARCODE / QR SCANNER SIMULATOR -->
+            <!-- ========================================== -->
+            <div id="view-scanner" class="tab-content space-y-6">
+                <div class="max-w-2xl mx-auto bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="scan-line" class="w-8 h-8"></i>
+                    </div>
+                    <h2 class="text-xl font-extrabold text-slate-900 mb-1">Máy Quét Mã Vạch Thông Minh</h2>
+                    <p class="text-xs text-slate-500 mb-6">
+                        Sử dụng ngay camera điện thoại để kiểm tra mã sản phẩm khi nhặt hàng hoặc nhập kho.
+                    </p>
+
+                    <!-- Camera Viewport Mockup -->
+                    <div class="relative w-full max-w-sm mx-auto h-56 bg-slate-900 rounded-2xl border-4 border-slate-800 overflow-hidden flex flex-col items-center justify-center text-white mb-6">
+                        <!-- Targeting reticle -->
+                        <div class="w-44 h-28 border-2 border-dashed border-orange-500 rounded-lg flex items-center justify-center relative">
+                            <div class="absolute inset-x-0 h-0.5 bg-red-500 animate-pulse"></div>
+                            <span class="text-[10px] text-slate-400">Đưa mã vạch vào khung này</span>
+                        </div>
+                        <div class="mt-3 text-[11px] text-slate-400" id="scanner-status">Sẵn sàng nhận diện mã vạch...</div>
+                    </div>
+
+                    <!-- Simulator buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <button onclick="simulateScan('89360012301', 'Áo Thun Polo Regular', 'Kệ A-01')" class="w-full sm:w-auto px-4 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2">
+                            <i data-lucide="barcode" class="w-4 h-4"></i> Quét thử mã: 89360012301
+                        </button>
+                        <button onclick="simulateScan('89360099999', 'SẢN PHẨM KHÔNG XÁC ĐỊNH', 'Sai mã')" class="w-full sm:w-auto px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl font-bold text-xs flex items-center justify-center gap-2">
+                            <i data-lucide="alert-circle" class="w-4 h-4"></i> Thử quét mã sai (Test cảnh báo)
+                        </button>
+                    </div>
+
+                    <!-- Scan Result Card -->
+                    <div id="scan-result-card" class="hidden mt-6 p-4 rounded-2xl text-left border"></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- INTERACTIVE JAVASCRIPT APP LOGIC -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Audio Context for Scanner Beeps
+        function playBeep(isSuccess) {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                if (isSuccess) {
+                    osc.frequency.setValueAtTime(880, audioCtx.currentTime); // High pitch success beep
+                    gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.12);
+                } else {
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime); // Low pitch error beep
+                    gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+                }
+            } catch(e) {
+                console.log("Audio not supported or permitted");
+            }
+        }
+
+        // Tab Switching Logic
+        const tabTitles = {
+            'dashboard': 'Tổng Quan Vận Hành Kho',
+            'picking': 'AI Gom Đơn & Chỉ Dẫn Soạn Hàng',
+            'inventory': 'Sơ Đồ Kệ Hàng & Quản Lý Tồn Kho',
+            'forecast': 'AI Dự Báo Nhu Cầu & Tồn Kho An Toàn',
+            'scanner': 'Máy Quét Mã Vạch Thông Minh (Barcode / QR)'
+        };
+
+        function switchAppTab(tabId) {
+            // Update Navigation Buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = "nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800 font-semibold";
+            });
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if (activeNav) {
+                activeNav.className = "nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-white bg-orange-600 font-bold shadow-sm";
+            }
+
+            // Hide/Show Views
+            document.querySelectorAll('.tab-content').forEach(view => view.classList.remove('active'));
+            const activeView = document.getElementById(`view-${tabId}`);
+            if (activeView) activeView.classList.add('active');
+
+            // Set Header Title
+            document.getElementById('page-title').innerText = tabTitles[tabId] || 'OptiWarehouse';
+
+            // Lazy Render Charts
+            if (tabId === 'forecast') {
+                renderAppForecastChart();
+            }
+        }
+
+        // Picking Step Confirmation
+        let pickedCount = 0;
+        const totalItems = 4;
+
+        function confirmPickItem(itemIndex, barcode) {
+            playBeep(true);
+            const card = document.getElementById(`item-card-${itemIndex}`);
+            const btn = card.querySelector('.btn-pick');
+
+            card.classList.remove('border-orange-500', 'border-slate-200');
+            card.classList.add('border-emerald-500', 'bg-emerald-50/60');
+            
+            btn.className = "px-3.5 py-2 bg-emerald-600 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 cursor-default";
+            btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i> Đã quét đủ`;
+            btn.onclick = null;
+
+            // Highlight node in map
+            const node = document.getElementById(`map-node-${itemIndex}`);
+            if (node) {
+                node.className = "p-2.5 rounded-xl border border-emerald-500 bg-emerald-950/70 text-xs font-bold text-center text-emerald-300";
+            }
+
+            pickedCount++;
+            document.getElementById('picking-progress-text').innerText = `${pickedCount} / ${totalItems} Món`;
+            document.getElementById('picking-progress-bar').style.width = `${(pickedCount / totalItems) * 100}%`;
+
+            lucide.createIcons();
+
+            if (pickedCount >= totalItems) {
+                document.getElementById('batch-completed-box').classList.remove('hidden');
+            }
+        }
+
+        function resetPickingDemo() {
+            pickedCount = 0;
+            document.getElementById('picking-progress-text').innerText = `0 / ${totalItems} Món`;
+            document.getElementById('picking-progress-bar').style.width = `0%`;
+            document.getElementById('batch-completed-box').classList.add('hidden');
+
+            for (let i = 1; i <= totalItems; i++) {
+                const card = document.getElementById(`item-card-${i}`);
+                card.className = "p-4 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between gap-4 transition";
+                const btn = card.querySelector('button');
+                btn.className = "btn-pick px-3.5 py-2 bg-slate-800 hover:bg-orange-600 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-sm transition";
+                btn.innerHTML = `<i data-lucide="barcode" class="w-4 h-4"></i> Quét xác nhận`;
+                btn.setAttribute("onclick", `confirmPickItem(${i}, '8936001230${i}')`);
+
+                const node = document.getElementById(`map-node-${i}`);
+                if (node) {
+                    node.className = "p-2.5 rounded-xl border border-slate-700 bg-slate-800 text-xs font-bold text-center";
+                }
+            }
+            lucide.createIcons();
+        }
+
+        // Slotting AI Swap Demo
+        function applySlottingSwap() {
+            const btn = document.getElementById('btn-apply-slotting');
+            btn.innerText = "Đã cập nhật vị trí mới!";
+            btn.className = "px-4 py-2 bg-emerald-600 text-white font-bold text-xs rounded-xl shrink-0 cursor-default";
+
+            const card = document.getElementById('rack-D02-card');
+            card.classList.remove('border-slate-300', 'bg-slate-50');
+            card.classList.add('border-emerald-400', 'bg-emerald-50/50');
+            document.getElementById('rack-D02-status').innerText = "Đã dời về Kệ A-01 (gần cửa) ✅";
+            document.getElementById('rack-D02-status').className = "text-[11px] text-emerald-600 font-bold mt-2";
+            playBeep(true);
+        }
+
+        // Forecast Chart Rendering
+        let appChartInstance = null;
+        function renderAppForecastChart() {
+            if (appChartInstance) return;
+            const ctx = document.getElementById('appForecastChart');
+            if (!ctx) return;
+
+            appChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['22/10 (Hôm nay)', '23/10', '24/10', '25/10 (Mega Sale)', '26/10', '27/10', '28/10'],
+                    datasets: [
+                        {
+                            type: 'line',
+                            label: 'Lượng tồn kho nếu không nhập thêm',
+                            data: [85, 55, 25, 0, 0, 0, 0],
+                            borderColor: '#ef4444',
+                            borderWidth: 2,
+                            tension: 0.2
+                        },
+                        {
+                            type: 'bar',
+                            label: 'Dự báo lượng đơn bán ra mỗi ngày',
+                            data: [30, 32, 40, 75, 48, 35, 28],
+                            backgroundColor: '#f97316',
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+
+        // Scanner Simulation
+        function simulateScan(code, name, shelf) {
+            const resCard = document.getElementById('scan-result-card');
+            const status = document.getElementById('scanner-status');
+            resCard.classList.remove('hidden');
+
+            if (code === '89360012301') {
+                playBeep(true);
+                status.innerText = "Đã quét thành công mã: " + code;
+                resCard.className = "mt-6 p-4 rounded-2xl text-left border border-emerald-300 bg-emerald-50 text-emerald-900";
+                resCard.innerHTML = `
+                    <div class="flex items-center gap-2 font-bold text-sm">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600"></i> ĐÚNG SẢN PHẨM TRONG ĐƠN HÀNG
+                    </div>
+                    <div class="mt-2 text-xs">
+                        <strong>Tên:</strong> ${name}<br>
+                        <strong>Mã vạch:</strong> ${code}<br>
+                        <strong>Vị trí kho:</strong> <span class="text-blue-700 font-bold">${shelf}</span>
+                    </div>
+                `;
+            } else {
+                playBeep(false);
+                status.innerText = "Cảnh báo sai mã vạch!";
+                resCard.className = "mt-6 p-4 rounded-2xl text-left border border-red-300 bg-red-50 text-red-900";
+                resCard.innerHTML = `
+                    <div class="flex items-center gap-2 font-bold text-sm text-red-700">
+                        <i data-lucide="alert-triangle" class="w-5 h-5 text-red-600"></i> CẢNH BÁO: SAI MÃ SẢN PHẨM HOẶC KHÔNG CÓ TRONG ĐƠN
+                    </div>
+                    <p class="mt-1 text-xs text-red-600">Vui lòng kiểm tra lại kích thước, màu sắc hoặc kệ lấy hàng.</p>
+                `;
+            }
+            lucide.createIcons();
+        }
+
+        // Simulate New Incoming Order
+        function triggerSimulatedOrder() {
+            playBeep(true);
+            const tbody = document.getElementById('orders-tbody');
+            const newTr = document.createElement('tr');
+            newTr.className = "hover:bg-slate-50 bg-orange-50/70 transition duration-500";
+            const randomId = Math.floor(1000 + Math.random() * 9000);
+            newTr.innerHTML = `
+                <td class="p-4 font-bold text-slate-900">#ORD-${randomId} (Mới)</td>
+                <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-slate-900 text-white font-bold text-[10px]">TikTok Shop</span></td>
+                <td class="p-4">Áo Khoác Gió Bomber x 1</td>
+                <td class="p-4"><span class="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Kệ D-02</span></td>
+                <td class="p-4 text-orange-600 font-bold">Vừa xong</td>
+                <td class="p-4"><span class="px-2 py-1 rounded-full bg-amber-100 text-amber-700 font-bold text-[10px]">Chờ soạn hàng</span></td>
+            `;
+            tbody.insertBefore(newTr, tbody.firstChild);
+            alert(`⚡ Đơn hàng mới #ORD-${randomId} từ TikTok Shop đã được đồng bộ vào kho!`);
+        }
+    </script>
+</body>
+</html>
