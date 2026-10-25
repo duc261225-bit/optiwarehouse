@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OptiWarehouse - Ứng Dụng Quản Lý Kho Thông Minh AI</title>
+    <title>OptiWarehouse - Ứng Dụng Quản Lý Kho & CSDL Thông Minh</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -38,7 +38,7 @@
 
     <!-- SIDEBAR -->
     <aside class="w-64 bg-slate-900 text-white flex flex-col justify-between shrink-0 hidden md:flex border-r border-slate-800">
-        <div>
+        <div class="overflow-y-auto">
             <!-- Logo Brand -->
             <div class="h-16 flex items-center gap-3 px-6 border-b border-slate-800">
                 <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/30">
@@ -46,7 +46,7 @@
                 </div>
                 <div>
                     <span class="text-lg font-extrabold tracking-tight">OptiWarehouse</span>
-                    <span class="block text-[10px] text-orange-400 font-bold tracking-widest uppercase">AI Mini WMS</span>
+                    <span class="block text-[10px] text-orange-400 font-bold tracking-widest uppercase">AI Mini WMS & CSDL</span>
                 </div>
             </div>
 
@@ -55,14 +55,18 @@
                 <div class="bg-slate-800/80 rounded-xl p-2.5 border border-slate-700/60 flex items-center justify-between text-xs">
                     <div class="flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span class="font-bold text-slate-200">Kho Tổng Hà Nội (250m²)</span>
+                        <span class="font-bold text-slate-200">Kho Hà Nội (250m²)</span>
                     </div>
                     <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400"></i>
                 </div>
             </div>
 
             <!-- Navigation Links -->
-            <nav class="px-3 space-y-1 mt-2 text-sm font-semibold">
+            <nav class="px-3 space-y-1 mt-1 text-sm font-semibold">
+                <div class="px-3 py-1.5 text-[10px] uppercase tracking-wider font-extrabold text-slate-500">
+                    Vận Hành Kho Thông Minh
+                </div>
+
                 <button onclick="switchAppTab('dashboard')" id="nav-dashboard" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-white bg-orange-600 font-bold shadow-sm">
                     <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
                     <span>Tổng quan vận hành</span>
@@ -71,7 +75,7 @@
                 <button onclick="switchAppTab('picking')" id="nav-picking" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800">
                     <i data-lucide="route" class="w-4 h-4 text-orange-400"></i>
                     <span>AI Gom & Soạn Đơn</span>
-                    <span class="ml-auto bg-orange-500 text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">5</span>
+                    <span class="ml-auto bg-orange-500 text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">4</span>
                 </button>
 
                 <button onclick="switchAppTab('inventory')" id="nav-inventory" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800">
@@ -89,6 +93,30 @@
                     <i data-lucide="scan-barcode" class="w-4 h-4 text-amber-400"></i>
                     <span>Máy Quét Barcode / QR</span>
                 </button>
+
+                <!-- NEW DATABASE & CRM SECTION -->
+                <div class="pt-4 pb-1.5 px-3 text-[10px] uppercase tracking-wider font-extrabold text-slate-500 flex items-center justify-between">
+                    <span>Cơ Sở Dữ Liệu (CSDL)</span>
+                    <span class="bg-blue-500/20 text-blue-400 px-1 py-0.2 rounded text-[9px]">Live DB</span>
+                </div>
+
+                <button onclick="switchAppTab('consultations')" id="nav-consultations" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i data-lucide="inbox" class="w-4 h-4 text-purple-400"></i>
+                    <span>Yêu Cầu Tư Vấn</span>
+                    <span id="badge-consultations-count" class="ml-auto bg-purple-500 text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">3</span>
+                </button>
+
+                <button onclick="switchAppTab('customers')" id="nav-customers" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i data-lucide="users" class="w-4 h-4 text-indigo-400"></i>
+                    <span>Khách Hàng (CRM)</span>
+                    <span id="badge-customers-count" class="ml-auto bg-slate-700 text-slate-300 text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+                </button>
+
+                <button onclick="switchAppTab('orders')" id="nav-orders" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i data-lucide="shopping-cart" class="w-4 h-4 text-cyan-400"></i>
+                    <span>Quản Lý Đơn Hàng</span>
+                    <span id="badge-orders-count" class="ml-auto bg-slate-700 text-slate-300 text-[10px] font-bold px-1.5 py-0.5 rounded-full">4</span>
+                </button>
             </nav>
         </div>
 
@@ -103,7 +131,7 @@
                 </div>
                 <div class="text-xs">
                     <div class="font-bold text-white">Admin Quản Lý Kho</div>
-                    <div class="text-[10px] text-slate-400">Gói AI Pro (Trial)</div>
+                    <div class="text-[10px] text-slate-400">CSDL: SQLite & Web Storage</div>
                 </div>
             </div>
         </div>
@@ -127,16 +155,15 @@
 
             <!-- Top Actions -->
             <div class="flex items-center gap-3">
-                <!-- Search bar -->
-                <div class="relative hidden sm:block w-64">
-                    <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2.5 text-slate-400"></i>
-                    <input type="text" placeholder="Tìm kiếm SKU, tên sản phẩm, kệ..." class="w-full pl-9 pr-4 py-1.5 bg-slate-100 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-orange-500 border border-transparent">
+                <div class="flex items-center gap-2 text-xs text-slate-500 bg-slate-100 py-1.5 px-3 rounded-xl border border-slate-200">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>CSDL Đang Kết Nối: <strong>Hoạt Động</strong></span>
                 </div>
 
                 <!-- Simulation Action Button -->
                 <button onclick="triggerSimulatedOrder()" class="px-3.5 py-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold text-xs rounded-xl shadow-sm flex items-center gap-1.5 transition">
                     <i data-lucide="plus-circle" class="w-4 h-4"></i>
-                    <span>+ Bắn đơn test từ Shopee/TikTok</span>
+                    <span>+ Bắn đơn test TikTok/Shopee</span>
                 </button>
             </div>
         </header>
@@ -148,15 +175,14 @@
             <!-- TAB 1: DASHBOARD OVERVIEW -->
             <!-- ========================================== -->
             <div id="view-dashboard" class="tab-content active space-y-6">
-                
                 <!-- KPI Highlights -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                         <div>
                             <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Đơn Chờ Soạn Hàng</span>
-                            <div class="text-2xl font-extrabold text-slate-900 mt-1">14 Đơn</div>
+                            <div class="text-2xl font-extrabold text-slate-900 mt-1" id="dash-pending-orders">3 Đơn</div>
                             <span class="text-[11px] font-bold text-orange-600 flex items-center gap-1 mt-1">
-                                <i data-lucide="zap" class="w-3 h-3"></i> AI đề xuất: Gom làm 2 đợt
+                                <i data-lucide="zap" class="w-3 h-3"></i> AI đề xuất: Gom 1 đợt
                             </span>
                         </div>
                         <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center">
@@ -166,25 +192,25 @@
 
                     <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                         <div>
-                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Thời Gian Soạn TB</span>
-                            <div class="text-2xl font-extrabold text-emerald-600 mt-1">3.4 Phút / Đơn</div>
-                            <span class="text-[11px] font-bold text-emerald-600 flex items-center gap-1 mt-1">
-                                <i data-lucide="trending-down" class="w-3 h-3"></i> Nhanh hơn 52% (trước: 7.2p)
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Yêu Cầu Tư Vấn Mới</span>
+                            <div class="text-2xl font-extrabold text-purple-600 mt-1" id="dash-consult-count">3 Khách</div>
+                            <span class="text-[11px] font-bold text-purple-600 flex items-center gap-1 mt-1">
+                                <i data-lucide="inbox" class="w-3 h-3"></i> Lưu vào CSDL
                             </span>
                         </div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
-                            <i data-lucide="timer" class="w-6 h-6"></i>
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center">
+                            <i data-lucide="user-check" class="w-6 h-6"></i>
                         </div>
                     </div>
 
                     <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                         <div>
-                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Độ Chính Xác Đơn</span>
-                            <div class="text-2xl font-extrabold text-blue-600 mt-1">99.9%</div>
-                            <span class="text-[11px] text-slate-500 mt-1 block">Chỉ 1 lỗi do nhà cung cấp</span>
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Tổng Số Khách Hàng</span>
+                            <div class="text-2xl font-extrabold text-indigo-600 mt-1" id="dash-cust-count">3 Shop</div>
+                            <span class="text-[11px] text-slate-500 mt-1 block">Trong hệ thống CRM</span>
                         </div>
-                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
-                            <i data-lucide="check-check" class="w-6 h-6"></i>
+                        <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center">
+                            <i data-lucide="users" class="w-6 h-6"></i>
                         </div>
                     </div>
 
@@ -204,13 +230,19 @@
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                     <div class="p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div>
-                            <h2 class="text-base font-bold text-slate-900">Danh Sách Đơn Hàng Mới Cần Xử Lý</h2>
-                            <p class="text-xs text-slate-500">Đồng bộ tự động từ TikTok Shop (6), Shopee (8)</p>
+                            <h2 class="text-base font-bold text-slate-900">Danh Sách Đơn Hàng Cần Xử Lý</h2>
+                            <p class="text-xs text-slate-500">Đồng bộ tự động từ các sàn & lưu vào CSDL</p>
                         </div>
-                        <button onclick="switchAppTab('picking')" class="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-bold text-xs flex items-center gap-2 shadow-sm transition">
-                            <i data-lucide="route" class="w-4 h-4"></i>
-                            <span>Bật AI Gom Đơn & Tạo Lộ Trình Soạn Hàng Ngay</span>
-                        </button>
+                        <div class="flex gap-2">
+                            <button onclick="switchAppTab('orders')" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                                <i data-lucide="database" class="w-3.5 h-3.5"></i>
+                                <span>Xem CSDL Đơn Hàng</span>
+                            </button>
+                            <button onclick="switchAppTab('picking')" class="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-bold text-xs flex items-center gap-2 shadow-sm transition">
+                                <i data-lucide="route" class="w-4 h-4"></i>
+                                <span>Bật AI Soạn Hàng Ngay</span>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Orders Table -->
@@ -220,45 +252,14 @@
                                 <tr>
                                     <th class="p-4">Mã Đơn</th>
                                     <th class="p-4">Kênh Bán</th>
-                                    <th class="p-4">Sản Phẩm & Số Lượng</th>
-                                    <th class="p-4">Vị Trí Kệ</th>
-                                    <th class="p-4">Thời Gian Đặt</th>
+                                    <th class="p-4">Khách Hàng</th>
+                                    <th class="p-4">Sản Phẩm & Vị Trí Kệ</th>
+                                    <th class="p-4">Tổng Tiền</th>
                                     <th class="p-4">Trạng Thái</th>
                                 </tr>
                             </thead>
-                            <tbody id="orders-tbody" class="divide-y divide-slate-100 text-slate-700 font-medium">
-                                <tr class="hover:bg-slate-50">
-                                    <td class="p-4 font-bold text-slate-900">#ORD-9021</td>
-                                    <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 font-bold text-[10px]">Shopee</span></td>
-                                    <td class="p-4">Áo Thun Polo Regular (Size L) x 1</td>
-                                    <td class="p-4"><span class="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Kệ A-01</span></td>
-                                    <td class="p-4 text-slate-500">2 phút trước</td>
-                                    <td class="p-4"><span class="px-2 py-1 rounded-full bg-amber-100 text-amber-700 font-bold text-[10px]">Chờ soạn hàng</span></td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="p-4 font-bold text-slate-900">#ORD-9022</td>
-                                    <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-slate-900 text-white font-bold text-[10px]">TikTok Shop</span></td>
-                                    <td class="p-4">Quần Jean Slimfit Nam x 1, Thắt Lưng Da x 1</td>
-                                    <td class="p-4"><span class="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Kệ A-02, Kệ D-01</span></td>
-                                    <td class="p-4 text-slate-500">5 phút trước</td>
-                                    <td class="p-4"><span class="px-2 py-1 rounded-full bg-amber-100 text-amber-700 font-bold text-[10px]">Chờ soạn hàng</span></td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="p-4 font-bold text-slate-900">#ORD-9023</td>
-                                    <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 font-bold text-[10px]">Shopee</span></td>
-                                    <td class="p-4">Giày Sneaker Vintage (Size 41) x 1</td>
-                                    <td class="p-4"><span class="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Kệ B-02</span></td>
-                                    <td class="p-4 text-slate-500">8 phút trước</td>
-                                    <td class="p-4"><span class="px-2 py-1 rounded-full bg-amber-100 text-amber-700 font-bold text-[10px]">Chờ soạn hàng</span></td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="p-4 font-bold text-slate-900">#ORD-9020</td>
-                                    <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-bold text-[10px]">Lazada</span></td>
-                                    <td class="p-4">Áo Khoác Gió Bomber x 2</td>
-                                    <td class="p-4"><span class="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Kệ B-01</span></td>
-                                    <td class="p-4 text-slate-500">14 phút trước</td>
-                                    <td class="p-4"><span class="px-2 py-1 rounded-full bg-emerald-100 text-emerald-700 font-bold text-[10px]">Đã đóng gói</span></td>
-                                </tr>
+                            <tbody id="dash-orders-tbody" class="divide-y divide-slate-100 text-slate-700 font-medium">
+                                <!-- Populated dynamically by JS -->
                             </tbody>
                         </table>
                     </div>
@@ -266,10 +267,9 @@
             </div>
 
             <!-- ========================================== -->
-            <!-- TAB 2: AI BATCH PICKING & ROUTE (HEART OF MVP) -->
+            <!-- TAB 2: AI BATCH PICKING (SIGNATURE FEATURE) -->
             <!-- ========================================== -->
             <div id="view-picking" class="tab-content space-y-6">
-                
                 <!-- Batch Summary Card -->
                 <div class="bg-gradient-to-r from-orange-900 to-slate-900 text-white p-6 rounded-3xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div>
@@ -278,7 +278,7 @@
                         </div>
                         <h2 class="text-2xl font-extrabold tracking-tight">AI Đã Gom 4 Đơn Vào 1 Lộ Trình Khép Kín</h2>
                         <p class="text-slate-300 text-xs sm:text-sm mt-1 max-w-xl">
-                            Thay vì nhân viên đi bộ 4 lần (~160m), lộ trình tối ưu dưới đây chỉ dài <strong>42 mét</strong>. Lấy đủ toàn bộ 5 món hàng chỉ trong 1 chuyến!
+                            Thay vì nhân viên đi bộ 4 lần (~160m), lộ trình tối ưu dưới đây chỉ dài <strong>42 mét</strong>. Lấy đủ toàn bộ các món chỉ trong 1 chuyến!
                         </p>
                     </div>
 
@@ -292,13 +292,12 @@
                     </div>
                 </div>
 
-                <!-- Step-by-Step Picking Sequence (Walkthrough for warehouse worker) -->
+                <!-- Step-by-Step Picking Sequence -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    
                     <!-- Left: Interactive Checklist for Picker -->
                     <div class="lg:col-span-7 space-y-3">
                         <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider">Danh Sách Lấy Hàng Theo Thứ Tự Đi Bộ Tối Ưu</h3>
+                            <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider">Thứ Tự Đi Bộ Lấy Hàng Tối Ưu</h3>
                             <span class="text-xs text-slate-500">Bấm "Quét xác nhận" để hoàn thành từng món</span>
                         </div>
 
@@ -379,12 +378,12 @@
                         </div>
                     </div>
 
-                    <!-- Right: Visual Map & Step Navigator -->
+                    <!-- Right: Visual Map -->
                     <div class="lg:col-span-5 bg-white p-5 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">Mô Phỏng Tuyến Đường Di Chuyển</h3>
-                                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Lộ trình ngắn nhất</span>
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">Mặt Bằng Di Chuyển</h3>
+                                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">42 Mét (Tối ưu)</span>
                             </div>
 
                             <div class="bg-slate-900 rounded-2xl p-4 text-white relative h-64 flex flex-col justify-between border border-slate-800">
@@ -408,16 +407,16 @@
                                 </div>
 
                                 <div class="bg-emerald-600/90 text-white p-2.5 rounded-xl text-center text-xs font-bold flex items-center justify-center gap-1.5">
-                                    <i data-lucide="box" class="w-4 h-4"></i> Đích đến: Bàn Đóng Gói / Giao Shipper
+                                    <i data-lucide="box" class="w-4 h-4"></i> Đích đến: Bàn Đóng Gói
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Completed Batch Alert (Hidden initially) -->
+                        <!-- Completed Alert -->
                         <div id="batch-completed-box" class="hidden mt-4 p-4 bg-emerald-50 border border-emerald-300 rounded-2xl text-center text-emerald-900">
                             <i data-lucide="check-circle" class="w-8 h-8 text-emerald-600 mx-auto mb-1"></i>
-                            <div class="font-extrabold text-sm">Tuyệt vời! Đã hoàn thành gom 4 đơn</div>
-                            <p class="text-xs text-emerald-700 mt-1">Đã kiểm đếm đủ 100% qua mã vạch. Chuyển sang bàn đóng gói.</p>
+                            <div class="font-extrabold text-sm">Tuyệt vời! Đã hoàn thành chuyến nhặt</div>
+                            <p class="text-xs text-emerald-700 mt-1">Đã đối chiếu khớp 100% mã vạch. Chuyển sang đóng gói.</p>
                             <button onclick="resetPickingDemo()" class="mt-3 px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold">Làm lại demo</button>
                         </div>
                     </div>
@@ -428,7 +427,7 @@
             <!-- TAB 3: INVENTORY & 2D WAREHOUSE MAP -->
             <!-- ========================================== -->
             <div id="view-inventory" class="tab-content space-y-6">
-                <!-- AI Smart Slotting Recommendation Banner -->
+                <!-- AI Smart Slotting Banner -->
                 <div class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white p-5 rounded-2xl shadow-md flex items-start justify-between gap-4">
                     <div class="flex items-start gap-3">
                         <div class="w-10 h-10 rounded-xl bg-blue-500/30 border border-blue-400/40 flex items-center justify-center shrink-0 text-blue-300">
@@ -452,88 +451,80 @@
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-2 mb-6">
                         <div>
                             <h2 class="text-base font-bold text-slate-900">Mặt Bằng Bố Trí Kệ Hàng (Warehouse Grid 2D)</h2>
-                            <p class="text-xs text-slate-500">Bấm vào bất kỳ kệ nào để xem danh sách sản phẩm và số lượng tồn</p>
+                            <p class="text-xs text-slate-500">Phân loại khu vực Vàng - Bạc - Đồng tối ưu công sức di chuyển</p>
                         </div>
                         <div class="flex items-center gap-4 text-xs font-semibold">
-                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-orange-500"></span> Khu vực Vàng (Hot SKU)</span>
-                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-blue-500"></span> Khu vực Bạc</span>
-                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-slate-400"></span> Khu vực Đồng</span>
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-orange-500"></span> Vị trí Vàng (Hot)</span>
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-blue-500"></span> Vị trí Bạc</span>
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-slate-400"></span> Vị trí Đồng</span>
                         </div>
                     </div>
 
-                    <!-- Warehouse Layout Representation -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="p-4 rounded-2xl border-2 border-orange-400 bg-orange-50/50 hover:shadow-md transition cursor-pointer">
+                        <div class="p-4 rounded-2xl border-2 border-orange-400 bg-orange-50/50">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="font-extrabold text-orange-700 text-sm">KỆ A-01</span>
                                 <span class="text-[10px] bg-orange-200 text-orange-800 font-bold px-1.5 py-0.5 rounded">Vị trí Vàng</span>
                             </div>
                             <div class="text-xs font-bold text-slate-800">Áo Thun Polo Regular</div>
-                            <div class="text-xs text-slate-500 mt-1">Tồn: <strong>85 chiếc</strong> (Tầng 1-3)</div>
-                            <div class="text-[11px] text-emerald-600 font-bold mt-2">Tần suất xuất: Cực cao 🔥</div>
+                            <div class="text-xs text-slate-500 mt-1">Tồn: <strong>85 chiếc</strong></div>
                         </div>
 
-                        <div class="p-4 rounded-2xl border-2 border-orange-400 bg-orange-50/50 hover:shadow-md transition cursor-pointer">
+                        <div class="p-4 rounded-2xl border-2 border-orange-400 bg-orange-50/50">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="font-extrabold text-orange-700 text-sm">KỆ A-02</span>
                                 <span class="text-[10px] bg-orange-200 text-orange-800 font-bold px-1.5 py-0.5 rounded">Vị trí Vàng</span>
                             </div>
                             <div class="text-xs font-bold text-slate-800">Quần Jean Slimfit</div>
-                            <div class="text-xs text-slate-500 mt-1">Tồn: <strong>140 chiếc</strong> (Tầng 1-3)</div>
-                            <div class="text-[11px] text-emerald-600 font-bold mt-2">Tần suất xuất: Cao 🔥</div>
+                            <div class="text-xs text-slate-500 mt-1">Tồn: <strong>140 chiếc</strong></div>
                         </div>
 
-                        <div class="p-4 rounded-2xl border-2 border-blue-400 bg-blue-50/50 hover:shadow-md transition cursor-pointer">
+                        <div class="p-4 rounded-2xl border-2 border-blue-400 bg-blue-50/50">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="font-extrabold text-blue-700 text-sm">KỆ B-01</span>
                                 <span class="text-[10px] bg-blue-200 text-blue-800 font-bold px-1.5 py-0.5 rounded">Vị trí Bạc</span>
                             </div>
                             <div class="text-xs font-bold text-slate-800">Áo Sơ Mi Oxford</div>
                             <div class="text-xs text-slate-500 mt-1">Tồn: <strong>60 chiếc</strong></div>
-                            <div class="text-[11px] text-slate-600 mt-2">Tần suất xuất: Trung bình</div>
                         </div>
 
-                        <div class="p-4 rounded-2xl border-2 border-blue-400 bg-blue-50/50 hover:shadow-md transition cursor-pointer">
+                        <div class="p-4 rounded-2xl border-2 border-blue-400 bg-blue-50/50">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="font-extrabold text-blue-700 text-sm">KỆ B-02</span>
                                 <span class="text-[10px] bg-blue-200 text-blue-800 font-bold px-1.5 py-0.5 rounded">Vị trí Bạc</span>
                             </div>
                             <div class="text-xs font-bold text-slate-800">Giày Sneaker Vintage</div>
                             <div class="text-xs text-slate-500 mt-1">Tồn: <strong>45 đôi</strong></div>
-                            <div class="text-[11px] text-slate-600 mt-2">Tần suất xuất: Trung bình</div>
                         </div>
 
-                        <div class="p-4 rounded-2xl border border-slate-300 bg-slate-50 hover:shadow-md transition cursor-pointer">
+                        <div class="p-4 rounded-2xl border border-slate-300 bg-slate-50">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="font-extrabold text-slate-700 text-sm">KỆ C-01</span>
                                 <span class="text-[10px] bg-slate-200 text-slate-700 font-bold px-1.5 py-0.5 rounded">Vị trí Đồng</span>
                             </div>
                             <div class="text-xs font-bold text-slate-800">Ví Da & Phụ Kiện</div>
                             <div class="text-xs text-slate-500 mt-1">Tồn: <strong>110 chiếc</strong></div>
-                            <div class="text-[11px] text-slate-500 mt-2">Tần suất xuất: Ổn định</div>
                         </div>
 
-                        <div class="p-4 rounded-2xl border border-slate-300 bg-slate-50 hover:shadow-md transition cursor-pointer">
+                        <div class="p-4 rounded-2xl border border-slate-300 bg-slate-50">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="font-extrabold text-slate-700 text-sm">KỆ C-02</span>
                                 <span class="text-[10px] bg-slate-200 text-slate-700 font-bold px-1.5 py-0.5 rounded">Vị trí Đồng</span>
                             </div>
                             <div class="text-xs font-bold text-slate-800">Túi Đeo Chéo Canvas</div>
                             <div class="text-xs text-slate-500 mt-1">Tồn: <strong>35 chiếc</strong></div>
-                            <div class="text-[11px] text-slate-500 mt-2">Tần suất xuất: Ổn định</div>
                         </div>
 
-                        <div class="p-4 rounded-2xl border border-slate-300 bg-slate-50 hover:shadow-md transition cursor-pointer">
+                        <div class="p-4 rounded-2xl border border-slate-300 bg-slate-50">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="font-extrabold text-slate-700 text-sm">KỆ D-01</span>
                                 <span class="text-[10px] bg-slate-200 text-slate-700 font-bold px-1.5 py-0.5 rounded">Vị trí Đồng</span>
                             </div>
                             <div class="text-xs font-bold text-slate-800">Thắt Lưng Da Bò</div>
                             <div class="text-xs text-slate-500 mt-1">Tồn: <strong>50 chiếc</strong></div>
-                            <div class="text-[11px] text-slate-500 mt-2">Tần suất xuất: Thấp</div>
                         </div>
 
-                        <div id="rack-D02-card" class="p-4 rounded-2xl border border-slate-300 bg-slate-50 hover:shadow-md transition cursor-pointer">
+                        <div id="rack-D02-card" class="p-4 rounded-2xl border border-slate-300 bg-slate-50">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="font-extrabold text-slate-700 text-sm">KỆ D-02</span>
                                 <span class="text-[10px] bg-amber-200 text-amber-800 font-bold px-1.5 py-0.5 rounded">Cần Dời Kệ</span>
@@ -547,24 +538,23 @@
             </div>
 
             <!-- ========================================== -->
-            <!-- TAB 4: AI DEMAND FORECASTING -->
+            <!-- TAB 4: DEMAND FORECASTING -->
             <!-- ========================================== -->
             <div id="view-forecast" class="tab-content space-y-6">
-                <!-- Forecast Alert Summary -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="p-5 rounded-2xl bg-red-50 border border-red-200 shadow-sm">
                         <div class="flex items-center gap-2 text-red-700 font-extrabold text-sm mb-2">
-                            <i data-lucide="alert-octagon" class="w-5 h-5"></i> Cảnh Báo Nguy Cơ Cháy Hàng (Stockout Risk)
+                            <i data-lucide="alert-octagon" class="w-5 h-5"></i> Cảnh Báo Nguy Cơ Cháy Hàng
                         </div>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Mô hình AI phát hiện <strong>Áo Thun Polo Regular Size L</strong> chỉ còn đủ bán trong <strong>2.8 ngày nữa</strong>. Với tốc độ bán hiện tại (30 áo/ngày) và kỳ sale sắp tới, kho sẽ hết hàng vào ngày 25/10.
+                            Mô hình AI phát hiện <strong>Áo Thun Polo Regular Size L</strong> chỉ còn đủ bán trong <strong>2.8 ngày nữa</strong>. Kho sẽ hết sạch hàng vào đợt Sale 25/10.
                         </p>
                         <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-red-200">
                             <div>
-                                <div class="text-xs text-slate-500 font-bold">Số lượng AI đề xuất nhập thêm:</div>
+                                <div class="text-xs text-slate-500 font-bold">Số lượng đề xuất nhập:</div>
                                 <div class="text-lg font-extrabold text-red-600">120 Chiếc</div>
                             </div>
-                            <button onclick="alert('Đã gửi đề xuất nhập 120 Áo Thun Polo sang bộ phận Thu Mua!')" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-xs">
+                            <button onclick="alert('Đã tạo Lệnh Đặt Hàng PO-2026-10 cho 120 Áo Thun Polo!')" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-xs">
                                 Tạo Lệnh Đặt Hàng (PO)
                             </button>
                         </div>
@@ -572,30 +562,23 @@
 
                     <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 shadow-sm">
                         <div class="flex items-center gap-2 text-emerald-800 font-extrabold text-sm mb-2">
-                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> Tối Ưu Vốn Lưu Động (Overstock Prevention)
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> Tránh Đọng Vốn Lưu Động
                         </div>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Sản phẩm <strong>Quần Kaki Công Sở</strong> có chu kỳ bán chậm hơn 35% so với tháng trước. Tồn kho hiện tại đủ dùng trong 45 ngày.
+                            Sản phẩm <strong>Quần Kaki Công Sở</strong> có chu kỳ bán chậm hơn 35%. Tồn kho hiện tại đủ dùng trong 45 ngày tới.
                         </p>
                         <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-emerald-200">
                             <div>
-                                <div class="text-xs text-slate-500 font-bold">Khuyến nghị từ hệ thống:</div>
-                                <div class="text-sm font-extrabold text-emerald-700">Dừng nhập hàng đợt tới</div>
+                                <div class="text-xs text-slate-500 font-bold">Khuyến nghị từ AI:</div>
+                                <div class="text-sm font-extrabold text-emerald-700">Tạm dừng nhập hàng đợt tới</div>
                             </div>
                             <span class="text-xs text-slate-500">Tiết kiệm ~18 triệu vốn đọng</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- AI Forecast Interactive Chart -->
                 <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
-                    <div class="flex justify-between items-center mb-4">
-                        <div>
-                            <h3 class="text-base font-bold text-slate-900">Biểu Đồ Dự Báo Số Lượng Bán & Mức Tồn An Toàn</h3>
-                            <p class="text-xs text-slate-500">Mô hình hồi quy chuỗi thời gian dựa trên dữ liệu 90 ngày qua</p>
-                        </div>
-                        <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-bold">7 Ngày Tới</span>
-                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-4">Dự Báo Lượng Bán 7 Ngày Tới</h3>
                     <div class="h-72">
                         <canvas id="appForecastChart"></canvas>
                     </div>
@@ -603,7 +586,7 @@
             </div>
 
             <!-- ========================================== -->
-            <!-- TAB 5: BARCODE / QR SCANNER SIMULATOR -->
+            <!-- TAB 5: BARCODE / QR SCANNER -->
             <!-- ========================================== -->
             <div id="view-scanner" class="tab-content space-y-6">
                 <div class="max-w-2xl mx-auto bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm text-center">
@@ -612,12 +595,10 @@
                     </div>
                     <h2 class="text-xl font-extrabold text-slate-900 mb-1">Máy Quét Mã Vạch Thông Minh</h2>
                     <p class="text-xs text-slate-500 mb-6">
-                        Sử dụng ngay camera điện thoại để kiểm tra mã sản phẩm khi nhặt hàng hoặc nhập kho.
+                        Kiểm tra mã sản phẩm khi nhặt hàng hoặc nhập kho để triệt tiêu 100% nhầm lẫn.
                     </p>
 
-                    <!-- Camera Viewport Mockup -->
                     <div class="relative w-full max-w-sm mx-auto h-56 bg-slate-900 rounded-2xl border-4 border-slate-800 overflow-hidden flex flex-col items-center justify-center text-white mb-6">
-                        <!-- Targeting reticle -->
                         <div class="w-44 h-28 border-2 border-dashed border-orange-500 rounded-lg flex items-center justify-center relative">
                             <div class="absolute inset-x-0 h-0.5 bg-red-500 animate-pulse"></div>
                             <span class="text-[10px] text-slate-400">Đưa mã vạch vào khung này</span>
@@ -625,25 +606,345 @@
                         <div class="mt-3 text-[11px] text-slate-400" id="scanner-status">Sẵn sàng nhận diện mã vạch...</div>
                     </div>
 
-                    <!-- Simulator buttons -->
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
                         <button onclick="simulateScan('89360012301', 'Áo Thun Polo Regular', 'Kệ A-01')" class="w-full sm:w-auto px-4 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2">
-                            <i data-lucide="barcode" class="w-4 h-4"></i> Quét thử mã: 89360012301
+                            <i data-lucide="barcode" class="w-4 h-4"></i> Quét thử mã đúng: 89360012301
                         </button>
                         <button onclick="simulateScan('89360099999', 'SẢN PHẨM KHÔNG XÁC ĐỊNH', 'Sai mã')" class="w-full sm:w-auto px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl font-bold text-xs flex items-center justify-center gap-2">
-                            <i data-lucide="alert-circle" class="w-4 h-4"></i> Thử quét mã sai (Test cảnh báo)
+                            <i data-lucide="alert-circle" class="w-4 h-4"></i> Thử quét mã sai (Cảnh báo đỏ)
                         </button>
                     </div>
 
-                    <!-- Scan Result Card -->
                     <div id="scan-result-card" class="hidden mt-6 p-4 rounded-2xl text-left border"></div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 6: CSDL - YÊU CẦU TƯ VẤN (CONSULTATIONS) -->
+            <!-- ========================================== -->
+            <div id="view-consultations" class="tab-content space-y-6">
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                            <i data-lucide="inbox" class="w-5 h-5 text-purple-600"></i>
+                            <span>Cơ Sở Dữ Liệu: Yêu Cầu Tư Vấn (Khách Đăng Ký Từ Web)</span>
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Tự động đồng bộ mỗi khi có khách gửi biểu mẫu tại trang Landing Page</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="openAddConsultModal()" class="px-3.5 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                            <i data-lucide="plus" class="w-4 h-4"></i> Thêm Yêu Cầu Mới
+                        </button>
+                        <button onclick="exportCSV('consultations')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                            <i data-lucide="download" class="w-4 h-4"></i> Xuất CSV/Excel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Consultations Filter & Search -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <div class="relative flex-1">
+                        <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3 text-slate-400"></i>
+                        <input id="search-consult" oninput="renderConsultations()" type="text" placeholder="Tìm theo tên, số điện thoại, quy mô kho..." class="w-full pl-9 pr-4 py-2 bg-white rounded-xl text-xs border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <select id="filter-consult-status" onchange="renderConsultations()" class="bg-white px-3 py-2 rounded-xl text-xs border border-slate-200 font-semibold text-slate-700 focus:outline-none">
+                        <option value="ALL">Tất cả trạng thái</option>
+                        <option value="Mới">Mới</option>
+                        <option value="Đã gọi tư vấn">Đã gọi tư vấn</option>
+                        <option value="Đang demo">Đang demo</option>
+                        <option value="Đã chốt hợp đồng">Đã chốt hợp đồng</option>
+                    </select>
+                </div>
+
+                <!-- Consultations Table -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider font-bold border-b border-slate-100">
+                                <tr>
+                                    <th class="p-4">Khách Hàng & SĐT</th>
+                                    <th class="p-4">Quy Mô Kho</th>
+                                    <th class="p-4">Kênh Bán Hàng</th>
+                                    <th class="p-4">Thời Gian & Ghi Chú</th>
+                                    <th class="p-4">Trạng Thái</th>
+                                    <th class="p-4 text-center">Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="consultations-tbody" class="divide-y divide-slate-100 font-medium">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 7: CSDL - QUẢN LÝ KHÁCH HÀNG (CUSTOMERS CRM) -->
+            <!-- ========================================== -->
+            <div id="view-customers" class="tab-content space-y-6">
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                            <i data-lucide="users" class="w-5 h-5 text-indigo-600"></i>
+                            <span>Cơ Sở Dữ Liệu: Danh Bạ Khách Hàng (CRM)</span>
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Lưu trữ thông tin các chủ shop và đối tác đang vận hành trên OptiWarehouse</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="openAddCustomerModal()" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                            <i data-lucide="user-plus" class="w-4 h-4"></i> Thêm Khách Hàng
+                        </button>
+                        <button onclick="exportCSV('customers')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                            <i data-lucide="download" class="w-4 h-4"></i> Xuất CSV/Excel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Customer Search -->
+                <div class="relative">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3 text-slate-400"></i>
+                    <input id="search-customer" oninput="renderCustomers()" type="text" placeholder="Tìm kiếm theo mã KH, họ tên, số điện thoại, tên Shop..." class="w-full pl-9 pr-4 py-2 bg-white rounded-xl text-xs border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <!-- Customers Table -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider font-bold border-b border-slate-100">
+                                <tr>
+                                    <th class="p-4">Mã KH</th>
+                                    <th class="p-4">Họ Tên & SĐT</th>
+                                    <th class="p-4">Tên Shop / Doanh Nghiệp</th>
+                                    <th class="p-4">Kênh Bán</th>
+                                    <th class="p-4">Tổng Đơn & Chi Tiêu</th>
+                                    <th class="p-4 text-center">Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customers-tbody" class="divide-y divide-slate-100 font-medium">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 8: CSDL - QUẢN LÝ ĐƠN HÀNG (ORDERS) -->
+            <!-- ========================================== -->
+            <div id="view-orders" class="tab-content space-y-6">
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                            <i data-lucide="shopping-cart" class="w-5 h-5 text-cyan-600"></i>
+                            <span>Cơ Sở Dữ Liệu: Quản Lý Đơn Hàng (Orders Database)</span>
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Toàn bộ đơn hàng đồng bộ từ các kênh và lưu trữ trong CSDL</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="openAddOrderModal()" class="px-3.5 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                            <i data-lucide="plus" class="w-4 h-4"></i> Tạo Đơn Hàng Mới
+                        </button>
+                        <button onclick="exportCSV('orders')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                            <i data-lucide="download" class="w-4 h-4"></i> Xuất CSV/Excel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Orders Search & Filter -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <div class="relative flex-1">
+                        <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3 text-slate-400"></i>
+                        <input id="search-orders" oninput="renderOrders()" type="text" placeholder="Tìm theo mã đơn, tên khách, sản phẩm, kệ hàng..." class="w-full pl-9 pr-4 py-2 bg-white rounded-xl text-xs border border-slate-200 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                    </div>
+                    <select id="filter-order-channel" onchange="renderOrders()" class="bg-white px-3 py-2 rounded-xl text-xs border border-slate-200 font-semibold text-slate-700 focus:outline-none">
+                        <option value="ALL">Tất cả sàn bán</option>
+                        <option value="Shopee">Shopee</option>
+                        <option value="TikTok Shop">TikTok Shop</option>
+                        <option value="Lazada">Lazada</option>
+                        <option value="Kho lẻ">Kho lẻ / Trực tiếp</option>
+                    </select>
+                </div>
+
+                <!-- Orders Table -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider font-bold border-b border-slate-100">
+                                <tr>
+                                    <th class="p-4">Mã Đơn</th>
+                                    <th class="p-4">Kênh Bán</th>
+                                    <th class="p-4">Khách Hàng & SĐT</th>
+                                    <th class="p-4">Sản Phẩm & Kệ Soạn</th>
+                                    <th class="p-4">Tổng Tiền</th>
+                                    <th class="p-4">Trạng Thái Đơn</th>
+                                    <th class="p-4 text-center">Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-full-tbody" class="divide-y divide-slate-100 font-medium">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <!-- INTERACTIVE JAVASCRIPT APP LOGIC -->
+    <!-- ======================================================== -->
+    <!-- MODALS FOR DATABASE CRUD -->
+    <!-- ======================================================== -->
+
+    <!-- Modal 1: Thêm Yêu Cầu Tư Vấn -->
+    <div id="modal-add-consult" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center pb-2 border-b">
+                <h3 class="font-extrabold text-base text-slate-900">Thêm Yêu Cầu Tư Vấn Mới</h3>
+                <button onclick="closeModal('modal-add-consult')" class="text-slate-400 hover:text-slate-600 text-lg font-bold">&times;</button>
+            </div>
+            <form onsubmit="saveConsultation(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-600 mb-1">Họ và tên khách hàng *</label>
+                    <input id="input-c-name" required type="text" placeholder="Nguyễn Văn A" class="w-full p-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-600 mb-1">Số điện thoại / Zalo *</label>
+                    <input id="input-c-phone" required type="tel" placeholder="0916280365" class="w-full p-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Quy mô kho</label>
+                        <select id="input-c-size" class="w-full p-2.5 rounded-xl border border-slate-200">
+                            <option>Kho nhỏ (< 100m²)</option>
+                            <option>100 - 300m²</option>
+                            <option>300 - 1000m²</option>
+                            <option>Chuỗi nhiều kho</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Kênh bán</label>
+                        <input id="input-c-channel" type="text" placeholder="Shopee, TikTok..." class="w-full p-2.5 rounded-xl border border-slate-200">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-600 mb-1">Ghi chú nhu cầu</label>
+                    <textarea id="input-c-note" rows="2" placeholder="Ghi chú thêm về nhu cầu khách..." class="w-full p-2.5 rounded-xl border border-slate-200"></textarea>
+                </div>
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeModal('modal-add-consult')" class="px-4 py-2 bg-slate-100 rounded-xl font-bold text-slate-600">Hủy</button>
+                    <button type="submit" class="px-5 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-bold">Lưu vào CSDL</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 2: Thêm Khách Hàng -->
+    <div id="modal-add-customer" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center pb-2 border-b">
+                <h3 class="font-extrabold text-base text-slate-900">Thêm Khách Hàng Mới (CRM)</h3>
+                <button onclick="closeModal('modal-add-customer')" class="text-slate-400 hover:text-slate-600 text-lg font-bold">&times;</button>
+            </div>
+            <form onsubmit="saveCustomer(event)" class="space-y-3 text-xs">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Mã KH</label>
+                        <input id="input-cust-code" required type="text" value="KH-1004" class="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-bold">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Họ và tên *</label>
+                        <input id="input-cust-name" required type="text" placeholder="Trần Văn B" class="w-full p-2.5 rounded-xl border border-slate-200">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Số điện thoại *</label>
+                        <input id="input-cust-phone" required type="tel" placeholder="0988..." class="w-full p-2.5 rounded-xl border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Kênh bán chính</label>
+                        <select id="input-cust-channel" class="w-full p-2.5 rounded-xl border border-slate-200">
+                            <option>Shopee</option>
+                            <option>TikTok Shop</option>
+                            <option>Lazada</option>
+                            <option>Kho lẻ</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-600 mb-1">Tên Shop / Doanh nghiệp</label>
+                    <input id="input-cust-shop" type="text" placeholder="Shop Mây Hồng" class="w-full p-2.5 rounded-xl border border-slate-200">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-600 mb-1">Địa chỉ</label>
+                    <input id="input-cust-address" type="text" placeholder="Hà Nội, TP.HCM..." class="w-full p-2.5 rounded-xl border border-slate-200">
+                </div>
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeModal('modal-add-customer')" class="px-4 py-2 bg-slate-100 rounded-xl font-bold text-slate-600">Hủy</button>
+                    <button type="submit" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold">Lưu Khách Hàng</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 3: Thêm Đơn Hàng Mới -->
+    <div id="modal-add-order" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center pb-2 border-b">
+                <h3 class="font-extrabold text-base text-slate-900">Tạo Đơn Hàng Mới Vào CSDL</h3>
+                <button onclick="closeModal('modal-add-order')" class="text-slate-400 hover:text-slate-600 text-lg font-bold">&times;</button>
+            </div>
+            <form onsubmit="saveOrder(event)" class="space-y-3 text-xs">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Mã Đơn</label>
+                        <input id="input-ord-code" required type="text" value="ORD-9025" class="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-bold">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Kênh Bán Sàn</label>
+                        <select id="input-ord-channel" class="w-full p-2.5 rounded-xl border border-slate-200">
+                            <option>Shopee</option>
+                            <option>TikTok Shop</option>
+                            <option>Lazada</option>
+                            <option>Kho lẻ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Tên khách nhận *</label>
+                        <input id="input-ord-customer" required type="text" placeholder="Nguyễn Văn A" class="w-full p-2.5 rounded-xl border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Số điện thoại *</label>
+                        <input id="input-ord-phone" required type="tel" placeholder="09..." class="w-full p-2.5 rounded-xl border border-slate-200">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-600 mb-1">Sản phẩm & Số lượng</label>
+                    <input id="input-ord-items" required type="text" placeholder="Áo Thun Polo Size L x 1" class="w-full p-2.5 rounded-xl border border-slate-200">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Vị trí kệ soạn</label>
+                        <input id="input-ord-racks" type="text" value="Kệ A-01" class="w-full p-2.5 rounded-xl border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Tổng tiền (VNĐ)</label>
+                        <input id="input-ord-amount" type="number" value="350000" class="w-full p-2.5 rounded-xl border border-slate-200">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeModal('modal-add-order')" class="px-4 py-2 bg-slate-100 rounded-xl font-bold text-slate-600">Hủy</button>
+                    <button type="submit" class="px-5 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-bold">Lưu Đơn Hàng</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- INTERACTIVE JAVASCRIPT & DATABASE ENGINE -->
+    <!-- ======================================================== -->
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
@@ -658,32 +959,464 @@
                 gain.connect(audioCtx.destination);
                 
                 if (isSuccess) {
-                    osc.frequency.setValueAtTime(880, audioCtx.currentTime); // High pitch success beep
+                    osc.frequency.setValueAtTime(880, audioCtx.currentTime);
                     gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
                     osc.start();
                     osc.stop(audioCtx.currentTime + 0.12);
                 } else {
-                    osc.frequency.setValueAtTime(220, audioCtx.currentTime); // Low pitch error beep
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
                     gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
                     osc.start();
                     osc.stop(audioCtx.currentTime + 0.35);
                 }
-            } catch(e) {
-                console.log("Audio not supported or permitted");
+            } catch(e) {}
+        }
+
+        // ==========================================
+        // CSDL ENGINE (LOCALSTORAGE BACKED + SEED)
+        // ==========================================
+        const SEED_CONSULTATIONS = [
+            { id: 1, full_name: 'Phạm Quang Đức', phone: '0916280365', warehouse_size: '100 - 300m²', sales_channel: 'TikTok Shop, Shopee', note: 'Cần tư vấn giải pháp gom đơn tự động và quét mã vạch cho 3 nhân viên', status: 'Mới', created_at: '2026-10-22 09:30' },
+            { id: 2, full_name: 'Vũ Minh Châu', phone: '0903112233', warehouse_size: 'Kho nhỏ (< 100m²)', sales_channel: 'Shopee, Facebook', note: 'Quan tâm tính năng cảnh báo tồn kho và dự báo nhập hàng', status: 'Đã gọi tư vấn', created_at: '2026-10-21 14:15' },
+            { id: 3, full_name: 'Hoàng Tuấn Anh', phone: '0944556677', warehouse_size: '300 - 1000m²', sales_channel: 'Chuỗi 2 kho tại Hà Nội', note: 'Cần tích hợp quản lý theo hạn sử dụng hàng mỹ phẩm', status: 'Đang demo', created_at: '2026-10-20 16:40' }
+        ];
+
+        const SEED_CUSTOMERS = [
+            { id: 1, customer_code: 'KH-1001', full_name: 'Nguyễn Thị Mai', phone: '0988123456', email: 'mai.nguyen@gmail.com', company_or_shop: 'Shop Thời Trang Mây', address: 'Đống Đa, Hà Nội', channel: 'Shopee', total_orders: 8, total_spent: 4850000 },
+            { id: 2, customer_code: 'KH-1002', full_name: 'Trần Văn Hoàng', phone: '0912345678', email: 'hoang.tran@gmail.com', company_or_shop: 'Tổng Kho Gia Dụng HN', address: 'Cầu Giấy, Hà Nội', channel: 'TikTok Shop', total_orders: 15, total_spent: 12600000 },
+            { id: 3, customer_code: 'KH-1003', full_name: 'Lê Hữu Đạt', phone: '0977889900', email: 'dat.le@gmail.com', company_or_shop: 'Đạt Sneaker Store', address: 'Quận 1, TP. HCM', channel: 'Lazada', total_orders: 5, total_spent: 3450000 }
+        ];
+
+        const SEED_ORDERS = [
+            { id: 1, order_code: 'ORD-9021', customer_name: 'Nguyễn Thị Mai', phone: '0988123456', channel: 'Shopee', total_amount: 350000, status: 'Chờ soạn hàng', picking_racks: 'Kệ A-01', items_summary: 'Áo Thun Polo Regular (Size L) x 1' },
+            { id: 2, order_code: 'ORD-9022', customer_name: 'Trần Văn Hoàng', phone: '0912345678', channel: 'TikTok Shop', total_amount: 780000, status: 'Chờ soạn hàng', picking_racks: 'Kệ A-02, Kệ D-01', items_summary: 'Quần Jean Slimfit Nam x 1, Thắt Lưng Da x 1' },
+            { id: 3, order_code: 'ORD-9023', customer_name: 'Lê Hữu Đạt', phone: '0977889900', channel: 'Shopee', total_amount: 590000, status: 'Chờ soạn hàng', picking_racks: 'Kệ B-02', items_summary: 'Giày Sneaker Vintage (Size 41) x 1' },
+            { id: 4, order_code: 'ORD-9020', customer_name: 'Nguyễn Thị Mai', phone: '0988123456', channel: 'Lazada', total_amount: 890000, status: 'Đã đóng gói', picking_racks: 'Kệ B-01', items_summary: 'Áo Khoác Gió Bomber x 2' }
+        ];
+
+        function getDB(key, defaultData) {
+            const data = localStorage.getItem('opti_' + key);
+            if (!data) {
+                localStorage.setItem('opti_' + key, JSON.stringify(defaultData));
+                return defaultData;
+            }
+            try { return JSON.parse(data); } catch(e) { return defaultData; }
+        }
+
+        function setDB(key, data) {
+            localStorage.setItem('opti_' + key, JSON.stringify(data));
+        }
+
+        // ==========================================
+        // RENDER FUNCTIONS FOR TABLES
+        // ==========================================
+
+        function renderConsultations() {
+            const list = getDB('consultations', SEED_CONSULTATIONS);
+            const search = (document.getElementById('search-consult')?.value || '').toLowerCase();
+            const filterStatus = document.getElementById('filter-consult-status')?.value || 'ALL';
+
+            const filtered = list.filter(item => {
+                const matchSearch = (item.full_name || '').toLowerCase().includes(search) ||
+                                    (item.phone || '').includes(search) ||
+                                    (item.warehouse_size || '').toLowerCase().includes(search);
+                const matchStatus = filterStatus === 'ALL' || item.status === filterStatus;
+                return matchSearch && matchStatus;
+            });
+
+            const tbody = document.getElementById('consultations-tbody');
+            if (!tbody) return;
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">Không tìm thấy yêu cầu tư vấn nào phù hợp.</td></tr>`;
+            } else {
+                tbody.innerHTML = filtered.map(item => `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="p-4">
+                            <div class="font-extrabold text-slate-900">${item.full_name}</div>
+                            <div class="text-[11px] text-blue-600 font-bold">${item.phone}</div>
+                        </td>
+                        <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px]">${item.warehouse_size || 'N/A'}</span></td>
+                        <td class="p-4 text-slate-600">${item.sales_channel || 'Chưa rõ'}</td>
+                        <td class="p-4">
+                            <div class="text-[11px] text-slate-400">${item.created_at || 'Vừa xong'}</div>
+                            <div class="text-xs text-slate-700 max-w-xs truncate">${item.note || 'Không có ghi chú'}</div>
+                        </td>
+                        <td class="p-4">
+                            <select onchange="updateConsultStatus(${item.id}, this.value)" class="text-[11px] font-bold px-2 py-1 rounded-lg border border-slate-200 bg-white">
+                                <option value="Mới" ${item.status === 'Mới' ? 'selected' : ''}>🟣 Mới</option>
+                                <option value="Đã gọi tư vấn" ${item.status === 'Đã gọi tư vấn' ? 'selected' : ''}>🟡 Đã gọi tư vấn</option>
+                                <option value="Đang demo" ${item.status === 'Đang demo' ? 'selected' : ''}>🔵 Đang demo</option>
+                                <option value="Đã chốt hợp đồng" ${item.status === 'Đã chốt hợp đồng' ? 'selected' : ''}>🟢 Đã chốt hợp đồng</option>
+                            </select>
+                        </td>
+                        <td class="p-4 text-center">
+                            <div class="flex items-center justify-center gap-1.5">
+                                <a href="https://zalo.me/${item.phone.replace(/[^0-9]/g, '')}" target="_blank" class="px-2 py-1 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg text-[11px] font-bold">Chat Zalo</a>
+                                <button onclick="convertConsultToCustomer(${item.id})" class="px-2 py-1 bg-indigo-50 text-indigo-600 hover:bg-indigo-100 rounded-lg text-[11px] font-bold">+ Tạo Khách</button>
+                                <button onclick="deleteConsult(${item.id})" class="text-red-400 hover:text-red-600 p-1">&times;</button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            // Update badge counts
+            const badge = document.getElementById('badge-consultations-count');
+            if (badge) badge.innerText = list.length;
+            const dashCount = document.getElementById('dash-consult-count');
+            if (dashCount) dashCount.innerText = list.length + ' Khách';
+            lucide.createIcons();
+        }
+
+        function renderCustomers() {
+            const list = getDB('customers', SEED_CUSTOMERS);
+            const search = (document.getElementById('search-customer')?.value || '').toLowerCase();
+
+            const filtered = list.filter(c => 
+                (c.customer_code || '').toLowerCase().includes(search) ||
+                (c.full_name || '').toLowerCase().includes(search) ||
+                (c.phone || '').includes(search) ||
+                (c.company_or_shop || '').toLowerCase().includes(search)
+            );
+
+            const tbody = document.getElementById('customers-tbody');
+            if (!tbody) return;
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">Không tìm thấy khách hàng nào.</td></tr>`;
+            } else {
+                tbody.innerHTML = filtered.map(c => `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="p-4 font-extrabold text-indigo-700">${c.customer_code}</td>
+                        <td class="p-4">
+                            <div class="font-bold text-slate-900">${c.full_name}</div>
+                            <div class="text-[11px] text-slate-500">${c.phone}</div>
+                        </td>
+                        <td class="p-4">
+                            <div class="font-bold text-slate-800">${c.company_or_shop || 'N/A'}</div>
+                            <div class="text-[11px] text-slate-400">${c.address || ''}</div>
+                        </td>
+                        <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-bold">${c.channel}</span></td>
+                        <td class="p-4">
+                            <div class="font-bold text-slate-900">${Number(c.total_spent || 0).toLocaleString('vi-VN')} đ</div>
+                            <div class="text-[11px] text-slate-400">${c.total_orders || 0} đơn hàng</div>
+                        </td>
+                        <td class="p-4 text-center">
+                            <button onclick="createOrderForCustomer('${c.full_name}', '${c.phone}', '${c.channel}')" class="px-2.5 py-1 bg-cyan-50 text-cyan-700 hover:bg-cyan-100 rounded-lg text-[11px] font-bold mr-1">+ Đơn mới</button>
+                            <button onclick="deleteCustomer(${c.id})" class="text-red-400 hover:text-red-600 p-1">&times;</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            const badge = document.getElementById('badge-customers-count');
+            if (badge) badge.innerText = list.length;
+            const dashCount = document.getElementById('dash-cust-count');
+            if (dashCount) dashCount.innerText = list.length + ' Shop';
+            lucide.createIcons();
+        }
+
+        function renderOrders() {
+            const list = getDB('orders', SEED_ORDERS);
+            const search = (document.getElementById('search-orders')?.value || '').toLowerCase();
+            const filterChannel = document.getElementById('filter-order-channel')?.value || 'ALL';
+
+            const filtered = list.filter(o => {
+                const matchSearch = (o.order_code || '').toLowerCase().includes(search) ||
+                                    (o.customer_name || '').toLowerCase().includes(search) ||
+                                    (o.items_summary || '').toLowerCase().includes(search) ||
+                                    (o.picking_racks || '').toLowerCase().includes(search);
+                const matchChannel = filterChannel === 'ALL' || o.channel === filterChannel;
+                return matchSearch && matchChannel;
+            });
+
+            // 1. Render in Full Orders View
+            const fullTbody = document.getElementById('orders-full-tbody');
+            if (fullTbody) {
+                if (filtered.length === 0) {
+                    fullTbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-400">Không tìm thấy đơn hàng nào.</td></tr>`;
+                } else {
+                    fullTbody.innerHTML = filtered.map(o => `
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-bold text-slate-900">${o.order_code}</td>
+                            <td class="p-4"><span class="px-2 py-0.5 rounded-full ${getChannelBadge(o.channel)} font-bold text-[10px]">${o.channel}</span></td>
+                            <td class="p-4">
+                                <div class="font-bold text-slate-800">${o.customer_name}</div>
+                                <div class="text-[11px] text-slate-400">${o.phone || ''}</div>
+                            </td>
+                            <td class="p-4">
+                                <div class="text-xs text-slate-800 font-medium">${o.items_summary}</div>
+                                <div class="text-[11px] text-blue-600 font-bold mt-0.5">Vị trí: ${o.picking_racks}</div>
+                            </td>
+                            <td class="p-4 font-extrabold text-slate-900">${Number(o.total_amount).toLocaleString('vi-VN')} đ</td>
+                            <td class="p-4">
+                                <select onchange="updateOrderStatus(${o.id}, this.value)" class="text-[11px] font-bold px-2 py-1 rounded-lg border border-slate-200 bg-white">
+                                    <option value="Chờ soạn hàng" ${o.status === 'Chờ soạn hàng' ? 'selected' : ''}>⏳ Chờ soạn hàng</option>
+                                    <option value="Đang gom hàng AI" ${o.status === 'Đang gom hàng AI' ? 'selected' : ''}>⚡ Đang gom hàng AI</option>
+                                    <option value="Đã đóng gói" ${o.status === 'Đã đóng gói' ? 'selected' : ''}>📦 Đã đóng gói</option>
+                                    <option value="Đã bàn giao" ${o.status === 'Đã bàn giao' ? 'selected' : ''}>🚚 Đã bàn giao</option>
+                                </select>
+                            </td>
+                            <td class="p-4 text-center">
+                                <button onclick="deleteOrder(${o.id})" class="text-red-400 hover:text-red-600 p-1">&times;</button>
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+            }
+
+            // 2. Render on Dashboard View
+            const dashTbody = document.getElementById('dash-orders-tbody');
+            if (dashTbody) {
+                dashTbody.innerHTML = list.slice(0, 5).map(o => `
+                    <tr class="hover:bg-slate-50">
+                        <td class="p-4 font-bold text-slate-900">${o.order_code}</td>
+                        <td class="p-4"><span class="px-2 py-0.5 rounded-full ${getChannelBadge(o.channel)} font-bold text-[10px]">${o.channel}</span></td>
+                        <td class="p-4 font-medium text-slate-800">${o.customer_name}</td>
+                        <td class="p-4 text-slate-600">${o.items_summary} (<span class="font-bold text-blue-600">${o.picking_racks}</span>)</td>
+                        <td class="p-4 font-bold">${Number(o.total_amount).toLocaleString('vi-VN')} đ</td>
+                        <td class="p-4"><span class="px-2 py-1 rounded-full ${o.status === 'Đã đóng gói' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'} font-bold text-[10px]">${o.status}</span></td>
+                    </tr>
+                `).join('');
+            }
+
+            const badge = document.getElementById('badge-orders-count');
+            if (badge) badge.innerText = list.length;
+            const pendingOrders = list.filter(o => o.status === 'Chờ soạn hàng').length;
+            const dashPending = document.getElementById('dash-pending-orders');
+            if (dashPending) dashPending.innerText = pendingOrders + ' Đơn';
+            lucide.createIcons();
+        }
+
+        function getChannelBadge(channel) {
+            if (channel === 'Shopee') return 'bg-orange-100 text-orange-700';
+            if (channel === 'TikTok Shop') return 'bg-slate-900 text-white';
+            if (channel === 'Lazada') return 'bg-blue-100 text-blue-700';
+            return 'bg-emerald-100 text-emerald-700';
+        }
+
+        // ==========================================
+        // CRUD ACTIONS
+        // ==========================================
+
+        // Consultations
+        function openAddConsultModal() { document.getElementById('modal-add-consult').classList.remove('hidden'); }
+        function saveConsultation(e) {
+            e.preventDefault();
+            const list = getDB('consultations', SEED_CONSULTATIONS);
+            const newObj = {
+                id: Date.now(),
+                full_name: document.getElementById('input-c-name').value,
+                phone: document.getElementById('input-c-phone').value,
+                warehouse_size: document.getElementById('input-c-size').value,
+                sales_channel: document.getElementById('input-c-channel').value || 'Shopee',
+                note: document.getElementById('input-c-note').value,
+                status: 'Mới',
+                created_at: new Date().toISOString().replace('T', ' ').substring(0, 16)
+            };
+            list.unshift(newObj);
+            setDB('consultations', list);
+            closeModal('modal-add-consult');
+            renderConsultations();
+            playBeep(true);
+            alert("✓ Đã lưu yêu cầu tư vấn mới vào CSDL!");
+        }
+
+        function updateConsultStatus(id, newStatus) {
+            const list = getDB('consultations', SEED_CONSULTATIONS);
+            const item = list.find(x => x.id === id);
+            if (item) {
+                item.status = newStatus;
+                setDB('consultations', list);
+                playBeep(true);
             }
         }
 
-        // Tab Switching Logic
+        function deleteConsult(id) {
+            if (!confirm("Bạn có chắc muốn xóa bản ghi tư vấn này?")) return;
+            let list = getDB('consultations', SEED_CONSULTATIONS);
+            list = list.filter(x => x.id !== id);
+            setDB('consultations', list);
+            renderConsultations();
+        }
+
+        function convertConsultToCustomer(consultId) {
+            const consultList = getDB('consultations', SEED_CONSULTATIONS);
+            const consult = consultList.find(x => x.id === consultId);
+            if (!consult) return;
+
+            const custList = getDB('customers', SEED_CUSTOMERS);
+            const newCust = {
+                id: Date.now(),
+                customer_code: 'KH-' + Math.floor(1000 + Math.random() * 9000),
+                full_name: consult.full_name,
+                phone: consult.phone,
+                email: '',
+                company_or_shop: 'Kho ' + consult.full_name,
+                address: consult.warehouse_size,
+                channel: consult.sales_channel || 'Shopee',
+                total_orders: 0,
+                total_spent: 0
+            };
+            custList.unshift(newCust);
+            setDB('customers', custList);
+
+            // Update consultation status
+            consult.status = 'Đã chốt hợp đồng';
+            setDB('consultations', consultList);
+
+            renderConsultations();
+            renderCustomers();
+            playBeep(true);
+            alert(`✓ Đã chuyển khách hàng "${consult.full_name}" sang bảng Khách Hàng (Mã: ${newCust.customer_code})!`);
+        }
+
+        // Customers
+        function openAddCustomerModal() {
+            document.getElementById('input-cust-code').value = 'KH-' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('modal-add-customer').classList.remove('hidden');
+        }
+
+        function saveCustomer(e) {
+            e.preventDefault();
+            const list = getDB('customers', SEED_CUSTOMERS);
+            const newObj = {
+                id: Date.now(),
+                customer_code: document.getElementById('input-cust-code').value,
+                full_name: document.getElementById('input-cust-name').value,
+                phone: document.getElementById('input-cust-phone').value,
+                email: '',
+                company_or_shop: document.getElementById('input-cust-shop').value || 'Shop bán lẻ',
+                address: document.getElementById('input-cust-address').value,
+                channel: document.getElementById('input-cust-channel').value,
+                total_orders: 1,
+                total_spent: 0
+            };
+            list.unshift(newObj);
+            setDB('customers', list);
+            closeModal('modal-add-customer');
+            renderCustomers();
+            playBeep(true);
+            alert("✓ Đã thêm khách hàng mới vào CSDL!");
+        }
+
+        function deleteCustomer(id) {
+            if (!confirm("Bạn có chắc muốn xóa khách hàng này?")) return;
+            let list = getDB('customers', SEED_CUSTOMERS);
+            list = list.filter(x => x.id !== id);
+            setDB('customers', list);
+            renderCustomers();
+        }
+
+        // Orders
+        function openAddOrderModal() {
+            document.getElementById('input-ord-code').value = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('modal-add-order').classList.remove('hidden');
+        }
+
+        function createOrderForCustomer(name, phone, channel) {
+            openAddOrderModal();
+            document.getElementById('input-ord-customer').value = name;
+            document.getElementById('input-ord-phone').value = phone;
+            document.getElementById('input-ord-channel').value = channel;
+        }
+
+        function saveOrder(e) {
+            e.preventDefault();
+            const list = getDB('orders', SEED_ORDERS);
+            const newObj = {
+                id: Date.now(),
+                order_code: document.getElementById('input-ord-code').value,
+                customer_name: document.getElementById('input-ord-customer').value,
+                phone: document.getElementById('input-ord-phone').value,
+                channel: document.getElementById('input-ord-channel').value,
+                total_amount: Number(document.getElementById('input-ord-amount').value || 350000),
+                status: 'Chờ soạn hàng',
+                picking_racks: document.getElementById('input-ord-racks').value || 'Kệ A-01',
+                items_summary: document.getElementById('input-ord-items').value
+            };
+            list.unshift(newObj);
+            setDB('orders', list);
+            closeModal('modal-add-order');
+            renderOrders();
+            playBeep(true);
+            alert("✓ Đã lưu đơn hàng mới vào CSDL!");
+        }
+
+        function updateOrderStatus(id, newStatus) {
+            const list = getDB('orders', SEED_ORDERS);
+            const item = list.find(x => x.id === id);
+            if (item) {
+                item.status = newStatus;
+                setDB('orders', list);
+                renderOrders();
+                playBeep(true);
+            }
+        }
+
+        function deleteOrder(id) {
+            if (!confirm("Bạn có chắc muốn xóa đơn hàng này?")) return;
+            let list = getDB('orders', SEED_ORDERS);
+            list = list.filter(x => x.id !== id);
+            setDB('orders', list);
+            renderOrders();
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // ==========================================
+        // EXPORT CSDL TO CSV / EXCEL
+        // ==========================================
+        function exportCSV(tableType) {
+            let data = [];
+            let filename = `optiwarehouse_${tableType}.csv`;
+            let headers = [];
+
+            if (tableType === 'consultations') {
+                data = getDB('consultations', SEED_CONSULTATIONS);
+                headers = ['ID', 'Ho va Ten', 'So Dien Thoai', 'Quy Mo Kho', 'Kenh Ban', 'Ghi Chu', 'Trang Thai', 'Ngay Tao'];
+            } else if (tableType === 'customers') {
+                data = getDB('customers', SEED_CUSTOMERS);
+                headers = ['ID', 'Ma KH', 'Ho va Ten', 'So Dien Thoai', 'Email', 'Ten Shop', 'Dia Chi', 'Kenh Ban', 'Tong Don', 'Tong Chi Tieu'];
+            } else if (tableType === 'orders') {
+                data = getDB('orders', SEED_ORDERS);
+                headers = ['ID', 'Ma Don', 'Khach Hang', 'SDT', 'Kenh Ban', 'Tong Tien', 'Trang Thai', 'Vi Tri Ke', 'San Pham'];
+            }
+
+            // Convert to CSV with UTF-8 BOM
+            let csvContent = "\uFEFF" + headers.join(",") + "\n";
+            data.forEach(row => {
+                const values = Object.values(row).map(val => `"${String(val || '').replace(/"/g, '""')}"`);
+                csvContent += values.join(",") + "\n";
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", filename);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // ==========================================
+        // TAB NAVIGATION
+        // ==========================================
         const tabTitles = {
             'dashboard': 'Tổng Quan Vận Hành Kho',
             'picking': 'AI Gom Đơn & Chỉ Dẫn Soạn Hàng',
             'inventory': 'Sơ Đồ Kệ Hàng & Quản Lý Tồn Kho',
             'forecast': 'AI Dự Báo Nhu Cầu & Tồn Kho An Toàn',
-            'scanner': 'Máy Quét Mã Vạch Thông Minh (Barcode / QR)'
+            'scanner': 'Máy Quét Mã Vạch Thông Minh (Barcode / QR)',
+            'consultations': 'Cơ Sở Dữ Liệu: Yêu Cầu Tư Vấn Khách Hàng',
+            'customers': 'Cơ Sở Dữ Liệu: Quản Lý Khách Hàng (CRM)',
+            'orders': 'Cơ Sở Dữ Liệu: Quản Lý Đơn Hàng'
         };
 
         function switchAppTab(tabId) {
-            // Update Navigation Buttons
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.className = "nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800 font-semibold";
             });
@@ -692,21 +1425,22 @@
                 activeNav.className = "nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-white bg-orange-600 font-bold shadow-sm";
             }
 
-            // Hide/Show Views
             document.querySelectorAll('.tab-content').forEach(view => view.classList.remove('active'));
             const activeView = document.getElementById(`view-${tabId}`);
             if (activeView) activeView.classList.add('active');
 
-            // Set Header Title
             document.getElementById('page-title').innerText = tabTitles[tabId] || 'OptiWarehouse';
 
-            // Lazy Render Charts
-            if (tabId === 'forecast') {
-                renderAppForecastChart();
-            }
+            if (tabId === 'forecast') renderAppForecastChart();
+            if (tabId === 'consultations') renderConsultations();
+            if (tabId === 'customers') renderCustomers();
+            if (tabId === 'orders') renderOrders();
+            lucide.createIcons();
         }
 
-        // Picking Step Confirmation
+        // ==========================================
+        // PICKING SIMULATOR
+        // ==========================================
         let pickedCount = 0;
         const totalItems = 4;
 
@@ -722,7 +1456,6 @@
             btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i> Đã quét đủ`;
             btn.onclick = null;
 
-            // Highlight node in map
             const node = document.getElementById(`map-node-${itemIndex}`);
             if (node) {
                 node.className = "p-2.5 rounded-xl border border-emerald-500 bg-emerald-950/70 text-xs font-bold text-center text-emerald-300";
@@ -761,7 +1494,7 @@
             lucide.createIcons();
         }
 
-        // Slotting AI Swap Demo
+        // Smart Slotting
         function applySlottingSwap() {
             const btn = document.getElementById('btn-apply-slotting');
             btn.innerText = "Đã cập nhật vị trí mới!";
@@ -775,7 +1508,7 @@
             playBeep(true);
         }
 
-        // Forecast Chart Rendering
+        // Forecast Chart
         let appChartInstance = null;
         function renderAppForecastChart() {
             if (appChartInstance) return;
@@ -785,11 +1518,11 @@
             appChartInstance = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['22/10 (Hôm nay)', '23/10', '24/10', '25/10 (Mega Sale)', '26/10', '27/10', '28/10'],
+                    labels: ['22/10', '23/10', '24/10', '25/10 (Mega Sale)', '26/10', '27/10', '28/10'],
                     datasets: [
                         {
                             type: 'line',
-                            label: 'Lượng tồn kho nếu không nhập thêm',
+                            label: 'Tồn kho nếu không nhập',
                             data: [85, 55, 25, 0, 0, 0, 0],
                             borderColor: '#ef4444',
                             borderWidth: 2,
@@ -797,7 +1530,7 @@
                         },
                         {
                             type: 'bar',
-                            label: 'Dự báo lượng đơn bán ra mỗi ngày',
+                            label: 'Dự báo lượng bán mỗi ngày',
                             data: [30, 32, 40, 75, 48, 35, 28],
                             backgroundColor: '#f97316',
                             borderRadius: 6
@@ -806,16 +1539,12 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { grid: { display: false } },
-                        y: { beginAtZero: true }
-                    }
+                    maintainAspectRatio: false
                 }
             });
         }
 
-        // Scanner Simulation
+        // Barcode Scanner Simulator
         function simulateScan(code, name, shelf) {
             const resCard = document.getElementById('scan-result-card');
             const status = document.getElementById('scanner-status');
@@ -841,7 +1570,7 @@
                 resCard.className = "mt-6 p-4 rounded-2xl text-left border border-red-300 bg-red-50 text-red-900";
                 resCard.innerHTML = `
                     <div class="flex items-center gap-2 font-bold text-sm text-red-700">
-                        <i data-lucide="alert-triangle" class="w-5 h-5 text-red-600"></i> CẢNH BÁO: SAI MÃ SẢN PHẨM HOẶC KHÔNG CÓ TRONG ĐƠN
+                        <i data-lucide="alert-triangle" class="w-5 h-5 text-red-600"></i> CẢNH BÁO: SAI MÃ HOẶC KHÔNG CÓ TRONG ĐƠN
                     </div>
                     <p class="mt-1 text-xs text-red-600">Vui lòng kiểm tra lại kích thước, màu sắc hoặc kệ lấy hàng.</p>
                 `;
@@ -849,24 +1578,34 @@
             lucide.createIcons();
         }
 
-        // Simulate New Incoming Order
+        // Trigger Simulated Order from Shopee/TikTok
         function triggerSimulatedOrder() {
             playBeep(true);
-            const tbody = document.getElementById('orders-tbody');
-            const newTr = document.createElement('tr');
-            newTr.className = "hover:bg-slate-50 bg-orange-50/70 transition duration-500";
+            const list = getDB('orders', SEED_ORDERS);
             const randomId = Math.floor(1000 + Math.random() * 9000);
-            newTr.innerHTML = `
-                <td class="p-4 font-bold text-slate-900">#ORD-${randomId} (Mới)</td>
-                <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-slate-900 text-white font-bold text-[10px]">TikTok Shop</span></td>
-                <td class="p-4">Áo Khoác Gió Bomber x 1</td>
-                <td class="p-4"><span class="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Kệ D-02</span></td>
-                <td class="p-4 text-orange-600 font-bold">Vừa xong</td>
-                <td class="p-4"><span class="px-2 py-1 rounded-full bg-amber-100 text-amber-700 font-bold text-[10px]">Chờ soạn hàng</span></td>
-            `;
-            tbody.insertBefore(newTr, tbody.firstChild);
-            alert(`⚡ Đơn hàng mới #ORD-${randomId} từ TikTok Shop đã được đồng bộ vào kho!`);
+            const newOrder = {
+                id: Date.now(),
+                order_code: `ORD-${randomId}`,
+                customer_name: 'Khách TikTok #' + randomId,
+                phone: '09' + Math.floor(10000000 + Math.random() * 90000000),
+                channel: 'TikTok Shop',
+                total_amount: 490000,
+                status: 'Chờ soạn hàng',
+                picking_racks: 'Kệ A-01, Kệ B-02',
+                items_summary: 'Áo Thun Polo x 1, Giày Sneaker x 1'
+            };
+            list.unshift(newOrder);
+            setDB('orders', list);
+            renderOrders();
+            alert(`⚡ Đơn hàng mới #ORD-${randomId} từ TikTok Shop đã được lưu vào CSDL & đẩy vào hàng đợi!`);
         }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderOrders();
+            renderConsultations();
+            renderCustomers();
+        });
     </script>
 </body>
 </html>

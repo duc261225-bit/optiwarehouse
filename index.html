@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OptiWarehouse - Hệ Thống Quản Lý Kho Thông Minh Tinh Gọn Cho SMEs</title>
+    <title>OptiWarehouse - Hệ Thống Quản Lý Kho Thông Minh AI Cho SMEs</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -18,10 +17,6 @@
                             500: '#f97316',
                             600: '#ea580c',
                             700: '#c2410c',
-                        },
-                        tech: {
-                            800: '#0f172a',
-                            900: '#020617',
                         }
                     }
                 }
@@ -36,7 +31,7 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .gradient-glow {
-            background: radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            background: radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
         }
         .grid-pattern {
             background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
@@ -48,247 +43,111 @@
 
     <!-- TOP ANNOUNCEMENT BAR -->
     <div class="bg-gradient-to-r from-orange-600 to-amber-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
-        <span class="bg-white/20 px-2 py-0.5 rounded-full text-xs">Mới</span>
-        <span>Tính năng AI Tối ưu Lộ trình Nhặt hàng (Smart Picking) đã chính thức khả dụng!</span>
-        <a href="#demo" class="underline font-bold ml-1 hover:text-orange-200">Thử ngay &rarr;</a>
+        <span class="bg-white/20 px-2 py-0.5 rounded-full text-xs font-bold">Mới</span>
+        <span>Đã tích hợp Hệ thống CSDL lưu trữ Thông Tin Tư Vấn, Đơn Hàng & Khách Hàng (CRM)!</span>
+        <a href="app.html" class="underline font-bold ml-1 hover:text-orange-200">Mở App CSDL &rarr;</a>
     </div>
 
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION (SIMPLIFIED & CLEAN) -->
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-white shadow-lg shadow-orange-500/30">
-                        <i data-lucide="boxes" class="w-6 h-6"></i>
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/30">
+                        <i data-lucide="boxes" class="w-5 h-5"></i>
                     </div>
                     <div>
                         <span class="text-xl font-extrabold tracking-tight text-slate-900">OptiWarehouse<span class="text-orange-600">.AI</span></span>
-                        <span class="hidden sm:inline-block text-[10px] uppercase tracking-wider font-bold text-orange-600 bg-orange-100 px-1.5 py-0.5 rounded ml-2">Mini WMS</span>
+                        <span class="text-[10px] uppercase tracking-wider font-bold text-orange-600 bg-orange-100 px-1.5 py-0.5 rounded ml-1">Mini WMS</span>
                     </div>
                 </div>
 
                 <!-- Desktop Nav Links -->
                 <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-                    <a href="#features" class="hover:text-orange-600 transition">Tính năng cốt lõi</a>
-                    <a href="#demo" class="hover:text-orange-600 transition">Mô phỏng AI</a>
+                    <a href="#demo" class="hover:text-orange-600 transition">Tính năng AI</a>
                     <a href="#comparison" class="hover:text-orange-600 transition">So sánh giải pháp</a>
                     <a href="#calculator" class="hover:text-orange-600 transition">Tính ROI</a>
                     <a href="#pricing" class="hover:text-orange-600 transition">Bảng giá</a>
-                    <a href="#faq" class="hover:text-orange-600 transition">FAQ</a>
-                    <a href="app.html" class="text-orange-600 font-extrabold hover:text-orange-700 transition flex items-center gap-1"><i data-lucide="layout-dashboard" class="w-4 h-4"></i> Mở App Demo</a>
+                    <a href="#lead-form" class="hover:text-orange-600 transition">Đăng ký tư vấn</a>
                 </div>
 
                 <!-- CTA Button -->
                 <div class="flex items-center gap-3">
-                    <a href="app.html" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-slate-700 hover:text-orange-600 transition">Đăng nhập</a>
-                    <a href="app.html" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-xl shadow-md shadow-orange-500/25 transition-all transform hover:-translate-y-0.5">
-                        Trải nghiệm App (Demo) &rarr;
+                    <a href="app.html" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-xl shadow-md shadow-orange-600/25 transition transform hover:-translate-y-0.5">
+                        <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                        <span>Vào App Quản Trị & CSDL</span>
                     </a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-32 grid-pattern">
+    <!-- HERO SECTION (STREAMLINED) -->
+    <section class="relative overflow-hidden pt-12 pb-16 lg:pt-20 lg:pb-24 grid-pattern">
         <div class="absolute inset-0 gradient-glow pointer-events-none"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="text-center max-w-3xl mx-auto">
-                <!-- Badge -->
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100/80 border border-orange-200 text-orange-700 text-xs sm:text-sm font-bold mb-6">
                     <i data-lucide="sparkles" class="w-4 h-4 text-orange-600"></i>
                     <span>Công nghệ Kho Thông Minh Tinh Gọn Cho Kho 50m² – 1000m²</span>
                 </div>
 
-                <!-- Main Heading -->
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15] mb-6">
-                    Biến Kho Hàng Thông Thường Thành 
+                    Biến Nhà Kho Của Bạn Thành 
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500">Kho Thông Minh AI</span>
                     Chỉ Sau 24 Giờ
                 </h1>
 
-                <!-- Subheading -->
-                <p class="text-lg sm:text-xl text-slate-600 mb-8 leading-relaxed">
-                    <strong>Không cần đầu tư robot hàng tỷ đồng.</strong> OptiWarehouse ứng dụng trí tuệ nhân tạo trên nền Web & Mobile: tối ưu lộ trình nhặt hàng (Picking), tự động dự báo nhu cầu nhập hàng và triệt tiêu 99% sai sót đơn hàng.
+                <p class="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+                    <strong>Không cần robot hàng tỷ đồng.</strong> OptiWarehouse ứng dụng AI trên nền Web & Smartphone: tối ưu lộ trình nhặt hàng (Picking), dự báo nhu cầu nhập hàng, và quản lý CSDL Đơn hàng & Khách hàng chuẩn xác 99.8%.
                 </p>
 
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-                    <a href="app.html" class="w-full sm:w-auto px-8 py-4 text-base font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-2xl shadow-xl shadow-orange-600/30 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
-                        <i data-lucide="play-circle" class="w-5 h-5"></i>
-                        <span>Vào Thử Nghiệm Ứng Dụng Ngay</span>
+                    <a href="app.html" class="w-full sm:w-auto px-8 py-4 text-base font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-2xl shadow-xl shadow-orange-600/30 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                        <i data-lucide="rocket" class="w-5 h-5"></i>
+                        <span>Trải Nghiệm Phần Mềm & CSDL Ngay</span>
                     </a>
                     <a href="#demo" class="w-full sm:w-auto px-8 py-4 text-base font-bold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded-2xl shadow-sm transition flex items-center justify-center gap-2">
-                        <i data-lucide="sparkles" class="w-5 h-5 text-orange-600"></i>
-                        <span>Xem mô phỏng tính năng</span>
+                        <i data-lucide="play-circle" class="w-5 h-5 text-orange-600"></i>
+                        <span>Xem mô phỏng AI</span>
                     </a>
                 </div>
 
-                <!-- Key Metrics Cards -->
+                <!-- 4 Key Badges -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
-                    <div class="bg-white/80 backdrop-blur p-4 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="bg-white/90 backdrop-blur p-4 rounded-2xl border border-slate-200 shadow-sm">
                         <div class="text-2xl lg:text-3xl font-extrabold text-orange-600">99.8%</div>
-                        <div class="text-xs text-slate-500 font-medium mt-1">Độ chính xác kiểm kê & soạn đơn</div>
+                        <div class="text-xs text-slate-500 font-medium mt-1">Độ chính xác soạn hàng</div>
                     </div>
-                    <div class="bg-white/80 backdrop-blur p-4 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="bg-white/90 backdrop-blur p-4 rounded-2xl border border-slate-200 shadow-sm">
                         <div class="text-2xl lg:text-3xl font-extrabold text-emerald-600">-45%</div>
-                        <div class="text-xs text-slate-500 font-medium mt-1">Quãng đường & thời gian nhặt hàng</div>
+                        <div class="text-xs text-slate-500 font-medium mt-1">Quãng đường đi bộ nhặt đơn</div>
                     </div>
-                    <div class="bg-white/80 backdrop-blur p-4 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="text-2xl lg:text-3xl font-extrabold text-blue-600">0đ</div>
-                        <div class="text-xs text-slate-500 font-medium mt-1">Chi phí đầu tư phần cứng chuyên dụng</div>
+                    <div class="bg-white/90 backdrop-blur p-4 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="text-2xl lg:text-3xl font-extrabold text-blue-600">0 VNĐ</div>
+                        <div class="text-xs text-slate-500 font-medium mt-1">Đầu tư phần cứng cồng kềnh</div>
                     </div>
-                    <div class="bg-white/80 backdrop-blur p-4 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="text-2xl lg:text-3xl font-extrabold text-purple-600">24h</div>
-                        <div class="text-xs text-slate-500 font-medium mt-1">Thời gian triển khai & đưa vào vận hành</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TRUSTED PLATFORMS INTEGRATION -->
-    <section class="py-8 bg-white border-y border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-xs font-bold uppercase tracking-wider text-slate-400 mb-6">
-                Tích hợp liền mạch với các nền tảng thương mại điện tử & vận chuyển hàng đầu
-            </p>
-            <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-75 grayscale hover:grayscale-0 transition duration-300">
-                <span class="font-extrabold text-xl text-orange-500 flex items-center gap-1.5"><i data-lucide="shopping-bag" class="w-5 h-5"></i> Shopee</span>
-                <span class="font-extrabold text-xl text-slate-900 flex items-center gap-1.5"><i data-lucide="video" class="w-5 h-5"></i> TikTok Shop</span>
-                <span class="font-extrabold text-xl text-blue-600 flex items-center gap-1.5"><i data-lucide="shopping-cart" class="w-5 h-5"></i> Lazada</span>
-                <span class="font-extrabold text-xl text-emerald-600 flex items-center gap-1.5"><i data-lucide="truck" class="w-5 h-5"></i> Giao Hàng Nhanh</span>
-                <span class="font-extrabold text-xl text-amber-600 flex items-center gap-1.5"><i data-lucide="box" class="w-5 h-5"></i> Viettel Post</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMPARISON: OLD WAY vs BIG ENTERPRISE vs OPTIWAREHOUSE -->
-    <section id="comparison" class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-100 px-3 py-1 rounded-full">Tại sao chọn chúng tôi</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 mb-4">
-                    Giải bài toán kho thông minh với chi phí chỉ bằng 1/100
-                </h2>
-                <p class="text-slate-600">
-                    Bạn không cần phải là tập đoàn lớn với ngân sách chục tỷ để sở hữu một hệ thống kho tự động hóa. Hãy xem sự khác biệt:
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Option 1: Kho truyền thống -->
-                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-500 mb-6 font-bold text-xl">1</div>
-                        <h3 class="text-xl font-bold text-slate-800 mb-2">Kho truyền thống (Excel / Giấy)</h3>
-                        <p class="text-sm text-slate-500 mb-6">Quản lý thủ công, nhớ vị trí bằng trí nhớ nhân viên.</p>
-                        
-                        <ul class="space-y-3 text-sm text-slate-600">
-                            <li class="flex items-start gap-2">
-                                <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
-                                <span>Hay nhầm đơn, sót hàng vào dịp sale lớn.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
-                                <span>Nhân viên đi bộ vòng vèo, mất 10-15 phút/đơn.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
-                                <span>Tồn kho ảo, cháy hàng bán chạy hoặc đọng hàng ế.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
-                                <span>Phụ thuộc hoàn toàn vào nhân viên kho cũ.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mt-8 pt-4 border-t border-slate-100 text-xs text-slate-400 font-medium">
-                        Hiệu quả thấp • Rủi ro thất thoát cao
-                    </div>
-                </div>
-
-                <!-- Option 2: Kho lớn cồng kềnh (AutoS / Robot AGV) -->
-                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 mb-6 font-bold text-xl">2</div>
-                        <h3 class="text-xl font-bold text-slate-800 mb-2">Kho tự động hoá lớn (ASRS / Robot)</h3>
-                        <p class="text-sm text-slate-500 mb-6">Giải pháp phần cứng nặng dành cho tổng kho hàng nghìn m².</p>
-                        
-                        <ul class="space-y-3 text-sm text-slate-600">
-                            <li class="flex items-start gap-2">
-                                <i data-lucide="check" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
-                                <span>Tự động hóa hoàn toàn bằng robot AGV/Cẩu trục.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
-                                <span>Chi phí đầu tư ban đầu cực lớn (từ 2 - 20 tỷ VNĐ).</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
-                                <span>Thời gian thi công & lắp ráp kéo dài 6-12 tháng.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
-                                <span>Không phù hợp với diện tích kho thuê hoặc kho nhỏ.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mt-8 pt-4 border-t border-slate-100 text-xs text-slate-400 font-medium">
-                        Chi phí quá tầm đối với SMEs
-                    </div>
-                </div>
-
-                <!-- Option 3: OPTIWAREHOUSE -->
-                <div class="bg-gradient-to-b from-orange-50 to-white rounded-3xl p-8 border-2 border-orange-500 shadow-xl shadow-orange-500/10 flex flex-col justify-between relative transform lg:-translate-y-2">
-                    <div class="absolute -top-3.5 right-6 bg-orange-600 text-white text-[11px] font-extrabold uppercase px-3 py-1 rounded-full shadow-sm">
-                        Lựa chọn tối ưu
-                    </div>
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-orange-500 flex items-center justify-center text-white mb-6 font-bold text-xl shadow-md shadow-orange-500/30">
-                            <i data-lucide="sparkles" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-extrabold text-slate-900 mb-2">OptiWarehouse (Mini WMS)</h3>
-                        <p class="text-sm text-slate-600 mb-6">Trí tuệ AI hiện đại trên hạ tầng kệ sắt và smartphone sẵn có.</p>
-                        
-                        <ul class="space-y-3 text-sm text-slate-700 font-medium">
-                            <li class="flex items-start gap-2">
-                                <i data-lucide="check-circle-2" class="w-5 h-5 text-orange-600 shrink-0 mt-0.5"></i>
-                                <span><strong>AI định tuyến nhặt hàng:</strong> Giảm 45% thời gian di chuyển.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i data-lucide="check-circle-2" class="w-5 h-5 text-orange-600 shrink-0 mt-0.5"></i>
-                                <span><strong>Dự báo AI tự học:</strong> Cảnh báo nhập hàng chính xác theo mùa.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i data-lucide="check-circle-2" class="w-5 h-5 text-orange-600 shrink-0 mt-0.5"></i>
-                                <span><strong>Quét mã bằng Camera:</strong> Dùng ngay điện thoại, không mua máy PDA.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i data-lucide="check-circle-2" class="w-5 h-5 text-orange-600 shrink-0 mt-0.5"></i>
-                                <span><strong>Triển khai 24 giờ:</strong> Đăng ký là chạy ngay trên trình duyệt.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mt-8 pt-4 border-t border-orange-200 text-xs font-bold text-orange-700">
-                        Chi phí chỉ từ 490.000đ/tháng • Hoàn vốn tức thì
+                    <div class="bg-white/90 backdrop-blur p-4 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="text-2xl lg:text-3xl font-extrabold text-purple-600">CSDL</div>
+                        <div class="text-xs text-slate-500 font-medium mt-1">Lưu tư vấn, đơn hàng, khách</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- INTERACTIVE AI DEMO SHOWCASE -->
+    <!-- INTERACTIVE AI DEMO SHOWCASE (SIGNATURE CORE FEATURE) -->
     <section id="demo" class="py-20 bg-slate-900 text-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-950/80 border border-orange-800 px-3 py-1 rounded-full">Trải nghiệm tương tác</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-950/80 border border-orange-800 px-3 py-1 rounded-full">Tính năng đặc trưng</span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 mb-4">
-                    Xem "Bộ Não AI" Vận Hành Nhà Kho Như Thế Nào
+                    Xem "Bộ Não AI" Vận Hành Nhà Kho Thực Tế
                 </h2>
-                <p class="text-slate-400">
-                    Bấm vào các tab bên dưới để trực tiếp trải nghiệm 3 thuật toán AI độc quyền của OptiWarehouse:
+                <p class="text-slate-400 text-sm">
+                    Bấm vào 3 tab bên dưới để trực tiếp trải nghiệm 3 thuật toán AI độc quyền của OptiWarehouse:
                 </p>
             </div>
 
@@ -319,7 +178,7 @@
                         </div>
                         <h3 class="text-2xl font-bold mb-3">Gom đơn và dẫn đường thông minh</h3>
                         <p class="text-slate-300 text-sm mb-6 leading-relaxed">
-                            Khi có 10 đơn hàng đổ về cùng lúc, thay vì nhân viên phải chạy đi chạy lại 10 lượt qua kho, AI sẽ tự động gom đơn và tính toán đường đi <strong>1 vòng khép kín duy nhất</strong> để lấy hết hàng.
+                            Khi có nhiều đơn hàng đổ về, AI tự động gom đơn và tính toán đường đi <strong>1 vòng khép kín ngắn nhất</strong> để lấy hết hàng cho toàn bộ các đơn.
                         </p>
 
                         <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-700 mb-6 space-y-3">
@@ -344,23 +203,20 @@
                         </div>
                     </div>
 
-                    <!-- Warehouse 2D Interactive Grid Visualization -->
+                    <!-- 2D Warehouse Visualization -->
                     <div class="lg:col-span-7 bg-slate-950 p-6 rounded-2xl border border-slate-800 relative">
                         <div class="flex justify-between items-center mb-4 text-xs">
                             <span class="font-bold text-slate-400 flex items-center gap-1.5">
-                                <i data-lucide="warehouse" class="w-4 h-4 text-orange-500"></i> Mô phỏng mặt bằng kho mini (8 Kệ hàng)
+                                <i data-lucide="warehouse" class="w-4 h-4 text-orange-500"></i> Mô phỏng mặt bằng 8 Kệ Hàng
                             </span>
                             <span id="picking-status" class="px-2.5 py-1 bg-emerald-500/20 text-emerald-400 rounded-md font-bold text-[11px]">Đã tối ưu hóa</span>
                         </div>
 
-                        <!-- 2D Canvas / SVG map -->
                         <div class="relative w-full h-64 bg-slate-900 rounded-xl border border-slate-800 p-4 overflow-hidden flex flex-col justify-between">
-                            <!-- Packing Station Door -->
                             <div class="absolute bottom-2 left-6 bg-emerald-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow">
                                 Cửa xuất / Bàn đóng gói
                             </div>
 
-                            <!-- Warehouse Racks -->
                             <div class="grid grid-cols-4 gap-4 h-44">
                                 <div id="rack-A1" class="rack-box bg-slate-800 border-2 border-slate-700 rounded-lg p-2 text-center text-xs font-bold transition">Kệ A-01<div class="text-[10px] font-normal text-slate-400">Áo Thun</div></div>
                                 <div id="rack-A2" class="rack-box bg-slate-800 border-2 border-slate-700 rounded-lg p-2 text-center text-xs font-bold transition">Kệ A-02<div class="text-[10px] font-normal text-slate-400">Quần Jean</div></div>
@@ -372,9 +228,8 @@
                                 <div id="rack-D2" class="rack-box bg-slate-800 border-2 border-slate-700 rounded-lg p-2 text-center text-xs font-bold transition">Kệ D-02<div class="text-[10px] font-normal text-slate-400">Mũ Nón</div></div>
                             </div>
 
-                            <!-- Animated Picker Path Indicator -->
                             <div id="picker-tag" class="absolute bottom-3 left-44 bg-orange-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-lg flex items-center gap-1 transition-all duration-700">
-                                <i data-lucide="user" class="w-3.5 h-3.5"></i> Nhân viên: Bước 1 &rarr; A01 &rarr; A02 &rarr; B02 &rarr; Ra Bàn gói
+                                <i data-lucide="user" class="w-3.5 h-3.5"></i> Lộ trình: A01 &rarr; A02 &rarr; B02 &rarr; Bàn gói
                             </div>
                         </div>
                     </div>
@@ -386,38 +241,20 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     <div class="lg:col-span-5">
                         <div class="inline-flex items-center gap-2 text-xs font-bold text-amber-400 mb-2">
-                            <i data-lucide="bot" class="w-4 h-4"></i> Time-Series Predictive Model
+                            <i data-lucide="bot" class="w-4 h-4"></i> Mô hình Chuỗi Thời Gian
                         </div>
-                        <h3 class="text-2xl font-bold mb-3">AI Cảnh Báo Hết Hàng & Gợi Ý Nhập</h3>
+                        <h3 class="text-2xl font-bold mb-3">AI Cảnh Báo Cháy Hàng & Đề Xuất Nhập</h3>
                         <p class="text-slate-300 text-sm mb-6 leading-relaxed">
-                            Mô hình AI tự động học theo chu kỳ bán hàng ngày trong tuần, ngày sale sàn (11/11, 12/12) và thời tiết để tính toán số ngày tồn kho an toàn còn lại.
+                            Mô hình tự động học chu kỳ bán hàng và các đợt Mega Sale sàn để tính toán số ngày tồn an toàn còn lại.
                         </p>
-
-                        <div class="space-y-3 mb-6">
-                            <div class="p-3 bg-red-950/60 border border-red-800/80 rounded-xl flex items-start gap-3">
-                                <i data-lucide="alert-triangle" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
-                                <div>
-                                    <div class="text-xs font-bold text-red-300">Cảnh báo: Áo Thun Polo Size L</div>
-                                    <div class="text-xs text-slate-400">Chỉ còn 3 ngày tồn kho (Dự kiến hết ngày 25/10). Gợi ý nhập thêm: <strong>120 chiếc</strong>.</div>
-                                </div>
-                            </div>
-                            <div class="p-3 bg-amber-950/40 border border-amber-800/60 rounded-xl flex items-start gap-3">
-                                <i data-lucide="info" class="w-5 h-5 text-amber-400 shrink-0 mt-0.5"></i>
-                                <div>
-                                    <div class="text-xs font-bold text-amber-300">Đề xuất: Quần Jean Ống Suông</div>
-                                    <div class="text-xs text-slate-400">Tốc độ bán chậm 20%. Không cần nhập thêm trong 30 ngày tới.</div>
-                                </div>
-                            </div>
+                        <div class="p-4 bg-red-950/60 border border-red-800/80 rounded-xl mb-3">
+                            <div class="text-xs font-bold text-red-300">Cảnh báo: Áo Thun Polo Size L</div>
+                            <div class="text-xs text-slate-400 mt-1">Chỉ còn đủ bán trong 3 ngày. Gợi ý nhập thêm: <strong>120 chiếc</strong>.</div>
                         </div>
                     </div>
-
-                    <!-- Chart.js Forecast Container -->
                     <div class="lg:col-span-7 bg-slate-950 p-6 rounded-2xl border border-slate-800">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-xs font-bold text-slate-300">Dự báo nhu cầu bán hàng & Mức tồn kho (7 ngày tới)</span>
-                            <span class="text-[10px] bg-slate-800 text-orange-400 px-2 py-1 rounded">R2 Score: 0.94</span>
-                        </div>
-                        <div class="h-64">
+                        <span class="text-xs font-bold text-slate-300 block mb-3">Dự báo nhu cầu 7 ngày tới</span>
+                        <div class="h-60">
                             <canvas id="forecastChart"></canvas>
                         </div>
                     </div>
@@ -429,37 +266,32 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     <div class="lg:col-span-5">
                         <div class="inline-flex items-center gap-2 text-xs font-bold text-blue-400 mb-2">
-                            <i data-lucide="arrow-left-right" class="w-4 h-4"></i> Phân loại ABC Inventory
+                            <i data-lucide="arrow-left-right" class="w-4 h-4"></i> Phân loại Vị trí Vàng - Bạc - Đồng
                         </div>
                         <h3 class="text-2xl font-bold mb-3">Tối ưu vị trí kệ (Smart Slotting)</h3>
                         <p class="text-slate-300 text-sm mb-6 leading-relaxed">
-                            Mặt hàng nào phát sinh đơn liên tục (Nhóm A) sẽ được AI đề xuất chuyển ra <strong>vị trí gần cửa xuất hoặc tầng kệ ngang thắt lưng</strong> để nhân viên lấy hàng nhanh nhất mà không phải cúi hay với cao.
+                            Mặt hàng nào phát sinh đơn liên tục sẽ được AI tự động đề xuất chuyển ra <strong>vị trí gần cửa xuất và ngang tầm với</strong>.
                         </p>
-                        <div class="p-4 bg-slate-900 rounded-xl border border-slate-700 text-sm space-y-2">
-                            <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">Gợi ý hoán đổi từ AI:</div>
-                            <div class="flex items-center justify-between text-xs py-1 border-b border-slate-800">
-                                <span>Chuyển "Áo khoác gió" từ <span class="text-red-400">Kệ C-02 (xa)</span></span>
-                                <span class="text-emerald-400 font-bold">&rarr; Kệ A-01 (gần cửa)</span>
-                            </div>
-                            <div class="text-xs text-slate-400">Lý do: Tần suất lấy hàng tăng 340% do thời tiết chuyển mùa.</div>
+                        <div class="p-3 bg-slate-900 rounded-xl border border-slate-700 text-xs">
+                            <span class="text-emerald-400 font-bold">Gợi ý hoán đổi:</span> Chuyển "Áo Khoác Gió" từ Kệ D-02 (xa) &rarr; Kệ A-01 (gần cửa xuất).
                         </div>
                     </div>
-                    <div class="lg:col-span-7 bg-slate-950 p-6 rounded-2xl border border-slate-800 text-center">
+                    <div class="lg:col-span-7 bg-slate-950 p-6 rounded-2xl border border-slate-800">
                         <div class="grid grid-cols-3 gap-4 text-left">
                             <div class="p-4 rounded-xl bg-orange-500/10 border border-orange-500/30">
-                                <div class="text-xs font-bold text-orange-400 mb-1">Khu Vực Vàng (Vị trí A)</div>
-                                <div class="text-sm font-bold text-white mb-2">Gần cửa xuất - Tầm với</div>
-                                <p class="text-[11px] text-slate-400">Dành cho 20% SKU chiếm 80% sản lượng bán ra.</p>
+                                <div class="text-xs font-bold text-orange-400 mb-1">Vị trí Vàng</div>
+                                <div class="text-sm font-bold text-white mb-1">Gần Cửa Xuất</div>
+                                <p class="text-[11px] text-slate-400">Cho 20% SKU bán chạy nhất.</p>
                             </div>
                             <div class="p-4 rounded-xl bg-blue-500/10 border border-blue-500/30">
-                                <div class="text-xs font-bold text-blue-400 mb-1">Khu Vực Bạc (Vị trí B)</div>
-                                <div class="text-sm font-bold text-white mb-2">Tầng trên/dưới kệ</div>
-                                <p class="text-[11px] text-slate-400">Mặt hàng có tần suất xuất kho trung bình.</p>
+                                <div class="text-xs font-bold text-blue-400 mb-1">Vị trí Bạc</div>
+                                <div class="text-sm font-bold text-white mb-1">Tầng Kệ Trung Gian</div>
+                                <p class="text-[11px] text-slate-400">Mặt hàng tần suất xuất trung bình.</p>
                             </div>
                             <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700">
-                                <div class="text-xs font-bold text-slate-400 mb-1">Khu Vực Đồng (Vị trí C)</div>
-                                <div class="text-sm font-bold text-white mb-2">Góc sâu nhà kho</div>
-                                <p class="text-[11px] text-slate-400">Hàng cồng kềnh, hàng tồn trữ bán chậm.</p>
+                                <div class="text-xs font-bold text-slate-400 mb-1">Vị trí Đồng</div>
+                                <div class="text-sm font-bold text-white mb-1">Góc Sâu Kho</div>
+                                <p class="text-[11px] text-slate-400">Hàng cồng kềnh, bán chậm.</p>
                             </div>
                         </div>
                     </div>
@@ -468,145 +300,134 @@
         </div>
     </section>
 
-    <!-- CORE FEATURES SECTION -->
-    <section id="features" class="py-20 bg-white">
+    <!-- 4 STREAMLINED FEATURE PILLARS -->
+    <section class="py-16 bg-white border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-100 px-3 py-1 rounded-full">Tính năng toàn diện</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 mb-4">
-                    Được thiết kế riêng cho cách người Việt vận hành kho
-                </h2>
-                <p class="text-slate-600">
-                    Đơn giản, trực quan, ai cũng dùng được sau 15 phút làm quen mà không cần kiến thức kỹ thuật phức tạp.
-                </p>
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-100 px-3 py-1 rounded-full">Tính năng tinh gọn</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-3 mb-2">4 Trụ Cột Vận Hành Thông Minh</h2>
+                <p class="text-slate-600 text-sm">Tập trung đúng những gì doanh nghiệp vừa & nhỏ thực sự cần</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 hover:border-orange-300 hover:shadow-lg hover:shadow-orange-500/5 transition duration-300">
-                    <div class="w-12 h-12 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center mb-6">
-                        <i data-lucide="scan-barcode" class="w-6 h-6"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-orange-300 transition">
+                    <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center mb-4 font-bold">
+                        <i data-lucide="scan-barcode" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Quét mã bằng Camera điện thoại</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">
-                        Tận dụng ngay camera smartphone của nhân viên để quét mã vạch và QR code với tốc độ 0.1 giây. Phát hiện tức thì nếu nhặt nhầm size hoặc màu sản phẩm.
-                    </p>
+                    <h3 class="font-bold text-base mb-1">Quét Mã Bằng Điện Thoại</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Không cần súng PDA đắt đỏ. Dùng ngay camera smartphone quét chuẩn xác trong 0.1 giây.</p>
                 </div>
 
-                <!-- Feature 2 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 hover:border-orange-300 hover:shadow-lg hover:shadow-orange-500/5 transition duration-300">
-                    <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mb-6">
-                        <i data-lucide="combine" class="w-6 h-6"></i>
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-orange-300 transition">
+                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4 font-bold">
+                        <i data-lucide="combine" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Gom đơn hàng loạt (Batch Picking)</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">
-                        Thuật toán tự động nhóm 20-50 đơn hàng cùng lúc thành một chuyến nhặt. Nhân viên chỉ cần đi qua từng kệ đúng 1 lần là lấy đủ hàng cho toàn bộ đơn.
-                    </p>
+                    <h3 class="font-bold text-base mb-1">Gom Đơn Hàng Loạt (AI)</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Gom 20-50 đơn cùng lúc, tính lộ trình 1 vòng khép kín qua từng kệ, giảm 45% thời gian di chuyển.</p>
                 </div>
 
-                <!-- Feature 3 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 hover:border-orange-300 hover:shadow-lg hover:shadow-orange-500/5 transition duration-300">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-6">
-                        <i data-lucide="package-check" class="w-6 h-6"></i>
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-orange-300 transition">
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-4 font-bold">
+                        <i data-lucide="database" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Đồng bộ tồn kho đa kênh Real-time</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">
-                        Đơn vừa bán trên TikTok Shop hay Shopee, số lượng tồn trên sàn và trong kho vật lý sẽ lập tức cập nhật sau 2 giây. Triệt tiêu hoàn toàn nỗi lo phạt vì hủy đơn.
-                    </p>
+                    <h3 class="font-bold text-base mb-1">CSDL Khách & Đơn Hàng</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Quản lý toàn bộ danh sách tư vấn, danh bạ khách hàng CRM và đơn hàng Shopee, TikTok Shop.</p>
                 </div>
 
-                <!-- Feature 4 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 hover:border-orange-300 hover:shadow-lg hover:shadow-orange-500/5 transition duration-300">
-                    <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mb-6">
-                        <i data-lucide="calendar-clock" class="w-6 h-6"></i>
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-orange-300 transition">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4 font-bold">
+                        <i data-lucide="refresh-cw" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Quản lý hạn sử dụng (FEFO / FIFO)</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">
-                        Đối với hàng thực phẩm, mỹ phẩm, dược phẩm: Hệ thống tự động chỉ dẫn nhân viên lấy lô hàng cận ngày hết hạn trước để không bao giờ bị tồn hàng hỏng.
-                    </p>
+                    <h3 class="font-bold text-base mb-1">Đồng Bộ Sàn Real-Time</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Đơn phát sinh trên sàn lập tức cập nhật vào kho sau 2 giây. Triệt tiêu hoàn toàn nỗi lo phạt hủy đơn.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON TABLE (CRISP & CLEAR) -->
+    <section id="comparison" class="py-16 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-100 px-3 py-1 rounded-full">So sánh giải pháp</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-3 mb-2">Vì Sao Chọn OptiWarehouse?</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 1. Kho truyền thống -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-bold text-base text-slate-800 mb-2">1. Kho truyền thống</h3>
+                    <p class="text-xs text-slate-500 mb-4">Dùng Excel & giấy ghi sổ</p>
+                    <ul class="text-xs text-slate-600 space-y-2.5">
+                        <li class="flex items-center gap-2 text-red-500">❌ Hay nhầm đơn, sót hàng</li>
+                        <li class="flex items-center gap-2 text-red-500">❌ Nhân viên đi bộ 10-15 phút/đơn</li>
+                        <li class="flex items-center gap-2 text-red-500">❌ Tồn kho ảo, đọng vốn</li>
+                    </ul>
                 </div>
 
-                <!-- Feature 5 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 hover:border-orange-300 hover:shadow-lg hover:shadow-orange-500/5 transition duration-300">
-                    <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center mb-6">
-                        <i data-lucide="map-pin" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Định vị Kệ - Hàng 3 cấp độ trực quan</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">
-                        Quy ước rõ ràng: Dãy A &rarr; Kệ 03 &rarr; Tầng 2 &rarr; Ô 05. Nhân viên mới vào làm ngày đầu tiên cũng có thể tìm thấy bất kỳ sản phẩm nào dưới 30 giây.
-                    </p>
+                <!-- 2. Kho tự động hàng tỷ -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-bold text-base text-slate-800 mb-2">2. Kho tự động lớn (Robot)</h3>
+                    <p class="text-xs text-slate-500 mb-4">ASRS / Robot AGV đắt tiền</p>
+                    <ul class="text-xs text-slate-600 space-y-2.5">
+                        <li class="flex items-center gap-2 text-emerald-600">✓ Tự động hóa bằng robot</li>
+                        <li class="flex items-center gap-2 text-red-500">❌ Chi phí từ 2 - 20 tỷ đồng</li>
+                        <li class="flex items-center gap-2 text-red-500">❌ Chỉ dành cho tổng kho nghìn m²</li>
+                    </ul>
                 </div>
 
-                <!-- Feature 6 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 hover:border-orange-300 hover:shadow-lg hover:shadow-orange-500/5 transition duration-300">
-                    <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center mb-6">
-                        <i data-lucide="shield-alert" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Phát hiện thất thoát & Gian lận</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">
-                        AI đối chiếu số liệu xuất kho với mã vận đơn bàn giao shipper. Mọi hành vi sai lệch hoặc hàng bốc dỡ bất thường sẽ gửi thông báo cảnh báo tức thì về điện thoại chủ kho.
-                    </p>
+                <!-- 3. OptiWarehouse -->
+                <div class="bg-orange-50/80 p-6 rounded-2xl border-2 border-orange-500 shadow-lg relative">
+                    <span class="absolute -top-3 right-4 bg-orange-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Tối ưu nhất</span>
+                    <h3 class="font-extrabold text-base text-slate-900 mb-2">3. OptiWarehouse.AI</h3>
+                    <p class="text-xs text-orange-700 font-bold mb-4">Trí tuệ AI trên hạ tầng sẵn có</p>
+                    <ul class="text-xs text-slate-800 space-y-2.5 font-medium">
+                        <li class="flex items-center gap-2 text-orange-700">✓ AI gom đơn & chỉ đường ngắn nhất</li>
+                        <li class="flex items-center gap-2 text-orange-700">✓ Tích hợp CSDL Khách hàng & Đơn</li>
+                        <li class="flex items-center gap-2 text-orange-700">✓ Chi phí chỉ từ 490.000đ/tháng</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- INTERACTIVE ROI CALCULATOR -->
-    <section id="calculator" class="py-20 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+    <section id="calculator" class="py-16 bg-slate-900 text-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-950/80 border border-orange-800 px-3 py-1 rounded-full">Công cụ tính toán</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 mb-4">
-                    Ước Tính Số Tiền & Thời Gian Bạn Sẽ Tiết Kiệm
-                </h2>
-                <p class="text-slate-400 text-sm">
-                    Kéo thanh trượt theo quy mô hiện tại của kho bạn để xem kết quả ngay:
-                </p>
+            <div class="text-center mb-10">
+                <span class="text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-950/80 border border-orange-800 px-3 py-1 rounded-full">Tính toán ROI</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-3 mb-2">Ước Tính Hiệu Quả Tiết Kiệm</h2>
+                <p class="text-slate-400 text-xs">Kéo thanh trượt theo quy mô kho của bạn:</p>
             </div>
 
-            <div class="bg-slate-800/90 border border-slate-700 rounded-3xl p-6 sm:p-10 shadow-2xl">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div class="space-y-6">
-                        <!-- Input 1 -->
+            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 sm:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-4">
                         <div>
-                            <div class="flex justify-between text-sm font-semibold mb-2">
-                                <label for="order-slider" class="text-slate-300">Số lượng đơn hàng mỗi ngày:</label>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <label class="text-slate-300">Số lượng đơn hàng mỗi ngày:</label>
                                 <span id="order-value" class="text-orange-400 font-bold">300 đơn</span>
                             </div>
                             <input id="order-slider" type="range" min="50" max="2000" step="50" value="300" oninput="calculateROI()" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-orange-500">
-                            <div class="flex justify-between text-[11px] text-slate-500 mt-1">
-                                <span>50 đơn</span>
-                                <span>1.000 đơn</span>
-                                <span>2.000+ đơn</span>
-                            </div>
                         </div>
 
-                        <!-- Input 2 -->
                         <div>
-                            <div class="flex justify-between text-sm font-semibold mb-2">
-                                <label for="staff-slider" class="text-slate-300">Số nhân viên kho hiện tại:</label>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <label class="text-slate-300">Số nhân viên kho hiện tại:</label>
                                 <span id="staff-value" class="text-orange-400 font-bold">3 người</span>
                             </div>
                             <input id="staff-slider" type="range" min="1" max="15" step="1" value="3" oninput="calculateROI()" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-orange-500">
-                            <div class="flex justify-between text-[11px] text-slate-500 mt-1">
-                                <span>1 người</span>
-                                <span>8 người</span>
-                                <span>15 người</span>
-                            </div>
                         </div>
                     </div>
 
-                    <!-- Output Card -->
-                    <div class="bg-slate-900/90 rounded-2xl p-6 border border-slate-700 space-y-4">
+                    <div class="bg-slate-900 p-5 rounded-xl border border-slate-700 space-y-3">
                         <div>
-                            <span class="text-xs text-slate-400 uppercase tracking-wider font-bold">Thời gian tiết kiệm mỗi tháng:</span>
-                            <div id="res-hours" class="text-3xl font-extrabold text-emerald-400 mt-1">~108 Giờ</div>
-                            <span class="text-xs text-slate-500">Nhân viên hoàn thành đơn sớm hơn mỗi ca làm.</span>
+                            <span class="text-[11px] text-slate-400 font-bold uppercase">Thời gian tiết kiệm mỗi tháng:</span>
+                            <div id="res-hours" class="text-2xl font-extrabold text-emerald-400 mt-0.5">~108 Giờ</div>
                         </div>
-                        <div class="pt-4 border-t border-slate-800">
-                            <span class="text-xs text-slate-400 uppercase tracking-wider font-bold">Ước tính chi phí tiết kiệm hàng năm:</span>
-                            <div id="res-money" class="text-3xl font-extrabold text-orange-400 mt-1">~54.000.000 đ</div>
-                            <span class="text-xs text-slate-500">Từ việc giảm nhầm đơn, giảm nhân công tăng ca và hạn chế hoàn hàng.</span>
+                        <div class="pt-3 border-t border-slate-800">
+                            <span class="text-[11px] text-slate-400 font-bold uppercase">Chi phí ước tính tiết kiệm/năm:</span>
+                            <div id="res-money" class="text-2xl font-extrabold text-orange-400 mt-0.5">~54.000.000 đ</div>
                         </div>
                     </div>
                 </div>
@@ -615,167 +436,94 @@
     </section>
 
     <!-- PRICING SECTION -->
-    <section id="pricing" class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+    <section id="pricing" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
                 <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-100 px-3 py-1 rounded-full">Bảng giá minh bạch</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 mb-4">
-                    Chi phí nhỏ – Lợi nhuận tăng trưởng vượt bậc
-                </h2>
-                <p class="text-slate-600">
-                    Không thu phí cài đặt ban đầu. Hủy bất kỳ lúc nào nếu không ưng ý.
-                </p>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-3 mb-2">Chi Phí Nhỏ – Hiệu Quả Lớn</h2>
+                <p class="text-slate-600 text-sm">Hủy bất cứ lúc nào, không phí cài đặt ban đầu</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Plan 1 -->
-                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Starter -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900">Gói Khởi Nghiệp</h3>
-                        <p class="text-xs text-slate-500 mt-1 mb-6">Dành cho shop online và kho nhỏ dưới 100m².</p>
-                        <div class="mb-6">
-                            <span class="text-4xl font-extrabold text-slate-900">490.000đ</span>
-                            <span class="text-xs text-slate-500">/ tháng</span>
-                        </div>
-                        <ul class="space-y-3 text-sm text-slate-600">
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Quản lý tối đa 500 SKU</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 2 tài khoản nhân viên</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Quét mã bằng camera điện thoại</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Định vị sơ đồ kho 2D cơ bản</li>
+                        <h3 class="font-bold text-slate-900">Gói Khởi Nghiệp</h3>
+                        <p class="text-xs text-slate-500 mt-1 mb-4">Kho nhỏ dưới 100m²</p>
+                        <div class="text-3xl font-extrabold text-slate-900 mb-4">490.000đ<span class="text-xs text-slate-500 font-normal">/tháng</span></div>
+                        <ul class="text-xs text-slate-600 space-y-2 mb-6">
+                            <li>✓ Quản lý 500 SKU</li>
+                            <li>✓ 2 tài khoản nhân viên</li>
+                            <li>✓ Quét mã bằng điện thoại</li>
+                            <li>✓ CSDL Khách hàng & Đơn hàng cơ bản</li>
                         </ul>
                     </div>
-                    <a href="#lead-form" class="mt-8 block w-full py-3 text-center text-sm font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition">Chọn gói này</a>
+                    <a href="#lead-form" class="block w-full py-2.5 text-center text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-100 transition">Đăng ký tư vấn</a>
                 </div>
 
-                <!-- Plan 2 (POPULAR) -->
-                <div class="bg-gradient-to-b from-orange-50 to-white rounded-3xl p-8 border-2 border-orange-500 shadow-xl shadow-orange-500/10 flex flex-col justify-between relative">
-                    <div class="absolute -top-3 right-6 bg-orange-600 text-white text-[11px] font-extrabold uppercase px-3 py-0.5 rounded-full">
-                        Phổ biến nhất
-                    </div>
+                <!-- Pro (Popular) -->
+                <div class="p-6 rounded-2xl bg-orange-50/70 border-2 border-orange-500 shadow-md flex flex-col justify-between relative">
+                    <span class="absolute -top-3 right-4 bg-orange-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">Phổ biến nhất</span>
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900">Gói Tăng Trưởng (AI Pro)</h3>
-                        <p class="text-xs text-slate-500 mt-1 mb-6">Dành cho kho chuyên nghiệp, bán đa kênh Shopee, TikTok.</p>
-                        <div class="mb-6">
-                            <span class="text-4xl font-extrabold text-orange-600">1.290.000đ</span>
-                            <span class="text-xs text-slate-500">/ tháng</span>
-                        </div>
-                        <ul class="space-y-3 text-sm text-slate-700 font-medium">
-                            <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-600"></i> <strong>Không giới hạn SKU & Đơn hàng</strong></li>
-                            <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-600"></i> <strong>Lõi AI: Tối ưu lộ trình nhặt hàng</strong></li>
-                            <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-600"></i> <strong>AI Dự báo nhu cầu nhập hàng</strong></li>
-                            <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-600"></i> Kết nối tự động Shopee, TikTok, Lazada</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-600"></i> Tối đa 6 tài khoản nhân viên</li>
+                        <h3 class="font-extrabold text-slate-900">Gói Tăng Trưởng (AI Pro)</h3>
+                        <p class="text-xs text-slate-500 mt-1 mb-4">Kho chuyên nghiệp, bán đa kênh</p>
+                        <div class="text-3xl font-extrabold text-orange-600 mb-4">1.290.000đ<span class="text-xs text-slate-500 font-normal">/tháng</span></div>
+                        <ul class="text-xs text-slate-700 font-medium space-y-2 mb-6">
+                            <li>✓ <strong>Không giới hạn SKU & Đơn hàng</strong></li>
+                            <li>✓ <strong>Lõi AI: Tối ưu lộ trình nhặt hàng</strong></li>
+                            <li>✓ <strong>AI Dự báo nhu cầu nhập hàng</strong></li>
+                            <li>✓ <strong>CSDL Nâng Cao: Lưu tư vấn, Khách, Đơn</strong></li>
+                            <li>✓ Kết nối tự động Shopee, TikTok Shop</li>
                         </ul>
                     </div>
-                    <a href="#lead-form" class="mt-8 block w-full py-3.5 text-center text-sm font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-xl shadow-md shadow-orange-600/30 transition">Dùng thử miễn phí 14 ngày</a>
+                    <a href="app.html" class="block w-full py-2.5 text-center text-xs font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-xl transition shadow">Trải nghiệm ngay</a>
                 </div>
 
-                <!-- Plan 3 -->
-                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                <!-- Enterprise -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900">Gói Doanh Nghiệp (Chuỗi kho)</h3>
-                        <p class="text-xs text-slate-500 mt-1 mb-6">Dành cho đơn vị Fulfillment hoặc chuỗi nhiều kho.</p>
-                        <div class="mb-6">
-                            <span class="text-4xl font-extrabold text-slate-900">Liên hệ</span>
-                            <span class="text-xs text-slate-500">/ tùy chỉnh</span>
-                        </div>
-                        <ul class="space-y-3 text-sm text-slate-600">
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Quản lý đa kho (Multi-warehouse)</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Tùy biến thuật toán AI theo đặc thù hàng</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Tích hợp ERP (SAP, Odoo, Bravo)</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Kỹ sư hỗ trợ setup kho tận nơi</li>
+                        <h3 class="font-bold text-slate-900">Gói Doanh Nghiệp</h3>
+                        <p class="text-xs text-slate-500 mt-1 mb-4">Chuỗi nhiều kho hoặc Fulfillment</p>
+                        <div class="text-3xl font-extrabold text-slate-900 mb-4">Liên hệ</div>
+                        <ul class="text-xs text-slate-600 space-y-2 mb-6">
+                            <li>✓ Quản lý đa kho (Multi-warehouse)</li>
+                            <li>✓ Tùy chỉnh thuật toán AI riêng</li>
+                            <li>✓ Tích hợp ERP (SAP, Odoo, Bravo)</li>
+                            <li>✓ Kỹ sư hỗ trợ cài đặt tận nơi</li>
                         </ul>
                     </div>
-                    <a href="#lead-form" class="mt-8 block w-full py-3 text-center text-sm font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition">Tư vấn riêng</a>
+                    <a href="https://zalo.me/0916280365" target="_blank" class="block w-full py-2.5 text-center text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-100 transition">Liên hệ Zalo riêng</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ SECTION (CHỌN LỌC TỪ BÀI VIẾT GỐC) -->
-    <section id="faq" class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-100 px-3 py-1 rounded-full">Giải đáp thắc mắc</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 mb-4">
-                    Những câu hỏi thường gặp
-                </h2>
-                <p class="text-slate-600">
-                    Mọi điều bạn cần biết trước khi nâng cấp nhà kho của mình.
-                </p>
-            </div>
-
-            <div class="space-y-4">
-                <!-- FAQ Item 1 -->
-                <div class="border border-slate-200 rounded-2xl p-6 bg-slate-50/50">
-                    <h3 class="text-base font-bold text-slate-900 flex items-center justify-between cursor-pointer">
-                        Kho tôi chưa từng dùng phần mềm gì, chỉ dùng sổ sách hoặc Excel thì có dùng được không?
-                    </h3>
-                    <p class="text-sm text-slate-600 mt-3 leading-relaxed">
-                        <strong>Hoàn toàn dùng được!</strong> Chúng tôi hỗ trợ bạn tải file Excel sản phẩm lên chỉ bằng 1 cú nhấp chuột. Đội ngũ kỹ thuật của OptiWarehouse sẽ hướng dẫn bạn quy ước tên kệ (Kệ A, Kệ B...) và dán tem mã vạch trong vòng 1 buổi sáng là kho đã sẵn sàng vận hành.
+    <!-- STREAMLINED CONSULTATION FORM (SAVES DIRECTLY TO CSDL + ZALO 0916280365) -->
+    <section id="lead-form" class="py-16 bg-gradient-to-tr from-orange-600 via-amber-600 to-orange-500 text-white relative">
+        <div class="max-w-xl mx-auto px-4 sm:px-6 relative">
+            <div class="bg-white text-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl">
+                <div class="text-center mb-6">
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-orange-600 bg-orange-100 px-3 py-1 rounded-full">Dùng thử 14 ngày</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mt-3 mb-1">Đăng Ký Tư Vấn & Nhận Tài Khoản Demo</h2>
+                    <p class="text-slate-500 text-xs">
+                        Thông tin sẽ được lưu trực tiếp vào CSDL và kết nối ngay với chuyên gia qua Zalo.
                     </p>
                 </div>
 
-                <!-- FAQ Item 2 -->
-                <div class="border border-slate-200 rounded-2xl p-6 bg-slate-50/50">
-                    <h3 class="text-base font-bold text-slate-900 flex items-center justify-between cursor-pointer">
-                        Tôi có bắt buộc phải mua máy quét mã vạch (máy PDA) cầm tay không?
-                    </h3>
-                    <p class="text-sm text-slate-600 mt-3 leading-relaxed">
-                        <strong>Không bắt buộc!</strong> Ứng dụng OptiWarehouse có tích hợp bộ nhận diện mã vạch và QR code trực tiếp qua camera của bất kỳ chiếc điện thoại iPhone hoặc Android nào. Nếu kho bạn phát sinh hàng nghìn đơn/ngày và muốn dùng súng bắn mã vạch chuyên dụng, hệ thống cũng hỗ trợ cắm súng quét Bluetooth thông thường.
-                    </p>
-                </div>
-
-                <!-- FAQ Item 3 -->
-                <div class="border border-slate-200 rounded-2xl p-6 bg-slate-50/50">
-                    <h3 class="text-base font-bold text-slate-900 flex items-center justify-between cursor-pointer">
-                        AI trong OptiWarehouse khác gì so với các phần mềm quản lý kho thông thường?
-                    </h3>
-                    <p class="text-sm text-slate-600 mt-3 leading-relaxed">
-                        Phần mềm thông thường chỉ là nơi "lưu trữ con số" một cách thụ động. Trái lại, <strong>AI của OptiWarehouse đóng vai trò như một quản lý kho thông minh</strong>: Tự động gom đơn và chỉ dẫn nhân viên đi đường ngắn nhất qua từng kệ hàng; đồng thời tự động tính toán dữ liệu bán hàng để nhắc bạn nhập hàng đúng lúc, tránh việc đọng vốn hoặc cháy hàng.
-                    </p>
-                </div>
-
-                <!-- FAQ Item 4 -->
-                <div class="border border-slate-200 rounded-2xl p-6 bg-slate-50/50">
-                    <h3 class="text-base font-bold text-slate-900 flex items-center justify-between cursor-pointer">
-                        Nhân viên lớn tuổi hoặc không rành công nghệ có dùng được không?
-                    </h3>
-                    <p class="text-sm text-slate-600 mt-3 leading-relaxed">
-                        Giao diện nhặt hàng trên điện thoại được thiết kế với chữ to, hình ảnh minh họa sản phẩm rõ ràng, kèm âm thanh cảnh báo: "Bíp xanh" nếu lấy đúng hàng và "Bíp đỏ" kèm rung nếu lấy nhầm sản phẩm. Nhân viên chỉ cần nhìn màn hình và đi theo mũi tên chỉ dẫn.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- LEAD CAPTURE FORM / CTA -->
-    <section id="lead-form" class="py-20 bg-gradient-to-tr from-orange-600 via-amber-600 to-orange-500 text-white relative">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="bg-white text-slate-900 rounded-3xl p-8 sm:p-12 shadow-2xl">
-                <div class="text-center max-w-xl mx-auto mb-8">
-                    <span class="text-xs font-extrabold uppercase tracking-wider text-orange-600 bg-orange-100 px-3 py-1 rounded-full">Dùng thử 14 ngày miễn phí</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 mt-3 mb-2">
-                        Sẵn Sàng Nâng Tầm Kho Hàng Của Bạn?
-                    </h2>
-                    <p class="text-slate-500 text-sm">
-                        Điền thông tin bên dưới, chuyên gia của OptiWarehouse sẽ liên hệ gửi bản dùng thử và demo trực tiếp trên sơ đồ kho của bạn trong vòng 15 phút.
-                    </p>
-                </div>
-
-                <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4 max-w-xl mx-auto">
+                <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-3.5">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Họ và tên của bạn *</label>
-                        <input type="text" required placeholder="Ví dụ: Nguyễn Văn A" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm">
+                        <input id="form-name" type="text" required placeholder="Ví dụ: Nguyễn Văn A" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-xs">
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Số điện thoại / Zalo *</label>
-                            <input type="tel" required placeholder="0987 654 321" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm">
+                            <input id="form-phone" type="tel" required placeholder="0916280365" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-xs">
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Quy mô kho dự kiến</label>
-                            <select class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm bg-white">
+                            <select id="form-warehouse-size" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-xs bg-white">
                                 <option>Kho nhỏ (< 100m²)</option>
                                 <option>Kho vừa (100 - 300m²)</option>
                                 <option>Kho lớn (300 - 1000m²)</option>
@@ -783,86 +531,81 @@
                             </select>
                         </div>
                     </div>
+
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Kênh bán hàng chính</label>
-                        <input type="text" placeholder="Ví dụ: Shopee, TikTok Shop, Cửa hàng offline..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm">
+                        <input id="form-channels" type="text" placeholder="Shopee, TikTok Shop, Cửa hàng offline..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-xs">
                     </div>
 
-                    <button type="submit" class="w-full py-4 text-base font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-xl shadow-lg shadow-orange-600/30 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
-                        <i data-lucide="check-circle" class="w-5 h-5"></i>
-                        <span>Đăng Ký Nhận Tư Vấn & Tài Khoản Demo</span>
+                    <button type="submit" class="w-full py-3.5 text-sm font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-xl shadow-lg shadow-orange-600/30 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        <span>Đăng Ký & Mở Chat Zalo (0916.280.365)</span>
                     </button>
-                    <p class="text-center text-[11px] text-slate-400">
-                        🔒 Cam kết bảo mật thông tin. Không gọi làm phiền ngoài giờ làm việc.
+                    <p class="text-center text-[10px] text-slate-400">
+                        🔒 Thông tin được lưu bảo mật trong CSDL và chuyển tiếp tới Zalo phụ trách.
                     </p>
                 </form>
 
-                <!-- Success Toast Message -->
-                <div id="success-alert" class="hidden mt-6 p-4 bg-emerald-50 border border-emerald-300 rounded-xl text-center text-emerald-800 font-bold text-sm">
-                    🎉 Đăng ký thành công! Chuyên viên OptiWarehouse sẽ liên hệ qua Zalo cho bạn trong ít phút tới.
+                <!-- Success Alert -->
+                <div id="success-alert" class="hidden mt-5 p-5 bg-emerald-50 border-2 border-emerald-400 rounded-2xl text-center text-emerald-950 shadow-xl">
+                    <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold">✓</div>
+                    <h4 class="font-extrabold text-sm text-emerald-900 mb-1">Đã lưu vào CSDL & Đăng ký thành công!</h4>
+                    <p class="text-xs text-emerald-800 mb-3 max-w-sm mx-auto">
+                        Thông tin của bạn đã được ghi vào hệ thống CSDL và chuyển hướng tới Zalo <strong>0916.280.365</strong>.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-2">
+                        <a id="zalo-redirect-btn" href="https://zalo.me/0916280365" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow transition">
+                            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                            <span>Mở Zalo Ngay</span>
+                        </a>
+                        <a href="app.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-xs shadow transition">
+                            <i data-lucide="database" class="w-3.5 h-3.5"></i>
+                            <span>Xem CSDL Đã Lưu</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-950 text-slate-400 text-sm py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <div class="space-y-4">
-                    <div class="flex items-center gap-2 text-white font-bold text-xl">
-                        <div class="w-8 h-8 rounded-lg bg-orange-600 flex items-center justify-center">
-                            <i data-lucide="boxes" class="w-5 h-5"></i>
-                        </div>
-                        <span>OptiWarehouse<span class="text-orange-500">.AI</span></span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Nền tảng công nghệ kho thông minh tinh gọn tiên phong tại Việt Nam. Giúp doanh nghiệp SMEs tối ưu hóa vận hành, cắt giảm chi phí và nâng tầm trải nghiệm khách hàng.
-                    </p>
+    <footer class="bg-slate-950 text-slate-400 text-xs py-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2 text-white font-bold text-lg">
+                <div class="w-7 h-7 rounded-lg bg-orange-600 flex items-center justify-center">
+                    <i data-lucide="boxes" class="w-4 h-4"></i>
                 </div>
-                <div>
-                    <h4 class="text-white text-xs font-bold uppercase tracking-wider mb-4">Tính năng nổi bật</h4>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="#demo" class="hover:text-orange-400 transition">Tối ưu lộ trình Picking</a></li>
-                        <li><a href="#demo" class="hover:text-orange-400 transition">Dự báo nhu cầu AI</a></li>
-                        <li><a href="#demo" class="hover:text-orange-400 transition">Quét mã vạch bằng Mobile</a></li>
-                        <li><a href="#demo" class="hover:text-orange-400 transition">Đồng bộ sàn Shopee & TikTok</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white text-xs font-bold uppercase tracking-wider mb-4">Giải pháp cho bạn</h4>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="#" class="hover:text-orange-400 transition">Kho Shop Thời Trang</a></li>
-                        <li><a href="#" class="hover:text-orange-400 transition">Kho Mỹ Phẩm & Dược Phẩm (FEFO)</a></li>
-                        <li><a href="#" class="hover:text-orange-400 transition">Kho Hàng Tiêu Dùng Nhanh (FMCG)</a></li>
-                        <li><a href="#" class="hover:text-orange-400 transition">Kho Fulfillment Mini</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white text-xs font-bold uppercase tracking-wider mb-4">Liên hệ hỗ trợ</h4>
-                    <p class="text-xs text-slate-400 mb-2"><strong>Hotline / Zalo:</strong> 086.758.9999</p>
-                    <p class="text-xs text-slate-400 mb-2"><strong>Email:</strong> hotro@optiwarehouse.vn</p>
-                    <p class="text-xs text-slate-400"><strong>Văn phòng:</strong> Tầng 6, Tòa nhà Công Nghệ, Cầu Giấy, Hà Nội</p>
-                </div>
+                <span>OptiWarehouse<span class="text-orange-500">.AI</span></span>
             </div>
-            <div class="pt-8 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
-                <span>© 2026 OptiWarehouse AI Inc. Bản quyền thuộc về hệ thống quản lý kho thông minh tinh gọn.</span>
-                <div class="flex gap-4">
-                    <a href="#" class="hover:text-slate-400">Điều khoản dịch vụ</a>
-                    <a href="#" class="hover:text-slate-400">Chính sách bảo mật</a>
-                </div>
+            <div>
+                Hotline / Zalo: <a href="https://zalo.me/0916280365" target="_blank" class="text-orange-400 font-bold hover:underline">0916.280.365</a> • Email: hotro@optiwarehouse.vn
+            </div>
+            <div class="text-slate-500 text-[11px]">
+                © 2026 OptiWarehouse AI Inc. Bản quyền thuộc về hệ thống quản lý kho thông minh tinh gọn.
             </div>
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <!-- FLOATING CONTACT WIDGET (ZALO & HOTLINE) -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2.5">
+        <a href="https://zalo.me/0916280365" target="_blank" class="group flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-2.5 rounded-full shadow-2xl transition-all transform hover:-translate-y-1 hover:shadow-blue-500/40 border-2 border-white">
+            <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-bold">Chat Zalo: 0916.280.365</span>
+            <div class="w-6 h-6 bg-white text-blue-600 rounded-full flex items-center justify-center font-extrabold text-xs">Z</div>
+        </a>
+        <a href="tel:0916280365" class="group flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-2.5 rounded-full shadow-2xl transition-all transform hover:-translate-y-1 hover:shadow-emerald-500/40 border-2 border-white">
+            <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-bold">Gọi ngay: 0916.280.365</span>
+            <div class="w-6 h-6 bg-white text-emerald-600 rounded-full flex items-center justify-center">
+                <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
+            </div>
+        </a>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
 
         // TAB SWITCHING LOGIC FOR DEMO
         function switchDemoTab(tabName) {
-            // Update button styles
             document.querySelectorAll('.demo-tab-btn').forEach(btn => {
                 btn.classList.remove('bg-orange-600', 'text-white');
                 btn.classList.add('text-slate-400');
@@ -871,105 +614,70 @@
             activeBtn.classList.remove('text-slate-400');
             activeBtn.classList.add('bg-orange-600', 'text-white');
 
-            // Show matching panel
-            document.querySelectorAll('.demo-panel').forEach(panel => {
-                panel.classList.add('hidden');
-            });
+            document.querySelectorAll('.demo-panel').forEach(panel => panel.classList.add('hidden'));
             document.getElementById(`demo-${tabName}`).classList.remove('hidden');
 
-            if (tabName === 'forecast') {
-                renderForecastChart();
-            }
+            if (tabName === 'forecast') renderForecastChart();
         }
 
-        // SIMULATE PICKING ANIMATION
+        // SIMULATE PICKING
         let simCount = 0;
         function runPickingSim() {
             simCount++;
-            const racks = ['rack-A1', 'rack-A2', 'rack-B1', 'rack-B2', 'rack-C1', 'rack-C2'];
-            const picker = document.getElementById('picker-tag');
             const status = document.getElementById('picking-status');
-
             status.innerText = "AI đang tính toán...";
             status.className = "px-2.5 py-1 bg-amber-500/20 text-amber-400 rounded-md font-bold text-[11px]";
 
-            // Reset racks highlight
-            racks.forEach(id => {
+            ['rack-A1', 'rack-A2', 'rack-B1', 'rack-B2'].forEach(id => {
                 const el = document.getElementById(id);
-                if (el) {
-                    el.classList.remove('border-orange-500', 'bg-orange-950/60', 'text-orange-400');
-                    el.classList.add('border-slate-700', 'bg-slate-800');
-                }
+                if (el) el.className = "rack-box bg-slate-800 border-2 border-slate-700 rounded-lg p-2 text-center text-xs font-bold transition";
             });
 
             setTimeout(() => {
-                // Highlight sequence
                 ['rack-A1', 'rack-A2', 'rack-B2'].forEach(id => {
                     const el = document.getElementById(id);
-                    if (el) {
-                        el.classList.remove('border-slate-700', 'bg-slate-800');
-                        el.classList.add('border-orange-500', 'bg-orange-950/60', 'text-orange-400');
-                    }
+                    if (el) el.className = "rack-box border-2 border-orange-500 bg-orange-950/60 text-orange-400 rounded-lg p-2 text-center text-xs font-bold transition";
                 });
-
-                status.innerText = "Tối ưu hoàn tất (Chuyến số #" + simCount + ")";
+                status.innerText = "Tối ưu hoàn tất (Chuyến #" + simCount + ")";
                 status.className = "px-2.5 py-1 bg-emerald-500/20 text-emerald-400 rounded-md font-bold text-[11px]";
-                
-                const newDist = 38 + Math.floor(Math.random() * 10);
-                document.getElementById('optimized-dist').innerText = newDist + " mét (mất ~3 phút)";
-            }, 500);
+                document.getElementById('optimized-dist').innerText = (38 + Math.floor(Math.random() * 8)) + " mét (mất ~3 phút)";
+            }, 400);
         }
 
-        // FORECAST CHART RENDERING WITH CHART.JS
+        // FORECAST CHART
         let chartInstance = null;
         function renderForecastChart() {
-            if (chartInstance) return; // Only render once
-
+            if (chartInstance) return;
             const ctx = document.getElementById('forecastChart');
             if (!ctx) return;
 
             chartInstance = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['Hôm nay', 'Ngày mai', '24/10', '25/10 (Cảnh báo)', '26/10 (Sale)', '27/10', '28/10'],
+                    labels: ['Hôm nay', 'Ngày mai', '24/10', '25/10 (Sale)', '26/10', '27/10', '28/10'],
                     datasets: [
                         {
-                            label: 'Lượng tồn kho hiện tại',
+                            label: 'Lượng tồn hiện tại',
                             data: [85, 68, 45, 18, 5, 0, 0],
                             borderColor: '#ef4444',
-                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                            borderWidth: 2.5,
+                            borderWidth: 2,
                             fill: true,
+                            backgroundColor: 'rgba(239, 68, 68, 0.08)',
                             tension: 0.3
                         },
                         {
-                            label: 'AI Đề xuất sau khi nhập thêm 120 chiếc',
+                            label: 'AI Đề xuất nhập thêm 120 chiếc',
                             data: [85, 68, 45, 138, 110, 85, 65],
                             borderColor: '#10b981',
                             borderDash: [5, 5],
-                            borderWidth: 2.5,
+                            borderWidth: 2,
                             tension: 0.3
                         }
                     ]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', size: 12 } }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            ticks: { color: '#64748b' },
-                            grid: { color: 'rgba(255, 255, 255, 0.05)' }
-                        },
-                        y: {
-                            ticks: { color: '#64748b' },
-                            grid: { color: 'rgba(255, 255, 255, 0.05)' }
-                        }
-                    }
+                    maintainAspectRatio: false
                 }
             });
         }
@@ -982,24 +690,69 @@
             document.getElementById('order-value').innerText = orders + " đơn";
             document.getElementById('staff-value').innerText = staff + " người";
 
-            // Saved hours formula: orders * 0.015 hours saved per order * 30 days
             const hoursSaved = Math.round(orders * 0.015 * 30);
-            // Money saved formula: staff * average saved overtime/errors + inventory waste
             const moneySaved = Math.round((hoursSaved * 50000) + (orders * 30 * 2000));
 
             document.getElementById('res-hours').innerText = `~${hoursSaved} Giờ`;
             document.getElementById('res-money').innerText = `~${(moneySaved).toLocaleString('vi-VN')} đ`;
         }
 
-        // FORM SUBMIT HANDLER
+        // CẤU HÌNH GOOGLE SHEETS WEBHOOK (Dán đường link Web App của Google vào đây)
+        const GOOGLE_SHEET_URL = ""; 
+
+        // FORM SUBMIT HANDLER -> LƯU CSDL VÀ CHUYỂN TIẾP ZALO (0916.280.365)
         function handleFormSubmit(e) {
             e.preventDefault();
+            const name = document.getElementById('form-name').value.trim();
+            const phone = document.getElementById('form-phone').value.trim();
+            const size = document.getElementById('form-warehouse-size').value;
+            const channel = document.getElementById('form-channels').value.trim() || 'Chưa cung cấp';
+
+            // 1. Dữ liệu đơn tư vấn
+            const newLead = {
+                id: Date.now(),
+                full_name: name,
+                phone: phone,
+                warehouse_size: size,
+                sales_channel: channel,
+                note: 'Đăng ký tư vấn từ Landing Page',
+                status: 'Mới',
+                created_at: new Date().toISOString().replace('T', ' ').substring(0, 16)
+            };
+
+            // 2. Gửi tự động sang Google Sheet (nếu đã cấu hình link)
+            if (GOOGLE_SHEET_URL && GOOGLE_SHEET_URL.startsWith('https://script.google.com/')) {
+                try {
+                    fetch(GOOGLE_SHEET_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newLead)
+                    });
+                } catch(err) {
+                    console.log("Lỗi đồng bộ Google Sheets:", err);
+                }
+            }
+
+            // 3. Lưu vào CSDL LocalStorage trình duyệt
+            let consultList = [];
+            try {
+                consultList = JSON.parse(localStorage.getItem('opti_consultations') || '[]');
+            } catch(err) { consultList = []; }
+            consultList.unshift(newLead);
+            localStorage.setItem('opti_consultations', JSON.stringify(consultList));
+
+            // 4. Hiển thị thông báo
             const alertBox = document.getElementById('success-alert');
             alertBox.classList.remove('hidden');
-            document.getElementById('contact-form').reset();
+            lucide.createIcons();
+            alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // 5. Tự động mở Zalo 0916.280.365 để nhận tin nhắn trực tiếp
+            const zaloUrl = `https://zalo.me/0916280365`;
             setTimeout(() => {
-                alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 100);
+                window.open(zaloUrl, '_blank');
+            }, 600);
         }
     </script>
 </body>

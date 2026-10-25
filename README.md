@@ -1,6 +1,6 @@
-# OptiWarehouse - Smart Mini WMS with AI 🚀
+# OptiWarehouse - Smart Mini WMS & CSDL Tích Hợp 🚀
 
-Hệ thống quản lý kho thông minh tinh gọn thế hệ mới tích hợp Trí Tuệ Nhân Tạo (AI) dành riêng cho doanh nghiệp vừa & nhỏ (SMEs), chủ shop thương mại điện tử (Shopee, TikTok Shop, Lazada).
+Hệ thống quản lý kho thông minh tinh gọn thế hệ mới tích hợp Trí Tuệ Nhân Tạo (AI) và **Hệ Thống Cơ Sở Dữ Liệu (CSDL)** hoàn chỉnh dành riêng cho doanh nghiệp vừa & nhỏ (SMEs), chủ shop thương mại điện tử (Shopee, TikTok Shop, Lazada).
 
 ---
 
@@ -8,46 +8,63 @@ Hệ thống quản lý kho thông minh tinh gọn thế hệ mới tích hợp 
 
 ```
 optiwarehouse/
-├── index.html     # Website Landing Page giới thiệu sản phẩm & tính năng
-├── app.html       # Ứng dụng Quản lý kho MVP Dashboard (Bản dùng thử hoạt động thực tế)
+├── index.html     # Website Landing Page tinh gọn (Giao diện đơn giản, hiện đại, lưu CSDL)
+├── app.html       # Ứng dụng Quản lý kho & CSDL CRM (Bản dùng thử hoạt động thực tế)
+├── schema.sql     # File cấu trúc CSDL chuẩn (PostgreSQL, SQLite, MySQL)
+├── database.py    # Bộ điều khiển CSDL bằng Python SQLite
 └── README.md      # Tài liệu hướng dẫn sử dụng & triển khai
 ```
 
 ---
 
-## 🌟 Các tính năng cốt lõi trong Bản thử nghiệm (MVP App - `app.html`):
+## 🌟 1. Cơ Sở Dữ Liệu (CSDL) Đã Xây Dựng:
 
-1. **📊 Tổng quan vận hành (Dashboard):**
-   - Theo dõi số lượng đơn chờ soạn từ Shopee/TikTok Shop theo thời gian thực.
-   - Thống kê thời gian soạn hàng trung bình, tỷ lệ độ chính xác kiểm kê (99.9%).
-   - Nút mô phỏng *"Bắn đơn test từ TikTok/Shopee"* để xem hệ thống nhận đơn mới tức thì.
+Hệ thống được thiết kế với 3 bảng dữ liệu cốt lõi (xem chi tiết tại [`schema.sql`](file:///C:/Users/Admin/.gemini/antigravity/scratch/optiwarehouse/schema.sql)):
 
-2. **🚀 AI Gom & Soạn đơn thông minh (Smart Batch Picking):**
-   - Tự động gom nhiều đơn hàng thành 1 chuyến lấy hàng duy nhất.
-   - Chỉ dẫn nhân viên di chuyển theo lộ trình ngắn nhất (rút ngắn quãng đường từ 160m xuống 42m).
-   - Tích hợp âm thanh phản hồi bíp khi quét mã vạch và thanh đo tiến độ soạn hàng.
+1. **`consultations` (Lưu thông tin tư vấn):**
+   - Lưu trữ tự động họ tên, SĐT, quy mô kho, kênh bán, ghi chú và trạng thái (`Mới`, `Đã gọi tư vấn`, `Đang demo`, `Đã chốt hợp đồng`).
+   - Tự động ghi nhận mỗi khi có khách gửi form tại trang Landing Page `index.html`.
+   - Có nút **"Chuyển thành Khách Hàng"** chỉ với 1 click.
 
-3. **📦 Sơ đồ Kệ hàng 2D & Tối ưu vị trí (Smart Slotting):**
-   - Trực quan hóa mặt bằng kho 8 kệ hàng theo chuẩn vị trí Vàng – Bạc – Đồng.
-   - AI tự động phát hiện hàng bán chạy ở góc xa và đề xuất nút: *"Chấp nhận dời về Kệ A-01 gần cửa"*.
+2. **`customers` (Danh bạ khách hàng CRM):**
+   - Quản lý mã khách hàng (`KH-1001`), họ tên, SĐT, tên Shop/doanh nghiệp, địa chỉ, kênh bán chính, tổng số đơn và tổng tiền chi tiêu.
+   - Có nút tạo đơn hàng nhanh cho khách.
 
-4. **📈 AI Dự báo Nhu cầu (Demand Forecasting):**
-   - Phân tích chuỗi thời gian, cảnh báo nguy cơ hết hàng trước ngày Mega Sale (Runway days).
-   - Tự động gợi ý số lượng cần nhập thêm kèm nút *"Tạo Lệnh Đặt Hàng (PO)"*.
-
-5. **📷 Máy Quét Mã Vạch Barcode / QR Simulator:**
-   - Khung camera quét mã trực tiếp, kiểm tra khớp mã sản phẩm và cảnh báo nếu nhặt nhầm kích thước / màu sắc.
+3. **`orders` & `order_items` (Quản lý đơn hàng):**
+   - Quản lý mã đơn (`ORD-9021`), khách hàng, kênh bán (Shopee, TikTok Shop, Lazada), tổng tiền, kệ soạn hàng (`Kệ A-01, Kệ B-02`), và trạng thái đơn hàng (`Chờ soạn hàng`, `Đang gom hàng AI`, `Đã đóng gói`, `Đã bàn giao`).
 
 ---
 
-## 🚀 Cách mở và kiểm tra trực tiếp:
+## 🌟 2. Các Tính Năng Đặc Trưng Được Giữ Lại & Đơn Giản Hóa:
 
-* **Trang Landing Page:** 👉 [http://localhost:3000](http://localhost:3000)
-* **Ứng dụng Quản lý kho (MVP Dashboard):** 👉 [http://localhost:3000/app.html](http://localhost:3000/app.html)
+1. **🚀 AI Gom & Soạn Đơn (Batch Picking):**
+   - Tự động gom nhiều đơn hàng thành 1 chuyến duy nhất, tính lộ trình đi bộ ngắn nhất qua các kệ (giảm từ 160m xuống 42m).
+   - Tích hợp tiếng bíp âm thanh và quét mã vạch xác nhận.
+
+2. **📦 Sơ đồ Kệ Hàng 2D & Tối ưu vị trí (Smart Slotting):**
+   - Phân cấp vị trí kho: Vàng (gần cửa xuất), Bạc, Đồng.
+   - AI tự động phát hiện hàng bán chạy và đề xuất dời về vị trí thuận tiện.
+
+3. **📈 AI Dự Báo Nhu Cầu (Demand Forecasting):**
+   - Phân tích chuỗi thời gian, cảnh báo cháy hàng trước ngày Mega Sale sàn.
+
+4. **📷 Máy Quét Mã Vạch Thông Minh:**
+   - Giả lập camera quét mã vạch và QR code trực tiếp.
+
+5. **📥 Xuất Dữ Liệu Ra File Excel / CSV:**
+   - Nút xuất file CSV (chuẩn UTF-8 không lỗi tiếng Việt) cho cả 3 bảng Tư vấn, Khách hàng và Đơn hàng.
 
 ---
 
-## 🌐 Xuất bản lên GitHub:
-Khi bạn tải 3 file (`index.html`, `app.html`, `README.md`) lên GitHub và bật **GitHub Pages**, bạn sẽ có 2 đường link chạy online miễn phí:
-- Landing Page: `https://<username>.github.io/optiwarehouse/`
-- Ứng dụng Dashboard: `https://<username>.github.io/optiwarehouse/app.html`
+## 🚀 Cách mở và kiểm tra trên máy:
+
+* **Trang Landing Page tinh gọn:** 👉 [http://localhost:3000](http://localhost:3000)
+* **Ứng dụng Quản lý kho & CSDL (MVP Dashboard):** 👉 [http://localhost:3000/app.html](http://localhost:3000/app.html)
+
+---
+
+## 🌐 Cập nhật lên GitHub (30 giây):
+Tải đè các file mới (`index.html`, `app.html`, `schema.sql`, `README.md`) lên GitHub tại:
+👉 [https://github.com/duc261225-bit/optiwarehouse](https://github.com/duc261225-bit/optiwarehouse)
+Web online sẽ tự động cập nhật tại:
+👉 [https://duc261225-bit.github.io/optiwarehouse/](https://duc261225-bit.github.io/optiwarehouse/)
