@@ -698,7 +698,7 @@
         }
 
         // CẤU HÌNH GOOGLE SHEETS WEBHOOK (Đã kết nối Google Sheet của bạn)
-        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwx1kHyv2bpgF2i55_7Qdh05tE0jWV4M8_2bDZ43PV_eC_q6l4zrEUmhQN62F_Ya-IfNQ/exec"; 
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxQynLV7kGHglwBw80BKlnKACxBtOj4xFBGYY64xc2gh9E3Cih4WBjch_zGC8kSPtDEdA/exec"; 
 
         // FORM SUBMIT HANDLER -> LƯU CSDL VÀ CHUYỂN TIẾP ZALO (0916.280.365)
         function handleFormSubmit(e) {
@@ -726,7 +726,7 @@
                     fetch(GOOGLE_SHEET_URL, {
                         method: 'POST',
                         mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                         body: JSON.stringify(newLead)
                     });
                 } catch(err) {
@@ -748,11 +748,18 @@
             lucide.createIcons();
             alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
+            const submitBtn = document.getElementById('contact-form').querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i> <span>Đã Gửi Thành Công Vào Google Sheet!</span>`;
+                lucide.createIcons();
+            }
+
             // 5. Tự động mở Zalo 0916.280.365 để nhận tin nhắn trực tiếp
             const zaloUrl = `https://zalo.me/0916280365`;
             setTimeout(() => {
                 window.open(zaloUrl, '_blank');
-            }, 600);
+                document.getElementById('contact-form').reset();
+            }, 800);
         }
     </script>
 </body>
