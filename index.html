@@ -83,57 +83,106 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (STREAMLINED) -->
-    <section class="relative overflow-hidden pt-12 pb-16 lg:pt-20 lg:pb-24 grid-pattern">
+    <!-- HERO SECTION (STREAMLINED WITH REALISTIC ILLUSTRATIONS) -->
+    <section class="relative overflow-hidden pt-10 pb-16 lg:pt-16 lg:pb-24 grid-pattern">
         <div class="absolute inset-0 gradient-glow pointer-events-none"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="text-center max-w-3xl mx-auto">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100/80 border border-orange-200 text-orange-700 text-xs sm:text-sm font-bold mb-6">
-                    <i data-lucide="sparkles" class="w-4 h-4 text-orange-600"></i>
-                    <span>Công nghệ Kho Thông Minh Tinh Gọn Cho Kho 50m² – 1000m²</span>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: Copy & Actions -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100/80 border border-orange-200 text-orange-700 text-xs sm:text-sm font-bold mb-6">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-orange-600"></i>
+                        <span>Công nghệ Kho Thông Minh Tinh Gọn Cho Kho 50m² – 1000m²</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.15] mb-6">
+                        Biến Nhà Kho Của Bạn Thành 
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500">Kho Thông Minh AI</span>
+                        Chỉ Sau 24 Giờ
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        <strong>Không cần robot hàng tỷ đồng.</strong> OptiWarehouse ứng dụng AI trên nền Web & Smartphone: tối ưu lộ trình nhặt hàng (Picking), dự báo nhu cầu nhập hàng, và quản lý CSDL Đơn hàng & Khách hàng chuẩn xác 99.8%.
+                    </p>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+                        <a href="app.html" class="w-full sm:w-auto px-7 py-3.5 text-base font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-2xl shadow-xl shadow-orange-600/30 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                            <i data-lucide="rocket" class="w-5 h-5"></i>
+                            <span>Trải Nghiệm Phần Mềm & CSDL Ngay</span>
+                        </a>
+                        <a href="#demo" class="w-full sm:w-auto px-7 py-3.5 text-base font-bold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded-2xl shadow-sm transition flex items-center justify-center gap-2">
+                            <i data-lucide="play-circle" class="w-5 h-5 text-orange-600"></i>
+                            <span>Xem mô phỏng AI</span>
+                        </a>
+                    </div>
+
+                    <!-- 4 Key Badges -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+                        <div class="bg-white/90 backdrop-blur p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="text-xl sm:text-2xl font-extrabold text-orange-600">99.8%</div>
+                            <div class="text-xs text-slate-500 font-medium mt-0.5">Soạn hàng chính xác</div>
+                        </div>
+                        <div class="bg-white/90 backdrop-blur p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="text-xl sm:text-2xl font-extrabold text-emerald-600">-45%</div>
+                            <div class="text-xs text-slate-500 font-medium mt-0.5">Quãng đường di chuyển</div>
+                        </div>
+                        <div class="bg-white/90 backdrop-blur p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="text-xl sm:text-2xl font-extrabold text-blue-600">0 VNĐ</div>
+                            <div class="text-xs text-slate-500 font-medium mt-0.5">Chi phí phần cứng phụ</div>
+                        </div>
+                        <div class="bg-white/90 backdrop-blur p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="text-xl sm:text-2xl font-extrabold text-purple-600">CSDL</div>
+                            <div class="text-xs text-slate-500 font-medium mt-0.5">Lưu tư vấn & đơn hàng</div>
+                        </div>
+                    </div>
                 </div>
 
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15] mb-6">
-                    Biến Nhà Kho Của Bạn Thành 
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500">Kho Thông Minh AI</span>
-                    Chỉ Sau 24 Giờ
-                </h1>
+                <!-- Right Column: Visual Showcase -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Decorative glow -->
+                        <div class="absolute -inset-2 bg-gradient-to-r from-orange-500 to-amber-500 rounded-3xl blur-xl opacity-30"></div>
+                        
+                        <!-- Main Image Container -->
+                        <div class="relative rounded-3xl overflow-hidden border-4 border-white shadow-2xl bg-slate-900 group">
+                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80" alt="Kho hàng thông minh OptiWarehouse" class="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20"></div>
 
-                <p class="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto">
-                    <strong>Không cần robot hàng tỷ đồng.</strong> OptiWarehouse ứng dụng AI trên nền Web & Smartphone: tối ưu lộ trình nhặt hàng (Picking), dự báo nhu cầu nhập hàng, và quản lý CSDL Đơn hàng & Khách hàng chuẩn xác 99.8%.
-                </p>
+                            <!-- Bottom overlay title in photo -->
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <div class="text-xs font-bold text-orange-400 uppercase tracking-wider mb-0.5 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> AI Picking & Slotting Online
+                                </div>
+                                <div class="text-sm font-extrabold">Hạ Tầng Kho Hiện Đại & Chuẩn Hóa Tự Động</div>
+                            </div>
+                        </div>
 
-                <!-- Action Buttons -->
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-                    <a href="app.html" class="w-full sm:w-auto px-8 py-4 text-base font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-2xl shadow-xl shadow-orange-600/30 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
-                        <i data-lucide="rocket" class="w-5 h-5"></i>
-                        <span>Trải Nghiệm Phần Mềm & CSDL Ngay</span>
-                    </a>
-                    <a href="#demo" class="w-full sm:w-auto px-8 py-4 text-base font-bold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded-2xl shadow-sm transition flex items-center justify-center gap-2">
-                        <i data-lucide="play-circle" class="w-5 h-5 text-orange-600"></i>
-                        <span>Xem mô phỏng AI</span>
-                    </a>
+                        <!-- Floating Badge 1: Top Left -->
+                        <div class="absolute -top-3 -left-3 sm:-left-5 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl shadow-xl border border-slate-200 flex items-center gap-2.5">
+                            <div class="w-7 h-7 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center font-bold">
+                                <i data-lucide="scan-barcode" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <div class="text-[11px] font-bold text-slate-900">Quét Camera Phone</div>
+                                <div class="text-[10px] text-emerald-600 font-semibold">Tốc độ 0.1s / sản phẩm</div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge 2: Bottom Right -->
+                        <div class="absolute -bottom-3 -right-3 sm:-right-5 bg-slate-900/95 backdrop-blur-md text-white px-3.5 py-2 rounded-2xl shadow-xl border border-slate-700 flex items-center gap-2.5">
+                            <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                                <i data-lucide="database" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <div class="text-[11px] font-bold">CSDL Tự Động Lưu</div>
+                                <div class="text-[10px] text-slate-400">Google Sheets & CRM</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- 4 Key Badges -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
-                    <div class="bg-white/90 backdrop-blur p-4 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="text-2xl lg:text-3xl font-extrabold text-orange-600">99.8%</div>
-                        <div class="text-xs text-slate-500 font-medium mt-1">Độ chính xác soạn hàng</div>
-                    </div>
-                    <div class="bg-white/90 backdrop-blur p-4 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="text-2xl lg:text-3xl font-extrabold text-emerald-600">-45%</div>
-                        <div class="text-xs text-slate-500 font-medium mt-1">Quãng đường đi bộ nhặt đơn</div>
-                    </div>
-                    <div class="bg-white/90 backdrop-blur p-4 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="text-2xl lg:text-3xl font-extrabold text-blue-600">0 VNĐ</div>
-                        <div class="text-xs text-slate-500 font-medium mt-1">Đầu tư phần cứng cồng kềnh</div>
-                    </div>
-                    <div class="bg-white/90 backdrop-blur p-4 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="text-2xl lg:text-3xl font-extrabold text-purple-600">CSDL</div>
-                        <div class="text-xs text-slate-500 font-medium mt-1">Lưu tư vấn, đơn hàng, khách</div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -277,21 +326,32 @@
                         </div>
                     </div>
                     <div class="lg:col-span-7 bg-slate-950 p-6 rounded-2xl border border-slate-800">
-                        <div class="grid grid-cols-3 gap-4 text-left">
-                            <div class="p-4 rounded-xl bg-orange-500/10 border border-orange-500/30">
+                        <div class="grid grid-cols-3 gap-3 text-left mb-4">
+                            <div class="p-3.5 rounded-xl bg-orange-500/10 border border-orange-500/30">
                                 <div class="text-xs font-bold text-orange-400 mb-1">Vị trí Vàng</div>
-                                <div class="text-sm font-bold text-white mb-1">Gần Cửa Xuất</div>
-                                <p class="text-[11px] text-slate-400">Cho 20% SKU bán chạy nhất.</p>
+                                <div class="text-xs sm:text-sm font-bold text-white mb-1">Gần Cửa Xuất</div>
+                                <p class="text-[10px] text-slate-400">Cho 20% SKU bán chạy nhất.</p>
                             </div>
-                            <div class="p-4 rounded-xl bg-blue-500/10 border border-blue-500/30">
+                            <div class="p-3.5 rounded-xl bg-blue-500/10 border border-blue-500/30">
                                 <div class="text-xs font-bold text-blue-400 mb-1">Vị trí Bạc</div>
-                                <div class="text-sm font-bold text-white mb-1">Tầng Kệ Trung Gian</div>
-                                <p class="text-[11px] text-slate-400">Mặt hàng tần suất xuất trung bình.</p>
+                                <div class="text-xs sm:text-sm font-bold text-white mb-1">Tầng Trung Gian</div>
+                                <p class="text-[10px] text-slate-400">Mặt hàng tần suất xuất trung bình.</p>
                             </div>
-                            <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700">
+                            <div class="p-3.5 rounded-xl bg-slate-800/40 border border-slate-700">
                                 <div class="text-xs font-bold text-slate-400 mb-1">Vị trí Đồng</div>
-                                <div class="text-sm font-bold text-white mb-1">Góc Sâu Kho</div>
-                                <p class="text-[11px] text-slate-400">Hàng cồng kềnh, bán chậm.</p>
+                                <div class="text-xs sm:text-sm font-bold text-white mb-1">Góc Sâu Kho</div>
+                                <p class="text-[10px] text-slate-400">Hàng cồng kềnh, bán chậm.</p>
+                            </div>
+                        </div>
+                        <div class="relative h-32 rounded-xl overflow-hidden border border-slate-800 group">
+                            <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=800&q=80" alt="Hệ thống kệ thông minh" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/30 to-transparent flex items-center px-4">
+                                <div class="text-xs text-white">
+                                    <div class="font-bold text-orange-400 flex items-center gap-1.5">
+                                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Thuật toán phân bổ tầng kệ tự động
+                                    </div>
+                                    <div class="text-[11px] text-slate-300 mt-0.5">Giảm thời gian tìm kiếm từ 3 phút xuống còn dưới 15 giây</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -300,7 +360,7 @@
         </div>
     </section>
 
-    <!-- 4 STREAMLINED FEATURE PILLARS -->
+    <!-- 4 STREAMLINED FEATURE PILLARS (WITH ILLUSTRATIONS) -->
     <section class="py-16 bg-white border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
@@ -310,36 +370,144 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-orange-300 transition">
-                    <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center mb-4 font-bold">
-                        <i data-lucide="scan-barcode" class="w-5 h-5"></i>
+                <!-- Pillar 1 -->
+                <div class="group rounded-2xl bg-white border border-slate-200 hover:border-orange-400 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                    <div class="relative h-44 overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=800&q=80" alt="Quét mã bằng điện thoại" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                            <i data-lucide="smartphone" class="w-3 h-3 text-orange-400"></i> Quét tức thì
+                        </span>
                     </div>
-                    <h3 class="font-bold text-base mb-1">Quét Mã Bằng Điện Thoại</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">Không cần súng PDA đắt đỏ. Dùng ngay camera smartphone quét chuẩn xác trong 0.1 giây.</p>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="w-9 h-9 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center mb-3 font-bold">
+                                <i data-lucide="scan-barcode" class="w-4 h-4"></i>
+                            </div>
+                            <h3 class="font-bold text-base mb-1.5 text-slate-900">Quét Mã Bằng Smartphone</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Không cần súng PDA đắt đỏ. Dùng ngay camera smartphone quét chuẩn xác mã vạch sản phẩm & kệ hàng trong 0.1 giây.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-orange-300 transition">
-                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4 font-bold">
-                        <i data-lucide="combine" class="w-5 h-5"></i>
+                <!-- Pillar 2 -->
+                <div class="group rounded-2xl bg-white border border-slate-200 hover:border-orange-400 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                    <div class="relative h-44 overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=800&q=80" alt="Gom đơn hàng loạt AI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                            <i data-lucide="cpu" class="w-3 h-3 text-orange-400"></i> Lộ trình tối ưu
+                        </span>
                     </div>
-                    <h3 class="font-bold text-base mb-1">Gom Đơn Hàng Loạt (AI)</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">Gom 20-50 đơn cùng lúc, tính lộ trình 1 vòng khép kín qua từng kệ, giảm 45% thời gian di chuyển.</p>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-3 font-bold">
+                                <i data-lucide="combine" class="w-4 h-4"></i>
+                            </div>
+                            <h3 class="font-bold text-base mb-1.5 text-slate-900">Gom Đơn Hàng Loạt (AI)</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Gom 20-50 đơn cùng lúc, AI vạch đường đi 1 vòng khép kín qua từng kệ, giảm 45% thời gian di chuyển của nhân viên.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-orange-300 transition">
-                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-4 font-bold">
-                        <i data-lucide="database" class="w-5 h-5"></i>
+                <!-- Pillar 3 -->
+                <div class="group rounded-2xl bg-white border border-slate-200 hover:border-orange-400 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                    <div class="relative h-44 overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="CSDL Khách & Đơn hàng" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                            <i data-lucide="database" class="w-3 h-3 text-blue-400"></i> CSDL & CRM
+                        </span>
                     </div>
-                    <h3 class="font-bold text-base mb-1">CSDL Khách & Đơn Hàng</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">Quản lý toàn bộ danh sách tư vấn, danh bạ khách hàng CRM và đơn hàng Shopee, TikTok Shop.</p>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="w-9 h-9 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-3 font-bold">
+                                <i data-lucide="database" class="w-4 h-4"></i>
+                            </div>
+                            <h3 class="font-bold text-base mb-1.5 text-slate-900">CSDL Khách & Đơn Hàng</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Quản lý đồng bộ khách tư vấn, CRM và đơn hàng vào Google Sheet, xuất file Excel/CSV chỉ bằng 1 thao tác.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-orange-300 transition">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4 font-bold">
-                        <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                <!-- Pillar 4 -->
+                <div class="group rounded-2xl bg-white border border-slate-200 hover:border-orange-400 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                    <div class="relative h-44 overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=800&q=80" alt="Đồng bộ sàn thương mại điện tử" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                            <i data-lucide="truck" class="w-3 h-3 text-emerald-400"></i> Giao vận đa kênh
+                        </span>
                     </div>
-                    <h3 class="font-bold text-base mb-1">Đồng Bộ Sàn Real-Time</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">Đơn phát sinh trên sàn lập tức cập nhật vào kho sau 2 giây. Triệt tiêu hoàn toàn nỗi lo phạt hủy đơn.</p>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-3 font-bold">
+                                <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                            </div>
+                            <h3 class="font-bold text-base mb-1.5 text-slate-900">Đồng Bộ Sàn Real-Time</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Đơn phát sinh trên Shopee, TikTok Shop tự động đồng bộ kho sau 2 giây. Triệt tiêu hoàn toàn rủi ro phạt hủy đơn.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3-STEP WORKFLOW VISUAL -->
+    <section class="py-16 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-950/80 border border-orange-800 px-3 py-1 rounded-full">Dễ dàng triển khai</span>
+                <h2 class="text-3xl font-extrabold text-white mt-3 mb-2">Quy Trình Vận Hành 3 Bước Tinh Gọn</h2>
+                <p class="text-slate-400 text-sm">Nhân viên kho chỉ mất 15 phút làm quen là có thể thao tác thuần thục</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 relative flex flex-col justify-between group hover:border-orange-500 transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-orange-600 text-white font-extrabold flex items-center justify-center text-sm shadow-md shadow-orange-600/50">1</span>
+                            <span class="text-xs font-bold text-orange-400 bg-orange-950/60 px-2.5 py-1 rounded-full border border-orange-900">Bước 1</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Quét Mã & Đồng Bộ Đơn Sàn</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-5">
+                            Hàng về chỉ cần dùng camera điện thoại quét mã vạch sản phẩm. Đơn hàng từ Shopee, TikTok Shop tự động đổ về hệ thống theo thời gian thực.
+                        </p>
+                    </div>
+                    <div class="h-40 rounded-2xl overflow-hidden bg-slate-950 border border-slate-700">
+                        <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=800&q=80" alt="Quét mã nhập kho" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 relative flex flex-col justify-between group hover:border-orange-500 transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-orange-600 text-white font-extrabold flex items-center justify-center text-sm shadow-md shadow-orange-600/50">2</span>
+                            <span class="text-xs font-bold text-orange-400 bg-orange-950/60 px-2.5 py-1 rounded-full border border-orange-900">Bước 2</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">AI Gom Đơn & Dẫn Đường Nhặt</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-5">
+                            Thuật toán AI gom 30-50 đơn cùng lúc và vạch lộ trình 1 vòng khép kín ngắn nhất, nhân viên chỉ việc đi theo sơ đồ màn hình điện thoại.
+                        </p>
+                    </div>
+                    <div class="h-40 rounded-2xl overflow-hidden bg-slate-950 border border-slate-700">
+                        <img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=800&q=80" alt="AI gom đơn và nhặt hàng" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 relative flex flex-col justify-between group hover:border-orange-500 transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-orange-600 text-white font-extrabold flex items-center justify-center text-sm shadow-md shadow-orange-600/50">3</span>
+                            <span class="text-xs font-bold text-orange-400 bg-orange-950/60 px-2.5 py-1 rounded-full border border-orange-900">Bước 3</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Đóng Gói & CSDL Ghi Nhận Tự Động</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-5">
+                            In phiếu xuất kho, gói hàng bàn giao cho shipper. Toàn bộ thông tin đơn và khách hàng lưu tức thì vào CSDL & Google Sheets.
+                        </p>
+                    </div>
+                    <div class="h-40 rounded-2xl overflow-hidden bg-slate-950 border border-slate-700">
+                        <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=800&q=80" alt="Đóng gói giao hàng đa kênh" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
                 </div>
             </div>
         </div>
