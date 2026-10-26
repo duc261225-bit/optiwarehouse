@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS consultations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     full_name VARCHAR(100) NOT NULL,                -- Họ tên khách đăng ký tư vấn
     phone VARCHAR(20) NOT NULL,                     -- SĐT / Zalo
+    email VARCHAR(100),                             -- Email nhận ứng dụng dùng thử
     warehouse_size VARCHAR(50),                     -- Quy mô kho (< 100m², 100 - 300m², 300 - 1000m²...)
     sales_channel VARCHAR(150),                     -- Kênh bán hàng chính (Shopee, TikTok, Offline...)
     note TEXT,                                      -- Ghi chú nhu cầu tư vấn

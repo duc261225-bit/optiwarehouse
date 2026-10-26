@@ -760,9 +760,9 @@
             <div class="bg-white text-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl">
                 <div class="text-center mb-6">
                     <span class="text-xs font-extrabold uppercase tracking-wider text-orange-600 bg-orange-100 px-3 py-1 rounded-full">Dùng thử 14 ngày</span>
-                    <h2 class="text-2xl font-extrabold text-slate-900 mt-3 mb-1">Đăng Ký Tư Vấn & Nhận Tài Khoản Demo</h2>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mt-3 mb-1">Đăng Ký Tư Vấn & Nhận Bản Dùng Thử</h2>
                     <p class="text-slate-500 text-xs">
-                        Thông tin sẽ được gửi trực tiếp đến hệ thống và kết nối ngay với chuyên gia qua Zalo.
+                        Hệ thống sẽ tự động gửi link trải nghiệm ứng dụng qua email và chúng tôi sẽ liên hệ hỗ trợ bạn sớm nhất.
                     </p>
                 </div>
 
@@ -778,6 +778,13 @@
                             <input id="form-phone" type="tel" required placeholder="0916280365" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-xs">
                         </div>
                         <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Địa chỉ Email (Nhận App dùng thử) *</label>
+                            <input id="form-email" type="email" required placeholder="name@company.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-xs">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Quy mô kho dự kiến</label>
                             <select id="form-warehouse-size" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-xs bg-white">
                                 <option>Kho nhỏ (< 100m²)</option>
@@ -786,35 +793,27 @@
                                 <option>Chuỗi nhiều cửa hàng / kho</option>
                             </select>
                         </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Kênh bán hàng chính</label>
-                        <input id="form-channels" type="text" placeholder="Shopee, TikTok Shop, Cửa hàng offline..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-xs">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Kênh bán hàng chính</label>
+                            <input id="form-channels" type="text" placeholder="Shopee, TikTok Shop, Cửa hàng offline..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-xs">
+                        </div>
                     </div>
 
                     <button type="submit" class="w-full py-3.5 text-sm font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-xl shadow-lg shadow-orange-600/30 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
-                        <i data-lucide="check-circle" class="w-4 h-4"></i>
-                        <span>Đăng Ký & Mở Chat Zalo (0916.280.365)</span>
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>Đăng Ký & Nhận Bản Dùng Thử Ngay</span>
                     </button>
                     <p class="text-center text-[10px] text-slate-400">
-                        🔒 Thông tin được bảo mật và tự động gửi tới Google Sheet phụ trách.
+                        🔒 Hệ thống tự động gửi link trải nghiệm ứng dụng vào email của bạn ngay sau khi đăng ký.
                     </p>
                 </form>
 
                 <!-- Success Alert -->
                 <div id="success-alert" class="hidden mt-5 p-5 bg-emerald-50 border-2 border-emerald-400 rounded-2xl text-center text-emerald-950 shadow-xl">
                     <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold">✓</div>
-                    <h4 class="font-extrabold text-sm text-emerald-900 mb-1">Cảm ơn bạn đã quan tâm!</h4>
-                    <p class="text-xs text-emerald-800 mb-3 max-w-sm mx-auto">
-                        Thông tin của bạn đã được tiếp nhận và tự động gửi sang Google Sheet. Chúng tôi sẽ kết nối hỗ trợ bạn sớm nhất qua Zalo <strong>0916.280.365</strong>.
+                    <p class="text-sm font-bold text-emerald-900 max-w-sm mx-auto">
+                        Thông tin của bạn đã được tiếp nhận và chúng tôi sẽ liên hệ với bạn sớm nhất.
                     </p>
-                    <div class="flex items-center justify-center">
-                        <a id="zalo-redirect-btn" href="https://zalo.me/0916280365" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow transition">
-                            <i data-lucide="message-circle" class="w-4 h-4"></i>
-                            <span>Mở Zalo Ngay (0916.280.365)</span>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -983,11 +982,12 @@
         // CẤU HÌNH GOOGLE SHEETS WEBHOOK (Đã kết nối Google Sheet của bạn)
         const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxQynLV7kGHglwBw80BKlnKACxBtOj4xFBGYY64xc2gh9E3Cih4WBjch_zGC8kSPtDEdA/exec"; 
 
-        // FORM SUBMIT HANDLER -> GỬI TRỰC TIẾP VÀO GOOGLE SHEET & CHUYỂN TIẾP ZALO (0916.280.365)
+        // FORM SUBMIT HANDLER -> GỬI TRỰC TIẾP VÀO GOOGLE SHEET & GỬI EMAIL TỰ ĐỘNG
         function handleFormSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('form-name').value.trim();
             const phone = document.getElementById('form-phone').value.trim();
+            const email = document.getElementById('form-email').value.trim();
             const size = document.getElementById('form-warehouse-size').value;
             const channel = document.getElementById('form-channels').value.trim() || 'Chưa cung cấp';
 
@@ -996,14 +996,15 @@
                 id: Date.now(),
                 full_name: name,
                 phone: phone,
+                email: email,
                 warehouse_size: size,
                 sales_channel: channel,
-                note: 'Đăng ký tư vấn từ Landing Page',
+                note: 'Đăng ký nhận bản dùng thử từ Website',
                 status: 'Mới',
                 created_at: new Date().toISOString().replace('T', ' ').substring(0, 16)
             };
 
-            // 2. Gửi tự động sang Google Sheet
+            // 2. Gửi tự động sang Google Sheet (kích hoạt webhook gửi email tự động)
             if (GOOGLE_SHEET_URL && GOOGLE_SHEET_URL.startsWith('https://script.google.com/')) {
                 try {
                     fetch(GOOGLE_SHEET_URL, {
@@ -1017,7 +1018,7 @@
                 }
             }
 
-            // 3. Hiển thị thông báo thành công
+            // 3. Hiển thị thông báo thành công (ô xanh chỉ để thông tin đã tiếp nhận)
             const alertBox = document.getElementById('success-alert');
             alertBox.classList.remove('hidden');
             lucide.createIcons();
@@ -1029,15 +1030,14 @@
                 submitBtn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i> <span>Cảm ơn bạn đã quan tâm</span>`;
                 submitBtn.classList.remove('bg-orange-600', 'hover:bg-orange-700');
                 submitBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+                submitBtn.disabled = true;
                 lucide.createIcons();
             }
 
-            // 4. Mở Zalo 0916.280.365 để nhận tin nhắn trực tiếp
-            const zaloUrl = `https://zalo.me/0916280365`;
+            // Reset form sau khi gửi
             setTimeout(() => {
-                window.open(zaloUrl, '_blank');
                 document.getElementById('contact-form').reset();
-            }, 800);
+            }, 1000);
         }
     </script>
 </body>

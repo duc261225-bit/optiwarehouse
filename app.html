@@ -807,9 +807,15 @@
                     <label class="block font-bold text-slate-600 mb-1">Họ và tên khách hàng *</label>
                     <input id="input-c-name" required type="text" placeholder="Nguyễn Văn A" class="w-full p-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-purple-500">
                 </div>
-                <div>
-                    <label class="block font-bold text-slate-600 mb-1">Số điện thoại / Zalo *</label>
-                    <input id="input-c-phone" required type="tel" placeholder="0916280365" class="w-full p-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-purple-500">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Số điện thoại / Zalo *</label>
+                        <input id="input-c-phone" required type="tel" placeholder="0916280365" class="w-full p-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Email liên hệ</label>
+                        <input id="input-c-email" type="email" placeholder="khach@example.com" class="w-full p-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-purple-500">
+                    </div>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
                     <div>
@@ -976,9 +982,9 @@
         // CSDL ENGINE (LOCALSTORAGE BACKED + SEED)
         // ==========================================
         const SEED_CONSULTATIONS = [
-            { id: 1, full_name: 'Phạm Quang Đức', phone: '0916280365', warehouse_size: '100 - 300m²', sales_channel: 'TikTok Shop, Shopee', note: 'Cần tư vấn giải pháp gom đơn tự động và quét mã vạch cho 3 nhân viên', status: 'Mới', created_at: '2026-10-22 09:30' },
-            { id: 2, full_name: 'Vũ Minh Châu', phone: '0903112233', warehouse_size: 'Kho nhỏ (< 100m²)', sales_channel: 'Shopee, Facebook', note: 'Quan tâm tính năng cảnh báo tồn kho và dự báo nhập hàng', status: 'Đã gọi tư vấn', created_at: '2026-10-21 14:15' },
-            { id: 3, full_name: 'Hoàng Tuấn Anh', phone: '0944556677', warehouse_size: '300 - 1000m²', sales_channel: 'Chuỗi 2 kho tại Hà Nội', note: 'Cần tích hợp quản lý theo hạn sử dụng hàng mỹ phẩm', status: 'Đang demo', created_at: '2026-10-20 16:40' }
+            { id: 1, full_name: 'Phạm Quang Đức', phone: '0916280365', email: 'duc@optiwarehouse.vn', warehouse_size: '100 - 300m²', sales_channel: 'TikTok Shop, Shopee', note: 'Cần tư vấn giải pháp gom đơn tự động và quét mã vạch cho 3 nhân viên', status: 'Mới', created_at: '2026-10-22 09:30' },
+            { id: 2, full_name: 'Vũ Minh Châu', phone: '0903112233', email: 'chau.vu@gmail.com', warehouse_size: 'Kho nhỏ (< 100m²)', sales_channel: 'Shopee, Facebook', note: 'Quan tâm tính năng cảnh báo tồn kho và dự báo nhập hàng', status: 'Đã gọi tư vấn', created_at: '2026-10-21 14:15' },
+            { id: 3, full_name: 'Hoàng Tuấn Anh', phone: '0944556677', email: 'tuananh@gmail.com', warehouse_size: '300 - 1000m²', sales_channel: 'Chuỗi 2 kho tại Hà Nội', note: 'Cần tích hợp quản lý theo hạn sử dụng hàng mỹ phẩm', status: 'Đang demo', created_at: '2026-10-20 16:40' }
         ];
 
         const SEED_CUSTOMERS = [
@@ -1035,6 +1041,7 @@
                         <td class="p-4">
                             <div class="font-extrabold text-slate-900">${item.full_name}</div>
                             <div class="text-[11px] text-blue-600 font-bold">${item.phone}</div>
+                            ${item.email ? `<div class="text-[10px] text-slate-400 font-medium">${item.email}</div>` : ''}
                         </td>
                         <td class="p-4"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px]">${item.warehouse_size || 'N/A'}</span></td>
                         <td class="p-4 text-slate-600">${item.sales_channel || 'Chưa rõ'}</td>
@@ -1209,6 +1216,7 @@
                 id: Date.now(),
                 full_name: document.getElementById('input-c-name').value,
                 phone: document.getElementById('input-c-phone').value,
+                email: document.getElementById('input-c-email')?.value || '',
                 warehouse_size: document.getElementById('input-c-size').value,
                 sales_channel: document.getElementById('input-c-channel').value || 'Shopee',
                 note: document.getElementById('input-c-note').value,
@@ -1252,7 +1260,7 @@
                 customer_code: 'KH-' + Math.floor(1000 + Math.random() * 9000),
                 full_name: consult.full_name,
                 phone: consult.phone,
-                email: '',
+                email: consult.email || '',
                 company_or_shop: 'Kho ' + consult.full_name,
                 address: consult.warehouse_size,
                 channel: consult.sales_channel || 'Shopee',
@@ -1377,7 +1385,7 @@
 
             if (tableType === 'consultations') {
                 data = getDB('consultations', SEED_CONSULTATIONS);
-                headers = ['ID', 'Ho va Ten', 'So Dien Thoai', 'Quy Mo Kho', 'Kenh Ban', 'Ghi Chu', 'Trang Thai', 'Ngay Tao'];
+                headers = ['ID', 'Ho va Ten', 'So Dien Thoai', 'Email', 'Quy Mo Kho', 'Kenh Ban', 'Ghi Chu', 'Trang Thai', 'Ngay Tao'];
             } else if (tableType === 'customers') {
                 data = getDB('customers', SEED_CUSTOMERS);
                 headers = ['ID', 'Ma KH', 'Ho va Ten', 'So Dien Thoai', 'Email', 'Ten Shop', 'Dia Chi', 'Kenh Ban', 'Tong Don', 'Tong Chi Tieu'];

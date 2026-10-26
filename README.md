@@ -63,8 +63,19 @@ Hệ thống được thiết kế với 3 bảng dữ liệu cốt lõi (xem ch
 
 ---
 
+## ⚡ Hướng dẫn cấu hình Gửi Email Tự Động & Google Sheet (1 phút):
+1. Mở file Google Sheet quản lý đơn: **"Danh sách đơn mua"**.
+2. Trên menu chọn **Tiện ích mở rộng (Extensions)** > **Apps Script**.
+3. Dán toàn bộ nội dung từ file [`google_apps_script.js`](file:///C:/Users/Admin/.gemini/antigravity/scratch/optiwarehouse/google_apps_script.js) vào trình biên tập.
+4. Bấm **Triển khai (Deploy)** > **Quản lý bản triển khai (Manage deployments)** > Sửa bản hiện tại (hoặc Triển khai mới) > Chọn **Phiên bản mới (New version)** > Bấm **Triển khai**.
+5. Giờ đây, mỗi khi khách điền Form tại `index.html`:
+   - Google Sheet sẽ tự động lưu thông tin (kèm Email).
+   - Hệ thống tự động gửi email chào mừng kèm link mở ứng dụng `app.html` cho khách hàng!
+
+---
+
 ## 🌐 Cập nhật lên GitHub (30 giây):
-Tải đè các file mới (`index.html`, `app.html`, `schema.sql`, `README.md`) lên GitHub tại:
+Tải đè các file mới (`index.html`, `app.html`, `schema.sql`, `google_apps_script.js`, `README.md`) lên GitHub tại:
 👉 [https://github.com/duc261225-bit/optiwarehouse](https://github.com/duc261225-bit/optiwarehouse)
 Web online sẽ tự động cập nhật tại:
 👉 [https://duc261225-bit.github.io/optiwarehouse/](https://duc261225-bit.github.io/optiwarehouse/)
