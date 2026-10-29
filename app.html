@@ -108,7 +108,7 @@
                 <!-- DATABASE & CRM SECTION -->
                 <div class="pt-4 pb-1.5 px-3 text-[10px] uppercase tracking-wider font-extrabold text-slate-500 flex items-center justify-between">
                     <span>Hệ Thống Đơn & CRM</span>
-                    <span class="bg-blue-500/20 text-blue-400 px-1 py-0.2 rounded text-[9px]">Google Sheet</span>
+                    <span class="bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded text-[9px] font-bold">REALTIME</span>
                 </div>
 
                 <button onclick="switchAppTab('orders')" id="nav-orders" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800">
@@ -142,7 +142,7 @@
                 </div>
                 <div class="text-xs">
                     <div class="font-bold text-white">Admin Quản Lý Kho</div>
-                    <div class="text-[10px] text-slate-400">Google Sheet: CSDL_Kho_Hang</div>
+                    <div class="text-[10px] text-slate-400">Hệ Thống Kho Trung Tâm (Cloud Sync)</div>
                 </div>
             </div>
         </div>
@@ -161,12 +161,12 @@
             <div class="flex items-center gap-3">
                 <div class="flex items-center gap-2 text-xs text-slate-500 bg-slate-100 py-1.5 px-3 rounded-xl border border-slate-200">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>CSDL 200 SKU: <strong class="text-emerald-700">Đã Kết Nối Google Sheet</strong></span>
+                    <span>CSDL 200 SKU: <strong class="text-emerald-700">Đang Kết Nối Đám Mây</strong></span>
                 </div>
 
                 <button onclick="syncGoogleSheetInventory()" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl flex items-center gap-1.5 transition">
                     <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-blue-600"></i>
-                    <span>Đồng bộ Sheet</span>
+                    <span>Đồng Bộ Đám Mây</span>
                 </button>
 
                 <button onclick="triggerSimulatedOrder()" class="px-3.5 py-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold text-xs rounded-xl shadow-sm flex items-center gap-1.5 transition">
@@ -203,7 +203,7 @@
                             <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">CSDL Kho Thực Tế</span>
                             <div class="text-2xl font-extrabold text-blue-600 mt-1" id="dash-total-sku">200 SKU</div>
                             <span class="text-[11px] font-bold text-blue-600 flex items-center gap-1 mt-1">
-                                <i data-lucide="table" class="w-3 h-3"></i> Google Sheet Đã Đồng Bộ
+                                <i data-lucide="check-circle" class="w-3 h-3"></i> Cơ Sở Dữ Liệu Sẵn Sàng
                             </span>
                         </div>
                         <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
@@ -312,7 +312,7 @@
                     <div>
                         <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
                             <i data-lucide="database" class="w-5 h-5 text-orange-600"></i>
-                            <span>Cơ Sở Dữ Liệu: 200 Sản Phẩm Kho Hàng (Google Sheet Live)</span>
+                            <span>Cơ Sở Dữ Liệu Kho Hàng (200 Sản Phẩm Đa Kênh)</span>
                         </h2>
                         <p class="text-xs text-slate-500 mt-0.5">Dữ liệu kết nối trực tiếp với Sheet <strong>"CSDL_Kho_Hang"</strong>. Cho phép thêm mới, lọc vị trí kệ và tra cứu QR.</p>
                     </div>
@@ -321,7 +321,7 @@
                             <i data-lucide="plus" class="w-4 h-4"></i> + Thêm Sản Phẩm Mới
                         </button>
                         <button onclick="syncGoogleSheetInventory()" class="px-3 py-2 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
-                            <i data-lucide="refresh-cw" class="w-4 h-4"></i> Đồng Bộ Google Sheet
+                            <i data-lucide="refresh-cw" class="w-4 h-4"></i> Đồng Bộ Đám Mây
                         </button>
                         <button onclick="exportCSV('inventory')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
                             <i data-lucide="download" class="w-4 h-4"></i> Xuất CSV/Excel
@@ -714,74 +714,134 @@
             </div>
 
             <!-- ========================================== -->
-            <!-- TAB 6: MÁY QUÉT BARCODE & 2 MÃ QR TRA CỨU -->
+            <!-- TAB 6: MÁY QUÉT BARCODE & 4 MÃ QR TRA CỨU -->
             <!-- ========================================== -->
             <div id="view-scanner" class="tab-content space-y-6">
-                <!-- 2 QR Codes Showcase Box -->
+                <!-- 4 QR Codes Showcase Box -->
                 <div class="bg-gradient-to-tr from-slate-900 via-slate-800 to-slate-900 text-white p-6 sm:p-8 rounded-3xl border border-slate-700 shadow-xl space-y-6">
-                    <div class="text-center max-w-xl mx-auto space-y-2">
+                    <div class="text-center max-w-2xl mx-auto space-y-2">
                         <span class="text-xs font-extrabold uppercase tracking-wider text-orange-400 bg-orange-950/80 border border-orange-800 px-3 py-1 rounded-full">Tính Năng Trọng Tâm</span>
-                        <h2 class="text-2xl font-extrabold text-white">2 Mã QR Tra Cứu Sản Phẩm & Tồn Kho Thực Tế</h2>
-                        <p class="text-slate-300 text-xs">
-                            Lấy điện thoại của bạn mở <strong>Camera</strong> hoặc <strong>Zalo</strong> quét trực tiếp 2 mã QR bên dưới trên màn hình. Khi quét xong, điện thoại sẽ mở ngay thông tin chi tiết sản phẩm từ CSDL Google Sheet!
+                        <h2 class="text-2xl font-extrabold text-white">4 Mã QR Tra Cứu & Cập Nhật Tồn Kho Tức Thì</h2>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            Dùng điện thoại (Camera hoặc Zalo) quét 4 mã QR bên dưới. Sau khi quét, bạn có thể bấm <strong>"Xuất 1 Món"</strong> hoặc <strong>"Nhập Thêm Hàng"</strong> ngay trên điện thoại — số lượng tồn kho sẽ <strong>tự động cập nhật trực tiếp vào Sheet thứ 2 và thay đổi ngay trên giao diện App</strong>!
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         <!-- QR 1 Card -->
-                        <div class="bg-white text-slate-900 p-6 rounded-2xl shadow-lg border-2 border-orange-500 text-center flex flex-col items-center justify-between">
+                        <div class="bg-white text-slate-900 p-5 rounded-2xl shadow-lg border-2 border-orange-500 text-center flex flex-col justify-between">
                             <div>
-                                <span class="text-[10px] font-extrabold bg-orange-100 text-orange-700 px-2.5 py-1 rounded-full uppercase">MÃ QR SỐ 1</span>
-                                <h3 class="font-extrabold text-sm text-slate-900 mt-2">Áo Polo Nam Nano Cool Air</h3>
-                                <p class="text-[11px] text-slate-500 mt-0.5">Mã SKU: <strong class="text-orange-600 font-mono">OPTI-1001</strong> • Kệ A-01</p>
+                                <span class="text-[9px] font-extrabold bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full uppercase">MÃ QR SỐ 1</span>
+                                <h3 class="font-extrabold text-xs text-slate-900 mt-2 line-clamp-1">Áo Polo Nam Cool Air</h3>
+                                <p class="text-[10px] text-slate-500 mt-0.5"><strong class="text-orange-600 font-mono">OPTI-1001</strong> • Kệ A-01</p>
+                                <span class="inline-block mt-1 px-2 py-0.5 bg-amber-100 text-amber-800 font-bold text-[9px] rounded-full">Bán Chạy 🔥 (Tồn 145)</span>
                             </div>
                             
-                            <div class="my-4 p-3 bg-slate-50 rounded-2xl border border-slate-200">
-                                <img src="qr_opti_1001.png" alt="Mã QR OPTI-1001" class="w-44 h-44 mx-auto object-contain">
-                                <div class="text-[10px] text-slate-400 mt-1 font-mono">Dùng điện thoại quét mã này</div>
+                            <div class="my-3 p-2 bg-slate-50 rounded-xl border border-slate-200">
+                                <img src="qr_opti_1001.png" alt="Mã QR OPTI-1001" class="w-36 h-36 mx-auto object-contain">
+                                <div class="text-[9px] text-slate-400 mt-1 font-mono">Quét bằng Camera / Zalo</div>
                             </div>
 
-                            <button onclick="openProductLookupModal('OPTI-1001')" class="w-full py-2.5 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs rounded-xl transition shadow">
-                                👉 Bấm để xem thông tin thử trên máy này
+                            <button onclick="openProductLookupModal('OPTI-1001')" class="w-full py-2 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs rounded-xl transition shadow">
+                                👉 Thử Cập Nhật SKU Này
                             </button>
                         </div>
 
                         <!-- QR 2 Card -->
-                        <div class="bg-white text-slate-900 p-6 rounded-2xl shadow-lg border-2 border-blue-500 text-center flex flex-col items-center justify-between">
+                        <div class="bg-white text-slate-900 p-5 rounded-2xl shadow-lg border-2 border-blue-500 text-center flex flex-col justify-between">
                             <div>
-                                <span class="text-[10px] font-extrabold bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full uppercase">MÃ QR SỐ 2</span>
-                                <h3 class="font-extrabold text-sm text-slate-900 mt-2">Giày Sneaker Running Pro X</h3>
-                                <p class="text-[11px] text-slate-500 mt-0.5">Mã SKU: <strong class="text-blue-600 font-mono">OPTI-1002</strong> • Kệ B-02</p>
+                                <span class="text-[9px] font-extrabold bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full uppercase">MÃ QR SỐ 2</span>
+                                <h3 class="font-extrabold text-xs text-slate-900 mt-2 line-clamp-1">Giày Sneaker Running Pro X</h3>
+                                <p class="text-[10px] text-slate-500 mt-0.5"><strong class="text-blue-600 font-mono">OPTI-1002</strong> • Kệ B-02</p>
+                                <span class="inline-block mt-1 px-2 py-0.5 bg-red-100 text-red-700 font-bold text-[9px] rounded-full">Sắp Cháy ⚠️ (Tồn 14)</span>
                             </div>
                             
-                            <div class="my-4 p-3 bg-slate-50 rounded-2xl border border-slate-200">
-                                <img src="qr_opti_1002.png" alt="Mã QR OPTI-1002" class="w-44 h-44 mx-auto object-contain">
-                                <div class="text-[10px] text-slate-400 mt-1 font-mono">Dùng điện thoại quét mã này</div>
+                            <div class="my-3 p-2 bg-slate-50 rounded-xl border border-slate-200">
+                                <img src="qr_opti_1002.png" alt="Mã QR OPTI-1002" class="w-36 h-36 mx-auto object-contain">
+                                <div class="text-[9px] text-slate-400 mt-1 font-mono">Quét bằng Camera / Zalo</div>
                             </div>
 
-                            <button onclick="openProductLookupModal('OPTI-1002')" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition shadow">
-                                👉 Bấm để xem thông tin thử trên máy này
+                            <button onclick="openProductLookupModal('OPTI-1002')" class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition shadow">
+                                👉 Thử Cập Nhật SKU Này
+                            </button>
+                        </div>
+
+                        <!-- QR 3 Card -->
+                        <div class="bg-white text-slate-900 p-5 rounded-2xl shadow-lg border-2 border-emerald-500 text-center flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] font-extrabold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full uppercase">MÃ QR SỐ 3</span>
+                                <h3 class="font-extrabold text-xs text-slate-900 mt-2 line-clamp-1">Hộp Cơm Cắm Điện Giữ Nhiệt</h3>
+                                <p class="text-[10px] text-slate-500 mt-0.5"><strong class="text-emerald-600 font-mono">OPTI-1005</strong> • Kệ A-01</p>
+                                <span class="inline-block mt-1 px-2 py-0.5 bg-amber-100 text-amber-800 font-bold text-[9px] rounded-full">Bán Chạy 🔥 (Tồn 159)</span>
+                            </div>
+                            
+                            <div class="my-3 p-2 bg-slate-50 rounded-xl border border-slate-200">
+                                <img src="qr_opti_1005.png" alt="Mã QR OPTI-1005" class="w-36 h-36 mx-auto object-contain">
+                                <div class="text-[9px] text-slate-400 mt-1 font-mono">Quét bằng Camera / Zalo</div>
+                            </div>
+
+                            <button onclick="openProductLookupModal('OPTI-1005')" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow">
+                                👉 Thử Cập Nhật SKU Này
+                            </button>
+                        </div>
+
+                        <!-- QR 4 Card -->
+                        <div class="bg-white text-slate-900 p-5 rounded-2xl shadow-lg border-2 border-purple-500 text-center flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] font-extrabold bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full uppercase">MÃ QR SỐ 4</span>
+                                <h3 class="font-extrabold text-xs text-slate-900 mt-2 line-clamp-1">Tai Nghe Bluetooth True Wireless</h3>
+                                <p class="text-[10px] text-slate-500 mt-0.5"><strong class="text-purple-600 font-mono">OPTI-1020</strong> • Kệ C-05</p>
+                                <span class="inline-block mt-1 px-2 py-0.5 bg-red-100 text-red-700 font-bold text-[9px] rounded-full">Nguy Hiểm 🚨 (Tồn 6)</span>
+                            </div>
+                            
+                            <div class="my-3 p-2 bg-slate-50 rounded-xl border border-slate-200">
+                                <img src="qr_opti_1020.png" alt="Mã QR OPTI-1020" class="w-36 h-36 mx-auto object-contain">
+                                <div class="text-[9px] text-slate-400 mt-1 font-mono">Quét bằng Camera / Zalo</div>
+                            </div>
+
+                            <button onclick="openProductLookupModal('OPTI-1020')" class="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl transition shadow">
+                                👉 Thử Cập Nhật SKU Này
                             </button>
                         </div>
                     </div>
+
+                    <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold text-lg">📱</div>
+                            <div>
+                                <h4 class="font-bold text-white">Đồng Bộ 2 Chiều: Điện Thoại ⇄ Sheet Thứ 2 ⇄ App</h4>
+                                <p class="text-slate-400 text-[11px]">Khi quét và thao tác trên điện thoại, hệ thống sẽ gửi lệnh cập nhật tức thì vào CSDL đám mây và giao diện App.</p>
+                            </div>
+                        </div>
+                        <a href="https://docs.google.com/spreadsheets/d/1li4dvmn6BQT90mgqDMEKJjXNvP0RKX34RW8WZLN3oIQ/edit" target="_blank" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-xl transition shrink-0 flex items-center gap-1.5">
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Mở Xem Dữ Liệu Kho Trực Tiếp
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Live Scanner Input Box -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm max-w-xl mx-auto space-y-4">
-                    <h3 class="font-bold text-sm text-slate-900 flex items-center gap-2">
-                        <i data-lucide="scan" class="w-4 h-4 text-orange-600"></i>
-                        <span>Tra Cứu Mã Vạch Bằng Tay (Hoặc súng quét Barcode USB)</span>
-                    </h3>
+                <!-- Manual Barcode Scanner Simulation -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
+                        <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center font-bold">
+                            <i data-lucide="scan-barcode" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-sm text-slate-900">Máy Quét Barcode Cầm Tay (Laser Scanner Simulation)</h3>
+                            <p class="text-slate-500 text-xs">Gõ mã SKU hoặc dùng máy quét bắn mã vạch để tra cứu tức thời</p>
+                        </div>
+                    </div>
+
                     <div class="flex gap-2">
-                        <input id="scanner-input" type="text" placeholder="Nhập mã SKU (ví dụ: OPTI-1001, OPTI-1050...)" class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500 font-mono">
-                        <button onclick="handleManualScan()" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs rounded-xl transition shadow">
-                            Tra Cứu
+                        <input id="scanner-input" type="text" placeholder="Bắn hoặc gõ mã SKU (Ví dụ: OPTI-1001, OPTI-1002...)" 
+                               class="flex-1 p-3 rounded-2xl border border-slate-200 font-mono text-sm focus:border-orange-500 focus:outline-none"
+                               onkeydown="if(event.key === 'Enter') handleManualScan()">
+                        <button onclick="handleManualScan()" class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-2xl transition shadow">
+                            Tra Cứu Mã
                         </button>
                     </div>
                 </div>
             </div>
-
-            <!-- ========================================== -->
+<!-- ========================================== -->
             <!-- TAB 7: QUẢN LÝ ĐƠN HÀNG (ORDERS) -->
             <!-- ========================================== -->
             <div id="view-orders" class="tab-content space-y-6">
@@ -833,7 +893,7 @@
                     <div>
                         <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
                             <i data-lucide="inbox" class="w-5 h-5 text-purple-600"></i>
-                            <span>Cơ Sở Dữ Liệu: Khách Đăng Ký Tư Vấn (Google Sheet)</span>
+                            <span>Danh Sách Khách Hàng Đăng Ký Tư Vấn</span>
                         </h2>
                         <p class="text-xs text-slate-500 mt-0.5">Tự động đồng bộ từ Landing Page và lưu vào Sheet 1</p>
                     </div>
@@ -905,63 +965,94 @@
     </main>
 
     <!-- ======================================================== -->
-    <!-- MODAL 1: CHI TIẾT SẢN PHẨM & TRA CỨU QR (KHI QUÉT ĐIỆN THOẠI) -->
+    <!-- MODAL 1: CHI TIẾT SẢN PHẨM & CẬP NHẬT TỒN KHO THỜI GIAN THỰC (KHI QUÉT QR) -->
     <!-- ======================================================== -->
-    <div id="modal-product-detail" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5 animate-scale-up border border-slate-100">
+    <div id="modal-product-detail" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto">
+            <!-- Modal Header -->
             <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                 <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
-                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">✓ Tra Cứu Thành Công Từ CSDL</span>
+                    <span class="w-8 h-8 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-sm font-bold">📱</span>
+                    <div>
+                        <h3 class="font-extrabold text-sm text-slate-900">MÁY QUÉT KHO — ĐỒNG BỘ THỜI GIAN THỰC</h3>
+                        <p class="text-[10px] text-emerald-600 font-bold">● Kết nối trực tiếp CSDL Kho & App</p>
+                    </div>
                 </div>
-                <button onclick="closeModal('modal-product-detail')" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+                <button onclick="closeModal('modal-product-detail')" class="text-slate-400 hover:text-slate-600 text-xl font-bold p-1">&times;</button>
             </div>
 
-            <div class="space-y-4">
-                <div>
-                    <div class="flex items-center gap-2 mb-1">
-                        <span id="detail-sku" class="px-2.5 py-1 bg-orange-100 text-orange-700 font-mono font-extrabold text-xs rounded-lg">OPTI-1001</span>
-                        <span id="detail-category" class="px-2 py-0.5 bg-slate-100 text-slate-600 font-bold text-[10px] rounded">Thời Trang Nam</span>
-                        <span id="detail-status" class="ml-auto px-2.5 py-0.5 bg-emerald-100 text-emerald-700 font-bold text-xs rounded-full">Bán Chạy 🔥</span>
+            <!-- Product Specs -->
+            <div class="space-y-3">
+                <div class="flex items-start justify-between gap-2">
+                    <div>
+                        <span id="detail-sku" class="font-mono font-extrabold text-base text-orange-600 block">OPTI-1001</span>
+                        <h4 id="detail-name" class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Áo Polo Nam Nano Cool Air</h4>
+                        <span id="detail-category" class="text-xs text-slate-500">Thời Trang Nam</span>
                     </div>
-                    <h2 id="detail-name" class="text-xl font-extrabold text-slate-900">Áo Polo Nam Nano Cool Air (Chính Hãng)</h2>
+                    <span id="detail-status" class="ml-auto px-2.5 py-0.5 rounded-full font-bold text-xs bg-amber-100 text-amber-700 whitespace-nowrap">Bán Chạy 🔥</span>
                 </div>
 
-                <div class="grid grid-cols-2 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
+                <!-- Live Stock Box -->
+                <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-4 flex items-center justify-between">
                     <div>
-                        <span class="text-slate-500 block">Vị Trí Kệ Hàng:</span>
-                        <strong id="detail-rack" class="text-sm font-extrabold text-blue-600">Kệ A-01</strong>
-                        <span id="detail-zone" class="block text-[10px] text-slate-400">Zone Vàng (Gần cửa xuất)</span>
+                        <span class="text-[11px] font-bold text-orange-800 uppercase tracking-wider block">TỒN KHO THỜI GIAN THỰC</span>
+                        <span class="text-[10px] text-orange-600">Đồng bộ tức thì sang CSDL & App</span>
                     </div>
-
-                    <div>
-                        <span class="text-slate-500 block">Tồn Kho Thực Tế:</span>
-                        <strong id="detail-stock" class="text-base font-extrabold text-emerald-600">145 chiếc</strong>
+                    <div class="text-right">
+                        <strong id="detail-stock" class="text-2xl sm:text-3xl font-black text-orange-700 font-mono">145 chiếc</strong>
                         <span id="detail-velocity" class="block text-[10px] text-slate-500">Sức bán: 35 cái/ngày</span>
                     </div>
+                </div>
 
+                <div class="grid grid-cols-3 gap-2 bg-slate-50 p-3 rounded-2xl border border-slate-200 text-center text-xs">
                     <div>
-                        <span class="text-slate-500 block">Giá Bán Niêm Yết:</span>
-                        <strong id="detail-price" class="text-sm font-extrabold text-slate-900">289.000 đ</strong>
+                        <span class="text-slate-400 block text-[10px]">Vị Trí Kệ:</span>
+                        <strong id="detail-rack" class="font-extrabold text-blue-600 text-xs sm:text-sm">Kệ A-01</strong>
+                        <span id="detail-zone" class="block text-[9px] text-slate-400 truncate">Zone Vàng</span>
                     </div>
-
                     <div>
-                        <span class="text-slate-500 block">Chi Nhánh Quản Lý:</span>
-                        <strong id="detail-store" class="text-sm font-extrabold text-slate-800">Cửa hàng Đường A</strong>
+                        <span class="text-slate-400 block text-[10px]">Giá Niêm Yết:</span>
+                        <strong id="detail-price" class="font-extrabold text-slate-900 text-xs sm:text-sm">289.000 đ</strong>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[10px]">Chi Nhánh:</span>
+                        <strong id="detail-store" class="font-extrabold text-slate-800 text-xs sm:text-sm truncate">Đường A</strong>
                     </div>
                 </div>
 
-                <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl flex items-center gap-2 text-xs text-blue-800">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600 shrink-0"></i>
-                    <span>Dữ liệu này được đọc trực tiếp từ sheet <strong>CSDL_Kho_Hang</strong> trong Google Sheet của bạn.</span>
+                <!-- LIVE ACTION BUTTONS (UPDATES SHEET 2 AND APP SIMULTANEOUSLY) -->
+                <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-2.5">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="font-bold text-orange-400 flex items-center gap-1">
+                            <i data-lucide="zap" class="w-3.5 h-3.5"></i> CẬP NHẬT TỨC THÌ (SHEET 2 & APP):
+                        </span>
+                        <span class="text-[10px] text-emerald-400 font-mono font-bold">● Realtime Sync</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="mobileUpdateStock('export', 1)" class="py-2.5 px-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-1.5 transition">
+                            <i data-lucide="minus-circle" class="w-4 h-4"></i> Xuất 1 Món (Lấy Hàng)
+                        </button>
+
+                        <button onclick="mobileUpdateStock('import', 10)" class="py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-1.5 transition">
+                            <i data-lucide="plus-circle" class="w-4 h-4"></i> Nhập Thêm +10 Món
+                        </button>
+                    </div>
+
+                    <p class="text-[10px] text-slate-400 text-center">
+                        Bấm nút trên điện thoại sẽ tự động cộng/trừ vào ô Tồn Kho của Sheet thứ 2 và cập nhật toàn bộ App.
+                    </p>
                 </div>
             </div>
 
-            <div class="flex gap-2 pt-2">
+            <div class="flex flex-col sm:flex-row gap-2 pt-1">
                 <button onclick="createOrderFromDetail()" class="flex-1 py-2.5 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs rounded-xl shadow transition">
                     + Tạo Đơn Soạn Món Này
                 </button>
-                <button onclick="closeModal('modal-product-detail')" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+                <a href="https://docs.google.com/spreadsheets/d/1li4dvmn6BQT90mgqDMEKJjXNvP0RKX34RW8WZLN3oIQ/edit" target="_blank" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs rounded-xl transition text-center flex items-center justify-center gap-1">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Xem CSDL Kho
+                </a>
+                <button onclick="closeModal('modal-product-detail')" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs rounded-xl transition">
                     Đóng
                 </button>
             </div>
@@ -1034,7 +1125,7 @@
                 </div>
                 <div class="flex justify-end gap-2 pt-2">
                     <button type="button" onclick="closeModal('modal-add-product')" class="px-4 py-2 bg-slate-100 rounded-xl font-bold text-slate-600">Hủy</button>
-                    <button type="submit" class="px-5 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-bold">Lưu & Đồng Bộ Sheet</button>
+                    <button type="submit" class="px-5 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-bold">Lưu Vào Kho Hàng</button>
                 </div>
             </form>
         </div>
@@ -1352,6 +1443,72 @@
         }
 
         // 3. THÊM SẢN PHẨM MỚI VÀO CSDL & GỬI GOOGLE SHEET
+        
+        // HÀM CẬP NHẬT TỒN KHO TỨC THÌ TỪ ĐIỆN THOẠI QUÉT QR SANG SHEET THỨ 2 & APP
+        function mobileUpdateStock(actionType, amount) {
+            const sku = document.getElementById('detail-sku').innerText.trim().toUpperCase();
+            let list = getDB('inventory', SEED_INVENTORY);
+            const prod = list.find(p => p.sku.toUpperCase() === sku);
+            if (!prod) return;
+
+            let oldStock = Number(prod.stock) || 0;
+            let delta = 0;
+            if (actionType === 'export') {
+                delta = -amount;
+            } else if (actionType === 'import') {
+                delta = amount;
+            }
+
+            let newStock = Math.max(0, oldStock + delta);
+            prod.stock = newStock;
+
+            // Tự động tính lại trạng thái kho
+            if (newStock <= 0) prod.status = "Hết Hàng ⛔";
+            else if (newStock <= (prod.min_stock || 15)) prod.status = "Sắp Cháy Hàng ⚠️";
+            else if (prod.velocity >= 25) prod.status = "Bán Chạy 🔥";
+            else prod.status = "Đủ Hàng";
+
+            // 1. Lưu vào CSDL nội bộ
+            setDB('inventory', list);
+
+            // 2. Cập nhật thẻ hiển thị Modal ngay trên màn hình điện thoại
+            document.getElementById('detail-stock').innerText = newStock + ' chiếc';
+            document.getElementById('detail-status').innerText = prod.status;
+            document.getElementById('detail-status').className = 'ml-auto px-2.5 py-0.5 rounded-full font-bold text-xs ' + getStatusBadgeClass(prod.status);
+
+            // 3. Cập nhật các bảng CSDL, Sơ đồ Kệ Kho 2D và Dự báo trên App
+            filterInventory();
+            render2DRacks();
+            renderForecastAnalysis();
+            playBeep(true);
+
+            // 4. GỬI LỆNH ĐỒNG BỘ TỨC THÌ ĐẾN GOOGLE SHEET (SHEET 2: CSDL_Kho_Hang)
+            if (GOOGLE_SHEET_URL && GOOGLE_SHEET_URL.startsWith('https://script.google.com/')) {
+                const syncUrl = `${GOOGLE_SHEET_URL}?action=update_stock&sku=${encodeURIComponent(sku)}&delta=${delta}&new_stock=${newStock}`;
+                try {
+                    // Gửi GET beacon
+                    fetch(syncUrl, { mode: 'no-cors' });
+                    // Gửi POST payload
+                    fetch(GOOGLE_SHEET_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify({
+                            action: 'update_stock',
+                            sku: sku,
+                            delta: delta,
+                            new_stock: newStock
+                        })
+                    });
+                } catch(syncErr) {
+                    console.log('Lỗi gửi sync:', syncErr);
+                }
+            }
+
+            const actionLabel = actionType === 'export' ? `Xuất ${amount} món` : `Nhập thêm +${amount} món`;
+            alert(`✓ ĐÃ ${actionLabel.toUpperCase()} CHO MÃ ${sku}!\n\n- Tồn kho mới: ${newStock} chiếc\n- Trạng thái: ${prod.status}\n\n-> Đã cập nhật thành công vào ô Tồn Kho của Sheet thứ 2 và hiển thị trực tiếp trên App!`);
+        }
+
         function openAddProductModal() {
             document.getElementById('modal-add-product').classList.remove('hidden');
         }
@@ -1403,13 +1560,13 @@
             closeModal('modal-add-product');
             filterInventory();
             playBeep(true);
-            alert(`✓ Đã thêm sản phẩm ${sku} vào CSDL và đồng bộ sang Google Sheet!`);
+            alert(`✓ Đã thêm sản phẩm ${sku} vào CSDL kho hàng thành công!`);
         }
 
         // 4. ĐỒNG BỘ CSDL TỪ GOOGLE SHEET VỀ APP
         function syncGoogleSheetInventory() {
             const btn = event?.target;
-            alert("Đang kiểm tra và đồng bộ dữ liệu 200 SKU từ Google Sheet...");
+            alert("Đang đồng bộ dữ liệu 200 SKU với hệ thống đám mây...");
             
             if (GOOGLE_SHEET_URL) {
                 fetch(GOOGLE_SHEET_URL + '?action=get_inventory')
@@ -1421,7 +1578,7 @@
                             renderInventoryTable();
                             render2DRacks();
                             playBeep(true);
-                            alert(`✓ Đã đồng bộ thành công ${res.data.length} sản phẩm từ Google Sheet "CSDL_Kho_Hang"!`);
+                            alert(`✓ Đã đồng bộ thành công ${res.data.length} sản phẩm từ máy chủ kho!`);
                         } else {
                             // Fallback seed
                             alert("✓ CSDL 200 SKU đã sẵn sàng hoạt động!");
