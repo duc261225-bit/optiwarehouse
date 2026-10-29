@@ -103,7 +103,7 @@
                     </h1>
 
                     <p class="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                        <strong>Không cần robot hàng tỷ đồng.</strong> OptiWarehouse ứng dụng AI: tự động phân phối hàng giữa các kho dựa trên lượng mua thực tế (ví dụ cửa hàng ở Đường A bán chạy tự động đề xuất chuyển thêm hàng), dự báo tồn kho, và gửi thông tin đăng ký trực tiếp về Google Sheet của bạn.
+                        <strong>Không cần robot hàng tỷ đồng.</strong> OptiWarehouse mang trí tuệ AI vào hạ tầng kho sẵn có: Tối ưu lộ trình gom đơn (Batch Picking) giảm 70% thời gian nhặt hàng, sơ đồ kệ 2D thông minh, dự báo chuẩn xác tồn kho và tự động cân bằng hàng đa kho theo lượng bán thực tế.
                     </p>
 
                     <!-- Action Buttons -->
@@ -133,8 +133,8 @@
                             <div class="text-xs text-slate-500 font-medium mt-0.5">Không chi phí phần cứng</div>
                         </div>
                         <div class="bg-white/90 backdrop-blur p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="text-xl sm:text-2xl font-extrabold text-purple-600">G-Sheet</div>
-                            <div class="text-xs text-slate-500 font-medium mt-0.5">Tự động nhận thông tin</div>
+                            <div class="text-xl sm:text-2xl font-extrabold text-purple-600">-70%</div>
+                            <div class="text-xs text-slate-500 font-medium mt-0.5">Thời gian gom đơn</div>
                         </div>
                     </div>
                 </div>
@@ -172,12 +172,12 @@
 
                         <!-- Floating Badge 2: Bottom Right -->
                         <div class="absolute -bottom-3 -right-3 sm:-right-5 bg-slate-900/95 backdrop-blur-md text-white px-3.5 py-2 rounded-2xl shadow-xl border border-slate-700 flex items-center gap-2.5">
-                            <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
-                                <i data-lucide="table" class="w-4 h-4"></i>
+                            <div class="w-7 h-7 rounded-lg bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold">
+                                <i data-lucide="route" class="w-4 h-4"></i>
                             </div>
                             <div>
-                                <div class="text-[11px] font-bold">Google Sheet Tự Động</div>
-                                <div class="text-[10px] text-slate-400">Nhận thông tin khách tức thì</div>
+                                <div class="text-[11px] font-bold">AI Gom Đơn (Batch Picking)</div>
+                                <div class="text-[10px] text-emerald-400">Giảm 70% quãng đường nhặt hàng</div>
                             </div>
                         </div>
                     </div>
@@ -499,18 +499,18 @@
                 <!-- Pillar 3 -->
                 <div class="group rounded-2xl bg-white border border-slate-200 hover:border-orange-400 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
                     <div class="relative h-44 overflow-hidden bg-slate-100">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Tự động đồng bộ Google Sheet" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80" alt="Sơ đồ kệ kho thông minh Smart Slotting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
-                            <i data-lucide="table" class="w-3 h-3 text-blue-400"></i> Google Sheet
+                            <i data-lucide="layout-grid" class="w-3 h-3 text-blue-400"></i> Smart Slotting
                         </span>
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
                             <div class="w-9 h-9 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-3 font-bold">
-                                <i data-lucide="table" class="w-4 h-4"></i>
+                                <i data-lucide="layout-grid" class="w-4 h-4"></i>
                             </div>
-                            <h3 class="font-bold text-base mb-1.5 text-slate-900">Tự Động Gửi Vào Google Sheet</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">Khi có người đăng ký tư vấn, thông tin lập tức được gửi sang Google Sheet của bạn mà không cần cài đặt phần mềm quản lý phức tạp.</p>
+                            <h3 class="font-bold text-base mb-1.5 text-slate-900">Sơ Đồ Kệ 2D & Vị Trí Thông Minh</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Phân cấp vị trí Zone Vàng, Bạc, Đồng trực quan. AI tự động đề xuất dời mặt hàng bán chạy về gần cửa xuất để nhân viên lấy hàng nhanh nhất.</p>
                         </div>
                     </div>
                 </div>
@@ -588,9 +588,9 @@
                             <span class="w-8 h-8 rounded-full bg-orange-600 text-white font-extrabold flex items-center justify-center text-sm shadow-md shadow-orange-600/50">3</span>
                             <span class="text-xs font-bold text-orange-400 bg-orange-950/60 px-2.5 py-1 rounded-full border border-orange-900">Bước 3</span>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Đóng Gói & Tự Động Ghi Nhận</h3>
+                        <h3 class="text-lg font-bold text-white mb-2">Đóng Gói & Xuất Kho Tự Động</h3>
                         <p class="text-xs text-slate-400 leading-relaxed mb-5">
-                            In phiếu điều chuyển kho hoặc gửi hàng cho khách. Dữ liệu đăng ký tư vấn được chuyển thẳng sang trang Google Sheet của bạn tức thì.
+                            Quét mã kiểm tra lần cuối tránh gửi sai món, in vận đơn đa sàn và tự động trừ tồn kho theo thời gian thực (Real-time).
                         </p>
                     </div>
                     <div class="h-40 rounded-2xl overflow-hidden bg-slate-950 border border-slate-700">
@@ -638,9 +638,9 @@
                     <h3 class="font-extrabold text-base text-slate-900 mb-2">3. OptiWarehouse.AI</h3>
                     <p class="text-xs text-orange-700 font-bold mb-4">Trí tuệ AI trên hạ tầng sẵn có</p>
                     <ul class="text-xs text-slate-800 space-y-2.5 font-medium">
-                        <li class="flex items-center gap-2 text-orange-700">✓ AI phân phối hàng đa kho theo lực mua</li>
-                        <li class="flex items-center gap-2 text-orange-700">✓ Tự động gửi thông tin sang Google Sheet</li>
-                        <li class="flex items-center gap-2 text-orange-700">✓ Chi phí chỉ từ 490.000đ/tháng</li>
+                        <li class="flex items-center gap-2 text-orange-700">✓ AI phân phối đa kho theo sức mua thực tế</li>
+                        <li class="flex items-center gap-2 text-orange-700">✓ AI gom đơn (Batch Picking) & Sơ đồ kệ 2D</li>
+                        <li class="flex items-center gap-2 text-orange-700">✓ Chi phí tinh gọn chỉ từ 490.000đ/tháng</li>
                     </ul>
                 </div>
             </div>
@@ -711,7 +711,7 @@
                             <li>✓ Quản lý 500 SKU</li>
                             <li>✓ 2 tài khoản nhân viên</li>
                             <li>✓ Quét mã bằng điện thoại</li>
-                            <li>✓ Gửi data đăng ký vào Google Sheet</li>
+                            <li>✓ Sơ đồ vị trí kệ kho & Xuất Excel chuẩn</li>
                         </ul>
                     </div>
                     <a href="#lead-form" class="block w-full py-2.5 text-center text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-100 transition">Đăng ký tư vấn</a>
@@ -728,7 +728,7 @@
                             <li>✓ <strong>Không giới hạn SKU & Đơn hàng</strong></li>
                             <li>✓ <strong>Lõi AI: Phân phối hàng theo sức mua các kho</strong></li>
                             <li>✓ <strong>AI Dự báo nhu cầu nhập & điều chuyển</strong></li>
-                            <li>✓ <strong>Tự động gửi thông tin sang Google Sheet</strong></li>
+                            <li>✓ <strong>AI Gom đơn hàng (Batch Picking) lộ trình tối ưu</strong></li>
                             <li>✓ Kết nối tự động Shopee, TikTok Shop</li>
                         </ul>
                     </div>
