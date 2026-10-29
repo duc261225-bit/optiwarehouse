@@ -117,12 +117,6 @@
                     <span id="badge-orders-count" class="ml-auto bg-slate-700 text-slate-300 text-[10px] font-bold px-1.5 py-0.5 rounded-full">4</span>
                 </button>
 
-                <button onclick="switchAppTab('consultations')" id="nav-consultations" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800">
-                    <i data-lucide="inbox" class="w-4 h-4 text-purple-400"></i>
-                    <span>Yêu Cầu Tư Vấn</span>
-                    <span id="badge-consultations-count" class="ml-auto bg-purple-500 text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">3</span>
-                </button>
-
                 <button onclick="switchAppTab('customers')" id="nav-customers" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition text-slate-400 hover:text-white hover:bg-slate-800">
                     <i data-lucide="users" class="w-4 h-4 text-indigo-400"></i>
                     <span>Khách Hàng (CRM)</span>
@@ -886,44 +880,6 @@
             </div>
 
             <!-- ========================================== -->
-            <!-- TAB 8: YÊU CẦU TƯ VẤN (CONSULTATIONS) -->
-            <!-- ========================================== -->
-            <div id="view-consultations" class="tab-content space-y-6">
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
-                            <i data-lucide="inbox" class="w-5 h-5 text-purple-600"></i>
-                            <span>Danh Sách Khách Hàng Đăng Ký Tư Vấn</span>
-                        </h2>
-                        <p class="text-xs text-slate-500 mt-0.5">Tự động đồng bộ từ Landing Page và lưu vào Sheet 1</p>
-                    </div>
-                    <button onclick="exportCSV('consultations')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
-                        <i data-lucide="download" class="w-4 h-4"></i> Xuất CSV
-                    </button>
-                </div>
-
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left text-xs">
-                            <thead class="bg-slate-50 text-slate-500 font-bold uppercase tracking-wider">
-                                <tr>
-                                    <th class="p-4">Khách Hàng & Email</th>
-                                    <th class="p-4">Quy Mô Kho</th>
-                                    <th class="p-4">Kênh Bán Hàng</th>
-                                    <th class="p-4">Thời Gian & Ghi Chú</th>
-                                    <th class="p-4">Trạng Thái</th>
-                                    <th class="p-4 text-center">Thao Tác</th>
-                                </tr>
-                            </thead>
-                            <tbody id="consultations-tbody" class="divide-y divide-slate-100 font-medium">
-                                <!-- Populated dynamically -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========================================== -->
             <!-- TAB 9: QUẢN LÝ KHÁCH HÀNG (CRM) -->
             <!-- ========================================== -->
             <div id="view-customers" class="tab-content space-y-6">
@@ -965,101 +921,70 @@
     </main>
 
     <!-- ======================================================== -->
-    <!-- MODAL 1: CHI TIẾT SẢN PHẨM & CẬP NHẬT TỒN KHO THỜI GIAN THỰC (KHI QUÉT QR) -->
+    <!-- MODAL 1: MÁY QUÉT KHO ĐƠN GIẢN — CẬP NHẬT TỨC THÌ (QR SCANNER) -->
     <!-- ======================================================== -->
-    <div id="modal-product-detail" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto">
-            <!-- Modal Header -->
-            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+    <div id="modal-product-detail" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-5 sm:p-6 shadow-2xl space-y-4 animate-scale-up">
+            <!-- Header -->
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
                 <div class="flex items-center gap-2">
-                    <span class="w-8 h-8 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-sm font-bold">📱</span>
-                    <div>
-                        <h3 class="font-extrabold text-sm text-slate-900">MÁY QUÉT KHO — ĐỒNG BỘ THỜI GIAN THỰC</h3>
-                        <p class="text-[10px] text-emerald-600 font-bold">● Kết nối trực tiếp CSDL Kho & App</p>
-                    </div>
+                    <span class="w-7 h-7 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center text-sm font-bold">📱</span>
+                    <span class="font-bold text-xs uppercase tracking-wider text-slate-700">Máy Quét Kho</span>
                 </div>
                 <button onclick="closeModal('modal-product-detail')" class="text-slate-400 hover:text-slate-600 text-xl font-bold p-1">&times;</button>
             </div>
 
-            <!-- Product Specs -->
-            <div class="space-y-3">
-                <div class="flex items-start justify-between gap-2">
-                    <div>
-                        <span id="detail-sku" class="font-mono font-extrabold text-base text-orange-600 block">OPTI-1001</span>
-                        <h4 id="detail-name" class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Áo Polo Nam Nano Cool Air</h4>
-                        <span id="detail-category" class="text-xs text-slate-500">Thời Trang Nam</span>
-                    </div>
-                    <span id="detail-status" class="ml-auto px-2.5 py-0.5 rounded-full font-bold text-xs bg-amber-100 text-amber-700 whitespace-nowrap">Bán Chạy 🔥</span>
+            <!-- Product Info -->
+            <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                    <span id="detail-sku" class="px-2 py-0.5 bg-orange-100 text-orange-700 font-mono font-extrabold text-xs rounded-lg">OPTI-1001</span>
+                    <span id="detail-category" class="text-xs text-slate-500 font-medium truncate">Thời Trang Nam</span>
                 </div>
-
-                <!-- Live Stock Box -->
-                <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-4 flex items-center justify-between">
-                    <div>
-                        <span class="text-[11px] font-bold text-orange-800 uppercase tracking-wider block">TỒN KHO THỜI GIAN THỰC</span>
-                        <span class="text-[10px] text-orange-600">Đồng bộ tức thì sang CSDL & App</span>
-                    </div>
-                    <div class="text-right">
-                        <strong id="detail-stock" class="text-2xl sm:text-3xl font-black text-orange-700 font-mono">145 chiếc</strong>
-                        <span id="detail-velocity" class="block text-[10px] text-slate-500">Sức bán: 35 cái/ngày</span>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-3 gap-2 bg-slate-50 p-3 rounded-2xl border border-slate-200 text-center text-xs">
-                    <div>
-                        <span class="text-slate-400 block text-[10px]">Vị Trí Kệ:</span>
-                        <strong id="detail-rack" class="font-extrabold text-blue-600 text-xs sm:text-sm">Kệ A-01</strong>
-                        <span id="detail-zone" class="block text-[9px] text-slate-400 truncate">Zone Vàng</span>
-                    </div>
-                    <div>
-                        <span class="text-slate-400 block text-[10px]">Giá Niêm Yết:</span>
-                        <strong id="detail-price" class="font-extrabold text-slate-900 text-xs sm:text-sm">289.000 đ</strong>
-                    </div>
-                    <div>
-                        <span class="text-slate-400 block text-[10px]">Chi Nhánh:</span>
-                        <strong id="detail-store" class="font-extrabold text-slate-800 text-xs sm:text-sm truncate">Đường A</strong>
-                    </div>
-                </div>
-
-                <!-- LIVE ACTION BUTTONS (UPDATES SHEET 2 AND APP SIMULTANEOUSLY) -->
-                <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-2.5">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-orange-400 flex items-center gap-1">
-                            <i data-lucide="zap" class="w-3.5 h-3.5"></i> CẬP NHẬT TỨC THÌ (SHEET 2 & APP):
-                        </span>
-                        <span class="text-[10px] text-emerald-400 font-mono font-bold">● Realtime Sync</span>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="mobileUpdateStock('export', 1)" class="py-2.5 px-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-1.5 transition">
-                            <i data-lucide="minus-circle" class="w-4 h-4"></i> Xuất 1 Món (Lấy Hàng)
-                        </button>
-
-                        <button onclick="mobileUpdateStock('import', 10)" class="py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-1.5 transition">
-                            <i data-lucide="plus-circle" class="w-4 h-4"></i> Nhập Thêm +10 Món
-                        </button>
-                    </div>
-
-                    <p class="text-[10px] text-slate-400 text-center">
-                        Bấm nút trên điện thoại sẽ tự động cộng/trừ vào ô Tồn Kho của Sheet thứ 2 và cập nhật toàn bộ App.
-                    </p>
+                <h3 id="detail-name" class="font-extrabold text-base text-slate-900 leading-snug">Áo Polo Nam Nano Cool Air</h3>
+                <div class="flex items-center gap-2 text-xs">
+                    <span class="px-2 py-0.5 bg-blue-50 text-blue-700 font-bold rounded-lg"><span id="detail-rack">Kệ A-01</span> (<span id="detail-zone">Zone Vàng</span>)</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-800 font-bold rounded-lg" id="detail-price">289.000 đ</span>
                 </div>
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-2 pt-1">
-                <button onclick="createOrderFromDetail()" class="flex-1 py-2.5 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs rounded-xl shadow transition">
-                    + Tạo Đơn Soạn Món Này
+            <!-- Big Live Stock Center Box -->
+            <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-4 text-center">
+                <span class="text-[10px] font-extrabold text-orange-800 uppercase tracking-wider block">TỒN KHO HIỆN TẠI</span>
+                <div class="text-4xl font-black text-orange-600 font-mono my-1" id="detail-stock">145 chiếc</div>
+                <span id="detail-status" class="inline-block px-2.5 py-0.5 rounded-full font-bold text-xs bg-amber-100 text-amber-800">Bán Chạy 🔥</span>
+            </div>
+
+            <!-- 3 Fast Touch Buttons -->
+            <div class="space-y-1.5">
+                <div class="text-[11px] font-bold text-slate-500 text-center uppercase tracking-wider">Chạm Nhanh Để Cập Nhật Tồn Kho:</div>
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="mobileUpdateStock('export', 1)" class="py-2.5 bg-red-600 hover:bg-red-700 active:scale-95 text-white font-extrabold rounded-2xl shadow transition flex flex-col items-center justify-center">
+                        <span class="text-base font-black leading-none">- 1</span>
+                        <span class="text-[10px] font-medium opacity-90 mt-0.5">Xuất Kho</span>
+                    </button>
+                    <button onclick="mobileUpdateStock('import', 1)" class="py-2.5 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-extrabold rounded-2xl shadow transition flex flex-col items-center justify-center">
+                        <span class="text-base font-black leading-none">+ 1</span>
+                        <span class="text-[10px] font-medium opacity-90 mt-0.5">Nhập Kho</span>
+                    </button>
+                    <button onclick="mobileUpdateStock('import', 10)" class="py-2.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-extrabold rounded-2xl shadow transition flex flex-col items-center justify-center">
+                        <span class="text-base font-black leading-none">+ 10</span>
+                        <span class="text-[10px] font-medium opacity-90 mt-0.5">Nhập Thêm</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bottom Actions -->
+            <div class="flex gap-2 pt-2 border-t border-slate-100">
+                <button onclick="createOrderFromDetail()" class="flex-1 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl shadow transition">
+                    + Tạo Đơn Xuất Món Này
                 </button>
-                <a href="https://docs.google.com/spreadsheets/d/1li4dvmn6BQT90mgqDMEKJjXNvP0RKX34RW8WZLN3oIQ/edit" target="_blank" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs rounded-xl transition text-center flex items-center justify-center gap-1">
-                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Xem CSDL Kho
-                </a>
-                <button onclick="closeModal('modal-product-detail')" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs rounded-xl transition">
+                <button onclick="closeModal('modal-product-detail')" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
                     Đóng
                 </button>
             </div>
         </div>
     </div>
-
-    <!-- ======================================================== -->
+<!-- ======================================================== -->
     <!-- MODAL 2: THÊM SẢN PHẨM MỚI VÀO CSDL 200 SKU -->
     <!-- ======================================================== -->
     <div id="modal-add-product" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
@@ -1131,6 +1056,81 @@
         </div>
     </div>
 
+    <!-- ======================================================== -->
+    <!-- MODAL 3: CHỈNH SỬA SẢN PHẨM TRONG CSDL -->
+    <!-- ======================================================== -->
+    <div id="modal-edit-product" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 animate-scale-up">
+            <div class="flex justify-between items-center pb-2 border-b">
+                <h3 class="font-extrabold text-base text-slate-900">✏️ Chỉnh Sửa Thông Tin SKU</h3>
+                <button onclick="closeModal('modal-edit-product')" class="text-slate-400 hover:text-slate-600 text-lg font-bold">&times;</button>
+            </div>
+            <form onsubmit="saveEditProduct(event)" class="space-y-3 text-xs">
+                <input id="edit-prod-sku" type="hidden">
+                <div>
+                    <label class="block font-bold text-slate-600 mb-1">Mã SKU (Cố định)</label>
+                    <div id="edit-prod-sku-badge" class="font-mono font-bold text-sm text-orange-600 bg-orange-50 p-2.5 rounded-xl border border-orange-200">OPTI-1001</div>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-600 mb-1">Tên Sản Phẩm *</label>
+                    <input id="edit-prod-name" required type="text" class="w-full p-2.5 rounded-xl border border-slate-200 focus:border-orange-500 font-bold text-slate-900">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Danh Mục</label>
+                        <select id="edit-prod-category" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white">
+                            <option value="Thời Trang Nam">Thời Trang Nam</option>
+                            <option value="Thời Trang Nữ">Thời Trang Nữ</option>
+                            <option value="Giày Dép & Phụ Kiện">Giày Dép & Phụ Kiện</option>
+                            <option value="Gia Dụng & Công Nghệ Mini">Gia Dụng & Công Nghệ Mini</option>
+                            <option value="Đồ Thể Thao & Dã Ngoại">Đồ Thể Thao & Dã Ngoại</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Vị Trí Kệ Hàng</label>
+                        <select id="edit-prod-rack" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white">
+                            <option value="Kệ A-01">Kệ A-01 (Zone Vàng)</option>
+                            <option value="Kệ A-02">Kệ A-02 (Zone Vàng)</option>
+                            <option value="Kệ A-03">Kệ A-03 (Zone Vàng)</option>
+                            <option value="Kệ A-04">Kệ A-04 (Zone Vàng)</option>
+                            <option value="Kệ A-05">Kệ A-05 (Zone Vàng)</option>
+                            <option value="Kệ B-01">Kệ B-01 (Zone Bạc)</option>
+                            <option value="Kệ B-02">Kệ B-02 (Zone Bạc)</option>
+                            <option value="Kệ B-03">Kệ B-03 (Zone Bạc)</option>
+                            <option value="Kệ B-04">Kệ B-04 (Zone Bạc)</option>
+                            <option value="Kệ B-05">Kệ B-05 (Zone Bạc)</option>
+                            <option value="Kệ C-01">Kệ C-01 (Zone Bạc)</option>
+                            <option value="Kệ C-02">Kệ C-02 (Zone Bạc)</option>
+                            <option value="Kệ C-03">Kệ C-03 (Zone Bạc)</option>
+                            <option value="Kệ C-04">Kệ C-04 (Zone Bạc)</option>
+                            <option value="Kệ C-05">Kệ C-05 (Zone Bạc)</option>
+                            <option value="Kệ D-01">Kệ D-01 (Zone Đồng)</option>
+                            <option value="Kệ D-02">Kệ D-02 (Zone Đồng)</option>
+                            <option value="Kệ D-03">Kệ D-03 (Zone Đồng)</option>
+                            <option value="Kệ D-04">Kệ D-04 (Zone Đồng)</option>
+                            <option value="Kệ D-05">Kệ D-05 (Zone Đồng)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Số Lượng Tồn Kho</label>
+                        <input id="edit-prod-stock" required type="number" min="0" class="w-full p-2.5 rounded-xl border border-slate-200 font-extrabold text-slate-900">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Giá Bán (VNĐ)</label>
+                        <input id="edit-prod-price" required type="number" min="1000" step="1000" class="w-full p-2.5 rounded-xl border border-slate-200 font-bold">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-2 pt-3 border-t">
+                    <button type="button" onclick="closeModal('modal-edit-product')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold">Hủy</button>
+                    <button type="submit" class="px-5 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-bold shadow">Lưu Thay Đổi & Đồng Bộ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
     <!-- JAVASCRIPT LOGIC -->
     <script>
         const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxQynLV7kGHglwBw80BKlnKACxBtOj4xFBGYY64xc2gh9E3Cih4WBjch_zGC8kSPtDEdA/exec";
@@ -1182,7 +1182,7 @@
             renderDashboard();
             initInventoryData();
             renderOrders();
-            renderConsultations();
+            
             renderCustomers();
             initForecastChart();
 
@@ -1312,9 +1312,15 @@
                                 ${p.status}
                             </span>
                         </td>
-                        <td class="p-3.5 text-center" onclick="event.stopPropagation()">
-                            <button onclick="openProductLookupModal('${p.sku}')" class="px-2.5 py-1 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg text-xs font-bold mr-1">
-                                Tra cứu QR
+                        <td class="p-3 text-center whitespace-nowrap" onclick="event.stopPropagation()">
+                            <button onclick="openProductLookupModal('${p.sku}')" title="Quét & Xem QR" class="px-2 py-1 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg text-xs font-bold mr-1 transition">
+                                📱 QR
+                            </button>
+                            <button onclick="openEditProductModal('${p.sku}')" title="Sửa SKU này" class="px-2 py-1 bg-amber-50 text-amber-700 hover:bg-amber-100 rounded-lg text-xs font-bold mr-1 transition">
+                                ✏️ Sửa
+                            </button>
+                            <button onclick="deleteProductAction('${p.sku}')" title="Xóa SKU này" class="px-2 py-1 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg text-xs font-bold transition">
+                                🗑️ Xoá
                             </button>
                         </td>
                     </tr>
@@ -1511,6 +1517,113 @@
 
         function openAddProductModal() {
             document.getElementById('modal-add-product').classList.remove('hidden');
+        }
+
+        
+        // ==========================================
+        // CÁC HÀM SỬA & XÓA SẢN PHẨM CSDL (ĐỒNG BỘ 2 CHIỀU)
+        // ==========================================
+        function openEditProductModal(sku) {
+            const list = getDB('inventory', SEED_INVENTORY);
+            const prod = list.find(p => p.sku.toUpperCase() === sku.toUpperCase());
+            if (!prod) return;
+
+            document.getElementById('edit-prod-sku').value = prod.sku;
+            document.getElementById('edit-prod-sku-badge').innerText = prod.sku;
+            document.getElementById('edit-prod-name').value = prod.name;
+            document.getElementById('edit-prod-category').value = prod.category;
+            document.getElementById('edit-prod-rack').value = prod.rack;
+            document.getElementById('edit-prod-stock').value = prod.stock;
+            document.getElementById('edit-prod-price').value = prod.price;
+
+            document.getElementById('modal-edit-product').classList.remove('hidden');
+        }
+
+        function saveEditProduct(e) {
+            e.preventDefault();
+            const sku = document.getElementById('edit-prod-sku').value;
+            const name = document.getElementById('edit-prod-name').value.trim();
+            const cat = document.getElementById('edit-prod-category').value;
+            const rack = document.getElementById('edit-prod-rack').value;
+            const stock = Number(document.getElementById('edit-prod-stock').value) || 0;
+            const price = Number(document.getElementById('edit-prod-price').value) || 0;
+
+            let zone = 'Zone Đồng (Cuối kho)';
+            if (rack.includes('A')) zone = 'Zone Vàng (Gần cửa xuất)';
+            else if (rack.includes('B')) zone = 'Zone Bạc (Lối đi chính)';
+
+            let status = 'Đủ Hàng';
+            if (stock <= 0) status = 'Hết Hàng ⛔';
+            else if (stock <= 15) status = 'Sắp Cháy Hàng ⚠️';
+            else status = 'Bán Chạy 🔥';
+
+            let list = getDB('inventory', SEED_INVENTORY);
+            const idx = list.findIndex(p => p.sku.toUpperCase() === sku.toUpperCase());
+            if (idx !== -1) {
+                list[idx].name = name;
+                list[idx].category = cat;
+                list[idx].rack = rack;
+                list[idx].zone = zone;
+                list[idx].stock = stock;
+                list[idx].price = price;
+                list[idx].status = status;
+                setDB('inventory', list);
+            }
+
+            // Đồng bộ sang Google Apps Script
+            if (GOOGLE_SHEET_URL && GOOGLE_SHEET_URL.startsWith('https://script.google.com/')) {
+                const url = `${GOOGLE_SHEET_URL}?action=edit_product&sku=${encodeURIComponent(sku)}&name=${encodeURIComponent(name)}&category=${encodeURIComponent(cat)}&rack=${encodeURIComponent(rack)}&stock=${stock}&price=${price}`;
+                try {
+                    fetch(url, { mode: 'no-cors' });
+                    fetch(GOOGLE_SHEET_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify({ action: 'edit_product', sku, name, category: cat, rack, stock, price })
+                    });
+                } catch(err) {
+                    console.log('Edit sync error:', err);
+                }
+            }
+
+            closeModal('modal-edit-product');
+            filterInventory();
+            render2DRacks();
+            renderForecastAnalysis();
+            renderDashboard();
+            playBeep(true);
+            alert(`✓ Đã lưu thay đổi cho SKU ${sku} và đồng bộ CSDL thành công!`);
+        }
+
+        function deleteProductAction(sku) {
+            if (!confirm(`Bạn có chắc chắn muốn xóa SKU ${sku} khỏi cơ sở dữ liệu không?`)) return;
+
+            let list = getDB('inventory', SEED_INVENTORY);
+            list = list.filter(p => p.sku.toUpperCase() !== sku.toUpperCase());
+            setDB('inventory', list);
+
+            // Đồng bộ lệnh xóa sang Google Apps Script
+            if (GOOGLE_SHEET_URL && GOOGLE_SHEET_URL.startsWith('https://script.google.com/')) {
+                const url = `${GOOGLE_SHEET_URL}?action=delete_product&sku=${encodeURIComponent(sku)}`;
+                try {
+                    fetch(url, { mode: 'no-cors' });
+                    fetch(GOOGLE_SHEET_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify({ action: 'delete_product', sku })
+                    });
+                } catch(err) {
+                    console.log('Delete sync error:', err);
+                }
+            }
+
+            filterInventory();
+            render2DRacks();
+            renderForecastAnalysis();
+            renderDashboard();
+            playBeep(true);
+            alert(`✓ Đã xóa thành công SKU ${sku} khỏi CSDL!`);
         }
 
         function saveNewProduct(e) {
@@ -1726,10 +1839,18 @@
             const channels = ['Shopee', 'TikTok Shop', 'Lazada'];
             const randomChannel = channels[Math.floor(Math.random() * channels.length)];
 
+            // Trừ trực tiếp 1 tồn kho trong CSDL thực tế
+            if (randomProd.stock > 0) {
+                randomProd.stock -= 1;
+                setDB('inventory', list);
+                filterInventory();
+                renderDashboard();
+            }
+
             const newOrd = {
                 id: Date.now(),
                 order_code: 'ORD-' + Math.floor(9000 + Math.random() * 999),
-                customer_name: 'Khách Test Online',
+                customer_name: 'Khách Hàng Đặt Sàn',
                 phone: '0988' + Math.floor(100000 + Math.random() * 900000),
                 channel: randomChannel,
                 total_amount: randomProd.price || 350000,
